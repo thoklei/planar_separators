@@ -30,3 +30,18 @@
 *.exe
 *.out
 *.app
+
+# CLion and MacOS stuff
+*.cbp
+.idea/
+*.DS_Store
+
+# cmake stuff
+CMakeFiles/
+Testing/
+cmake-build-debug/
+cmake-build-release/
+cmake_install.cmake
+
+# instances folder (too big)
+instances/
