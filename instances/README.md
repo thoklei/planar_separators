@@ -1,6 +1,6 @@
 # Contents
 
-This directory contains instances for the separator problem = graphs with interesting properties to test the algorithm on.
+This directory contains instance_dirs for the separator problem = graphs with interesting properties to test the algorithm on.
 
 | Type          |                                                                                     Description                                                                                    |
 |:-------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -3,17 +3,40 @@ project(benchmark CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 
+# OGDF
 set(OGDF_DIR "/Users/thomas/Uni/Masterarbeit/OGDF/cmake-build-release")
 find_package(OGDF REQUIRED PATHS "/Users/thomas/Uni/Masterarbeit/OGDF/cmake-build-release" NO_DEFAULT_PATH)
 
-add_executable(main src/main.cpp)
+#CGAL
+find_package(CGAL REQUIRED PATHS CGAL_DIR)
+set(CGAL_DO_NOT_WARN_ABOUT_CMAKE_BUILD_TYPE true)
+
+# TINY_XML
+set(tinyxml2_DIR "/Users/thomas/Uni/Masterarbeit/tinyxml2/build")
+find_package(tinyxml2 REQUIRED PATHS "/Users/thomas/Uni/Masterarbeit/tinyxml2/cmake")
+
+add_executable(main src/main.cpp src/property_recorder.cpp src/tinyxml2.cpp src/utils.cpp)
+target_include_directories(main PUBLIC include)
 target_include_directories(main PRIVATE ${OGDF_INCLUDE_DIRS})
 target_link_libraries(main OGDF)
 
 add_executable(tri src/triangulation.cpp)
-target_include_directories(tri PRIVATE ${OGDF_INCLUDE_DIRS})
-target_link_libraries(tri OGDF)
+target_include_directories(tri PUBLIC include)
+target_include_directories(tri PRIVATE ${CGAL_INCLUDE_DIRS} ${OGDF_INCLUDE_DIRS})
+target_link_libraries(tri CGAL OGDF)
 
-add_executable(instance_gen src/instance_generator.cpp)
-target_include_directories(instance_gen PRIVATE ${OGDF_INCLUDE_DIRS})
-target_link_libraries(instance_gen OGDF)
+add_executable(instance_gen src/instance_generator.cpp src/utils.cpp)
+target_include_directories(instance_gen PUBLIC include)
+target_include_directories(instance_gen PRIVATE ${CGAL_INCLUDE_DIRS} ${OGDF_INCLUDE_DIRS})
+target_link_libraries(instance_gen CGAL OGDF)
+
+add_executable(workbench src/workbench.cpp)
+target_include_directories(workbench PUBLIC include)
+target_include_directories(workbench PRIVATE ${OGDF_INCLUDE_DIRS})
+target_link_libraries(workbench OGDF)
+
+add_executable(properties src/record_properties.cpp src/property_recorder.cpp src/tinyxml2.cpp src/utils.cpp)
+target_include_directories(properties PUBLIC include)
+target_include_directories(properties PRIVATE ${OGDF_INCLUDE_DIRS})
+target_include_directories(properties PRIVATE ${tinyxml2_DIR})
+target_link_libraries(properties OGDF)

@@ -42,3 +42,9 @@ Testing/
 cmake-build-debug/
 cmake-build-release/
 cmake_install.cmake
+
+# temporary directory for testing stuff
+tmp/
+
+# results (are too chaotic for now)
+results/

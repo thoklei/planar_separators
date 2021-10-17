@@ -1,8 +1,21 @@
+"""
+This script queries OpenStreetMap to generate (non-planar) city graphs.
+"""
+
 import overpy
 import os
 
 
 def write_chaco(filename, nodes, edges, graph_dict, corr_func):
+    """
+    Writes a graph to a .chaco file.
+
+    :param filename: the name of the resulting file (without extension)
+    :param nodes:
+    :param edges:
+    :param graph_dict:
+    :param corr_func:
+    """
     with open(filename+".chaco", 'w') as file:
         file.write(str(nodes) + " " + str(edges))
         for key in graph_dict:
@@ -10,24 +23,32 @@ def write_chaco(filename, nodes, edges, graph_dict, corr_func):
 
 
 def query_osm(path):
+    """
+    Queries OSM and writes results to path.
+    todo break this down into smaller chunks
+
+    :param path: the target path for the results
+    """
 
     if not os.path.exists(path):
         os.makedirs(path)
 
-    cities = ["Osnabrück"]
+    cities = ["Lindlar", "Osnabrück", "Köln", "Berlin", "München", "San Francisco"]
 
     api = overpy.Overpass()
 
     for city in cities:
 
         print("Working on city:", city)
-        real_query = "area[\"name\"=\""+city+"\"]->.b; way(area.b);(._;>;);out skel;"
+        real_query = "area[\"name\"=\""+city+"\"]->.b; way(area.b)[\"highway\"~\"primary|secondary|tertiary|residential\"];(._;>;);out skel;"
         result = api.query(real_query)
 
         id_max = 1
         edges = 0
         osm_to_id = {}
         neighbours = {}
+
+        print("Query successful, extracting nodes...")
 
         # we only care about nodes on ways
         for way in result.ways:
@@ -89,9 +110,7 @@ def query_osm(path):
 
         write_chaco(os.path.join(path, city), correction_idx-1, edge_count, neighbours, lambda x: correction_dict[x])
 
-        # write_chaco(os.path.join(path, city+"test"), correction_idx-1, edge_count, neighbours, lambda x: x)
-
 
 if __name__ == "__main__":
-    path = "../instances/city"
-    query_osm(path)
+    resource_dir = "../resources/city"
+    query_osm(resource_dir)
