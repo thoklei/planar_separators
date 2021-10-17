@@ -48,3 +48,6 @@ tmp/
 
 # results (are too chaotic for now)
 results/
+
+# excluding random instances because they are monstrous - generate them using the instance generator!
+instances/random/
