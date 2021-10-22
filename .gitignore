@@ -45,6 +45,7 @@ cmake_install.cmake
 
 # temporary directory for testing stuff
 tmp/
+__pycache__/
 
 # results (are too chaotic for now)
 results/
