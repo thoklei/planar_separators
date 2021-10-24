@@ -83,6 +83,13 @@ unsigned long getHashCode(std::string path);
  */
 std::string extractFileName(std::string path);
 
+/**
+ * Extracts the full file name from a path, including sudirectories.
+ *
+ * @param path the path to the file
+ * @return the filename (between "instances/" and .extension)
+ */
+std::string extractFullFileName(std::string path);
 
 /**
  * Returns a human-readable specification of the current time stamp.

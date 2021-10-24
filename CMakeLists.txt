@@ -19,6 +19,7 @@ add_executable(main src/main.cpp src/property_recorder.cpp src/tinyxml2.cpp src/
 target_include_directories(main PUBLIC include)
 target_include_directories(main PRIVATE ${OGDF_INCLUDE_DIRS})
 target_link_libraries(main OGDF)
+target_compile_options(main PUBLIC -Wuninitialized -Wall -Weffc++)
 
 add_executable(tri src/triangulation.cpp)
 target_include_directories(tri PUBLIC include)

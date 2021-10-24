@@ -18,6 +18,16 @@
 using namespace ogdf;
 
 /**
+ * Ecoding algorithms as const longs to select algorithms.
+ */
+const short LT      = 1 << 0;
+const short LTFC    = 1 << 1;
+const short D       = 1 << 2;
+const short DFC     = 1 << 3;
+const short HP      = 1 << 4;
+const short all     = (1 << 5) - 1;
+
+/**
  * Evaluates five different Separator modules on all test instances.
  */
 class Experiment {
@@ -118,8 +128,8 @@ public:
 	 * @param test whether to test the result for correctness
 	 * @param attempts number of solving attempts (with different random seeds)
 	 */
-    Experiment(const std::string &res_file, const std::string &target_dir, const std::string &propertyFile, int limit, bool test, int attempts)
-        : res_file{res_file}, instance_dir{target_dir}, recorder{propertyFile}, limit{limit}, test{test}, attempts{attempts} {
+    Experiment(const std::string &res_file, const std::string &target_dir, const std::string &propertyFile, int limit, bool test, int attempts, short algorithm)
+        : res_file{res_file}, instance_dir{target_dir}, limit{limit}, test{test}, attempts{attempts}, selectedAlgorithms{algorithm}, recorder{propertyFile} {
 
         file.open(res_file);
         file << Result::get_head();
@@ -141,11 +151,16 @@ public:
 
         // collection of separators to use
         std::vector<PlanarSeparatorModule*> separators;
-        separators.push_back( &sepLipTar );
-        separators.push_back( &sepDual );
-        separators.push_back( &sepLTFC );
-        separators.push_back( &sepDFC );
-        separators.push_back( &sepHarPel );
+		if(selectedAlgorithms & LT)
+			separators.push_back( &sepLipTar );
+        if(selectedAlgorithms & D)
+			separators.push_back( &sepDual );
+        if(selectedAlgorithms & LTFC)
+			separators.push_back( &sepLTFC );
+        if(selectedAlgorithms & DFC)
+			separators.push_back( &sepDFC );
+        if(selectedAlgorithms & HP)
+			separators.push_back( &sepHarPel );
 
         // walk over all files/directories in instance directory
         using rec_dir_it = std::filesystem::recursive_directory_iterator;
@@ -177,6 +192,7 @@ private:
     int limit;
     bool test; // whether to test results or not
     int attempts;
+	short selectedAlgorithms;
 
     PropertyRecorder recorder;
 
@@ -316,22 +332,30 @@ private:
  *      -l (limit) = size limit for instances in nodes, larger instances are skipped
  *      -t (test) = whether the generated results should be tested for correctness
  *      -a (attempts) = how many times to solve each instance with each algorithm
+ *      -A (Algorithm) = which algorithm should be used, default is all
  * ==============================
+ *
+ * === Version ===
+ * 		v1.0 = first version of result-file (no recorded details)
+ * ===============
  *
  */
 int main(int argc, char **argv) {
 
+	std::string version = "_v1.0";
+
     /* default values for arguments */
-    std::string res_file = "../results/data_" + currentTime() + ".csv"; // location to write results to
+    std::string res_file = "../results/data_" + currentTime() + version + ".csv"; // location to write results to
     std::string instance_path = "../instances/";                        // instance location
     std::string property_file = "../instances/properties.xml";          // where to look for properties
     int attempts = 20;
     int size_limit = 1000000;                                           // size limit (in nodes) up to which instances are attempted
     bool test_results = false;                                          // whether to test results to confirm correctness
+	short algorithm = all;
 
     /* command line argument parsing */
     int opt;
-    while ((opt = getopt(argc, argv, "r:i:p:l:a:t")) != -1) { // : means arg takes a value
+    while ((opt = getopt(argc, argv, "r:i:p:l:a:A:t")) != -1) { // : means arg takes a value
         switch (opt) {
             case 'r':
                 res_file = optarg;
@@ -350,14 +374,28 @@ int main(int argc, char **argv) {
             case 't':
                 test_results = true;
                 break;
+			case 'A': {
+				std::string names = optarg;
+				algorithm = 0;
+				if (names.find("LipTar") != std::string::npos) algorithm |= LT;
+				if (names.find("LTFC")   != std::string::npos) algorithm |= LTFC;
+				if (names.find("Dual")   != std::string::npos) algorithm |= D;
+				if (names.find("DFC")    != std::string::npos) algorithm |= DFC;
+				if (names.find("HP")     != std::string::npos) algorithm |= HP;
+				break;
+			}
             case '?':
+				break;
             default:
                 std::cout << "Could not parse command line arguments!" << std::endl;
                 return 1;
         }
     }
 
+	std::cout << all << std::endl;
+
     std::cout << "Running experiment with settings: \n"
+		<< "Algorithm: 		 " << std::bitset<8*sizeof(algorithm)>(algorithm) << "\n"
         << "instance path:   " << instance_path << "\n"
         << "result file:     " << res_file << "\n"
         << "property file:   " << property_file << "\n"
@@ -369,7 +407,7 @@ int main(int argc, char **argv) {
 
     /* experiments */
     setSeed(42);
-    Experiment exp(res_file, instance_path, property_file, size_limit, test_results, attempts);
+    Experiment exp(res_file, instance_path, property_file, size_limit, test_results, attempts, algorithm);
     exp.run();
 
     return 0;

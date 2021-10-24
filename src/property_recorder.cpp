@@ -89,9 +89,9 @@ void PropertyRecorder::processInstance(std::string path) {
         propMap[hash].diameter_uB = bounds.second;
     }
 
-    if(propMap[hash].name == "anonymous") {
-        propMap[hash].name = extractFileName(path);
-    }
+    //if(propMap[hash].name == "anonymous") {
+        propMap[hash].name = extractFullFileName(path);
+    //}
 
 }
 

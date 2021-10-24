@@ -37,6 +37,14 @@ std::string extractFileName(std::string path) {
     return path.substr(name_start_pos, name_length);
 }
 
+std::string extractFullFileName(std::string path) {
+	size_t name_start_pos = path.rfind("instances/")+10;
+	size_t name_end_pos = path.rfind(".");
+	size_t name_length = path.size() - name_start_pos - (path.size() - name_end_pos);
+
+	return path.substr(name_start_pos, name_length);
+}
+
 std::string currentTime() {
     auto now = std::chrono::system_clock::now();
     std::time_t time = std::chrono::system_clock::to_time_t(now);
