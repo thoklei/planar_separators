@@ -181,7 +181,7 @@ public:
                 }
             }
         }
-        std::cout << "Experiments ran successful!" << std::endl;
+        std::cout << "Experiments ran successfully!" << std::endl;
     }
 
 private:
