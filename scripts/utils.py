@@ -89,14 +89,16 @@ def filter_instances(instance_names, dir_names):
     return filtered
 
 
-def analyze_separator_size(df, name, algorithms, instances):
+def analysis_core(df, algorithms, instances, column_name):
     """
-    Plots the relative separator sizes for core algorithms as a bar chart, across all instances
+    Core of the analysis methods - creates a dictionary that maps algorithm name to list of relative performance values,
+    i.e. either the speed or the separator size relative to the minimum value for the instance.
 
     :param df: the main dataframe
-    :param name: the name of the resulting file
     :param algorithms: list of strings, algorithm identifiers
     :param instances: list of strings, instance identifiers
+    :param column_name: either 'time' or 'separator_size'
+    :return: performance-dictionary
     """
 
     # maps algorithm to relative average separator size
@@ -108,22 +110,111 @@ def analyze_separator_size(df, name, algorithms, instances):
 
         # reduce df to just this instance
         inst_df = df[df['instance'] == instance]
-        mini = inst_df['sep_size'].min()
+        mini = inst_df[column_name].min()
 
-        if mini != 0:  # happens for e.g. San Francisco - we are ignoring those instances
+        if mini != 0:  # ignore instances that were solved instantly
 
-            # for each algorithm, calculate average separator size and standard deviation
+            # for each algorithm, calculate average speed and standard deviation
             for algo in algorithms:
                 algo_df = inst_df[inst_df['algorithm'] == algo]
-                mean_sep_size = algo_df['sep_size'].mean()
-                algo_results[algo].append(mean_sep_size / mini)
+                mean_val = algo_df[column_name].mean()
+                algo_results[algo].append(mean_val / mini)
 
-    create_algo_plot(algo_results, name, "Average separator size relative to smallest known separator", "algorithm", "relative average separator size", True)
+    return algo_results
+
+
+def analyze_separator_speed(df, name, algorithms, instances):
+    """
+    Plots the relative speed for core algorithms as a bar chart, across all instances
+
+    :param df: the main dataframe
+    :param name: the name of the resulting file
+    :param algorithms: list of strings, algorithm identifiers
+    :param instances: list of strings, instance identifiers
+    """
+    algo_results = analysis_core(df, algorithms, instances, 'time')
+    create_algo_plot(algo_results, name, "Average separator speed relative to fastest algorithm",
+                     "algorithm", "relative average speed", True)
+
+
+def analyze_separator_size(df, name, algorithms, instances):
+    """
+    Plots the relative separator sizes for core algorithms as a bar chart, across all instances
+
+    :param df: the main dataframe
+    :param name: the name of the resulting file
+    :param algorithms: list of strings, algorithm identifiers
+    :param instances: list of strings, instance identifiers
+    """
+
+    algo_results = analysis_core(df, algorithms, instances, 'sep_size')
+    create_algo_plot(algo_results, name, "Average separator size relative to smallest known separator",
+                     "algorithm", "relative average separator size", True)
+
+
+def analyze_runtime_development(df, name, algorithms, instances, show):
+    """
+    Analyzes the runtime development, i.e. plots instance size against solving speed for the selected instances.
+
+    :param df: the main dataframe
+    :param name: the name of the resulting file
+    :param algorithms: list of strings, algorithm identifiers
+    :param instances: list of strings, instance identifiers - should be ordered by size for the plot to make sense
+    :param show: whether to show the plot or just save it
+    """
+
+    # maps algorithm to list of times, which are already ordered by instance size
+    algo_results = dict()
+    for algo in algorithms:
+        algo_results[algo] = {}
+
+    sizes = []  # stores instance sizes (in #nodes)
+    for instance in instances:
+
+        # reduce df to just this instance
+        inst_df = df[df['instance'] == instance]
+        size = inst_df['nodes'].mean()  # taking the mean here, but the values are all the same
+        sizes.append(size)
+
+        # for each algorithm, calculate average speed
+        for algo in algorithms:
+            algo_df = inst_df[inst_df['algorithm'] == algo]
+            mean_val = algo_df['time'].mean()
+
+            if size not in algo_results[algo].keys():  # make sure we already have a list here
+                algo_results[algo][size] = []
+
+            algo_results[algo][size].append(mean_val)
+
+    print("sizes:", sizes)
+    print("algo results: ", algo_results)
+
+    plt.figure()
+
+    for alg in algorithms:
+
+        # average values for all instances of the same size
+        unique_sizes = np.sort(np.unique(sizes))
+        print("unique sizes:", unique_sizes)
+        averages = []
+        for size in unique_sizes:
+            averages.append(np.mean(algo_results[alg][size]) / 1000.0)  # getting to ms
+        print("averages for", alg, averages)
+
+        plt.plot(unique_sizes, averages, color=get_color(alg), marker=get_marker(alg), label=alg)
+    plt.title("runtime development of core algorithms")
+    plt.xlabel("instance size (nodes)")
+    plt.ylabel("runtime (ms)")
+    plt.legend()
+    plt.tight_layout()
+    plt.savefig("../results/plots/"+name+".png")
+    if show:
+        plt.show()
 
 
 def analyze_instance_performance(df, name, instances, algorithms):
     """
-    Creates a scatterplot to visualize relative algorithm performance for each instance.
+    Creates a scatter-plot to visualize relative algorithm performance for each instance.
 
     :param df: the main dataframe
     :param name: the name of the resulting file
@@ -131,7 +222,7 @@ def analyze_instance_performance(df, name, instances, algorithms):
     :param algorithms: list of strings, algorithm identifiers
     """
 
-    clean_instances = [] # instances without those that ha
+    clean_instances = []  # instances without those that have 0-separators
 
     # maps algorithm to dictionary instance -> relative average separator size
     algo_results = dict()
@@ -226,46 +317,6 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
         plt.show()
 
 
-# def analyze_runtime(df, algorithms):
-#     instances = df['instance'].unique()
-#
-#     results = dict()
-#     for alg in algorithms:
-#         results[alg] = []
-#
-#     # df['rel_sep_size'] = df.apply (lambda row: func(row), axis=1)
-#
-#     for instance in instances:
-#         inst_df = df[df['instance'] == instance]
-#         mini = max(inst_df['time'].min(), 0.5)
-#
-#         assert(mini > 0)
-#
-#         def relative(row):
-#             return row['time'] / mini
-#
-#         inst_df['rel_time'] = inst_df.apply(lambda row: relative(row), axis=1)
-#
-#         print(inst_df)
-#
-#         for alg in algorithms:
-#             results[alg].append(inst_df[inst_df['algorithm'] == alg]['rel_time'].values[0])
-#
-#         print(results)
-#
-#     colors = [cmap[alg] for alg in algorithms]
-#
-#     plt.figure()
-#     xs = [i for i in range(len(algorithms))]
-#     plt.title("average runtime relative to fastest algorithm")
-#     plt.ylabel("average runtime")
-#     plt.xlabel("algorithm")
-#     plt.bar(xs, [np.mean(results[alg]) for alg in algorithms], tick_label=algorithms, width=0.6, color=colors)
-#     plt.xticks(rotation=45, ha='right')
-#     plt.tight_layout()
-#     plt.savefig("../results/plots/runtime.png")
-#     plt.show()
-#
 # def analyze_runtime_development(dataframe):
 #     algorithms = ['LT', 'LTFC', 'Dual', 'DualFC', 'HP']
 #

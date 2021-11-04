@@ -24,14 +24,6 @@
         <diameter_uB>19</diameter_uB>
     </instance>
     <instance>
-        <hash>210954397298248756</hash>
-        <name>delaunay/delaunay_1000</name>
-        <diameter>22</diameter>
-        <radius>19</radius>
-        <diameter_lB>21</diameter_lB>
-        <diameter_uB>38</diameter_uB>
-    </instance>
-    <instance>
         <hash>251193178422464640</hash>
         <name>city/Köln</name>
         <diameter>225</diameter>
@@ -198,6 +190,14 @@
         <radius>-1</radius>
         <diameter_lB>263</diameter_lB>
         <diameter_uB>334</diameter_uB>
+    </instance>
+    <instance>
+        <hash>2208000292071402977</hash>
+        <name>delaunay/delaunay_10000</name>
+        <diameter>66</diameter>
+        <radius>61</radius>
+        <diameter_lB>64</diameter_lB>
+        <diameter_uB>123</diameter_uB>
     </instance>
     <instance>
         <hash>2258175634752342397</hash>
@@ -1128,14 +1128,6 @@
         <diameter_uB>87</diameter_uB>
     </instance>
     <instance>
-        <hash>11569170197398057142</hash>
-        <name>delaunay/delaunay_10000</name>
-        <diameter>66</diameter>
-        <radius>61</radius>
-        <diameter_lB>64</diameter_lB>
-        <diameter_uB>123</diameter_uB>
-    </instance>
-    <instance>
         <hash>11880212792867720268</hash>
         <name>city/München</name>
         <diameter>227</diameter>
@@ -1312,6 +1304,14 @@
         <diameter_uB>42</diameter_uB>
     </instance>
     <instance>
+        <hash>13222773942066467113</hash>
+        <name>delaunay/delaunay_5000</name>
+        <diameter>48</diameter>
+        <radius>44</radius>
+        <diameter_lB>47</diameter_lB>
+        <diameter_uB>88</diameter_uB>
+    </instance>
+    <instance>
         <hash>13272174682320752020</hash>
         <name>vlsi/GAP/gap1810</name>
         <diameter>45</diameter>
@@ -1376,6 +1376,14 @@
         <diameter_uB>213</diameter_uB>
     </instance>
     <instance>
+        <hash>13883597764634289254</hash>
+        <name>delaunay/delaunay_25000</name>
+        <diameter>103</diameter>
+        <radius>97</radius>
+        <diameter_lB>100</diameter_lB>
+        <diameter_uB>194</diameter_uB>
+    </instance>
+    <instance>
         <hash>13918175500803953579</hash>
         <name>vlsi/MSM/msm4114</name>
         <diameter>40</diameter>
@@ -1392,12 +1400,12 @@
         <diameter_uB>261</diameter_uB>
     </instance>
     <instance>
-        <hash>14056582071230147314</hash>
-        <name>delaunay/delaunay_25000</name>
-        <diameter>103</diameter>
-        <radius>97</radius>
-        <diameter_lB>101</diameter_lB>
-        <diameter_uB>194</diameter_uB>
+        <hash>14078041376632253051</hash>
+        <name>delaunay/delaunay_1000</name>
+        <diameter>22</diameter>
+        <radius>19</radius>
+        <diameter_lB>21</diameter_lB>
+        <diameter_uB>38</diameter_uB>
     </instance>
     <instance>
         <hash>14092456436693232568</hash>
@@ -1406,14 +1414,6 @@
         <radius>-1</radius>
         <diameter_lB>28</diameter_lB>
         <diameter_uB>39</diameter_uB>
-    </instance>
-    <instance>
-        <hash>14117831889728577762</hash>
-        <name>delaunay/delaunay_5000</name>
-        <diameter>48</diameter>
-        <radius>44</radius>
-        <diameter_lB>47</diameter_lB>
-        <diameter_uB>88</diameter_uB>
     </instance>
     <instance>
         <hash>14327481773148696856</hash>

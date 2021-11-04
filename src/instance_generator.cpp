@@ -692,7 +692,7 @@ void gen_random(const std::string &location) {
     std::cout << "Generating random..." << std::endl;
 
     int versions = 3;
-    std::vector< int > sizes = { 125, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000/*, 128000, 256000, 512000*/ };
+    std::vector< int > sizes = { 125, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, 512000 };
 
     for(const int size : sizes) {
         for(int v = 0; v < versions; v++) {
@@ -750,7 +750,7 @@ void cgal_to_ogdf(Graph &G, const CGAL::Triangulation_on_sphere_2<Gt, Tds>& dt) 
     }
 
     // 3. remove duplicate edges
-    makeSimple(G);
+    makeSimpleUndirected(G);
 }
 
 /**
@@ -861,7 +861,7 @@ int main() {
 //    gen_sphere(instance_dir + "sphere/");
 //    gen_diameter(instance_dir + "diameter/");
 //    gen_ogdf_max(instance_dir + "ogdf/");
-    gen_random(instance_dir + "random/");
+//    gen_random(instance_dir + "random/");
 //    gen_twin(instance_dir + "twin/");
-//    gen_delaunay(instance_dir + "delaunay/");
+    gen_delaunay(instance_dir + "delaunay/");
 }

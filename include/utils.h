@@ -49,7 +49,7 @@ bool checkSizeAgainstDiameter(int sepSize, const Graph &G);
 
 /**
  * Tests if a file is a graph-file that we can parse.
- * (Only by checking the file extension, not by actually parsing the file!
+ * (Only by checking the file extension, not by actually parsing the file!)
  *
  * @param path the path to be tested
  * @return true if the file is a .gml, .stp or .chaco file

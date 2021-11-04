@@ -127,9 +127,11 @@ public:
 	 * @param limit size limit (in nodes) of the instances
 	 * @param test whether to test the result for correctness
 	 * @param attempts number of solving attempts (with different random seeds)
+	 * @param algorithm which algorithm to use
+	 * @param postprocessing whether to apply postprocessing or not
 	 */
-    Experiment(const std::string &res_file, const std::string &target_dir, const std::string &propertyFile, int limit, bool test, int attempts, short algorithm)
-        : res_file{res_file}, instance_dir{target_dir}, limit{limit}, test{test}, attempts{attempts}, selectedAlgorithms{algorithm}, recorder{propertyFile} {
+    Experiment(const std::string &res_file, const std::string &target_dir, const std::string &propertyFile, int limit, bool test, int attempts, short algorithm, bool postprocessing)
+        : res_file{res_file}, instance_dir{target_dir}, limit{limit}, test{test}, attempts{attempts}, selectedAlgorithms{algorithm}, recorder{propertyFile}, postProcessing{postprocessing} {
 
         file.open(res_file);
         file << Result::get_head();
@@ -193,6 +195,7 @@ private:
     bool test; // whether to test results or not
     int attempts;
 	short selectedAlgorithms;
+	bool postProcessing; // whether to apply postprocessing
 
     PropertyRecorder recorder;
 
@@ -255,7 +258,9 @@ private:
         Result res(sep.getName(), prop, G.numberOfNodes(), G.numberOfEdges(), duration.count(), separator.size(), first.size(), second.size(), sep.getExitPoint());
         writeResults(res);
 
-		applyPostProcessors(G, sep.getName(), prop, separator, first, second);
+		if(postProcessing) {
+			applyPostProcessors(G, sep.getName(), prop, separator, first, second);
+		}
     }
 
 
@@ -333,6 +338,7 @@ private:
  *      -t (test) = whether the generated results should be tested for correctness
  *      -a (attempts) = how many times to solve each instance with each algorithm
  *      -A (Algorithm) = which algorithm should be used, default is all
+ *      -P (postprocessing) = whether to apply postprocessing or not
  * ==============================
  *
  * === Version ===
@@ -352,10 +358,11 @@ int main(int argc, char **argv) {
     int size_limit = 1000000;                                           // size limit (in nodes) up to which instances are attempted
     bool test_results = false;                                          // whether to test results to confirm correctness
 	short algorithm = all;
+	bool postprocessing = false;
 
     /* command line argument parsing */
     int opt;
-    while ((opt = getopt(argc, argv, "r:i:p:l:a:A:t")) != -1) { // : means arg takes a value
+    while ((opt = getopt(argc, argv, "r:i:p:l:a:A:tP")) != -1) { // : means arg takes a value
         switch (opt) {
             case 'r':
                 res_file = optarg;
@@ -371,9 +378,13 @@ int main(int argc, char **argv) {
                 break;
             case 'a':
                 attempts = std::stoi(optarg);
+				break;
             case 't':
                 test_results = true;
                 break;
+			case 'P':
+				postprocessing = true;
+				break;
 			case 'A': {
 				std::string names = optarg;
 				algorithm = 0;
@@ -402,12 +413,13 @@ int main(int argc, char **argv) {
         << "size limit:      " << size_limit << "\n"
         << "attempts:        " << attempts << "\n"
         << "testing results: " << (test_results ? "yes" : "no") << "\n"
+		<< "postprocessing:  " << (postprocessing ? "yes" : "no") << "\n"
         << std::endl;
 
 
     /* experiments */
     setSeed(42);
-    Experiment exp(res_file, instance_path, property_file, size_limit, test_results, attempts, algorithm);
+    Experiment exp(res_file, instance_path, property_file, size_limit, test_results, attempts, algorithm, postprocessing);
     exp.run();
 
     return 0;

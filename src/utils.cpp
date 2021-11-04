@@ -134,7 +134,7 @@ bool checkSizeAgainstDiameter(int sepSize, const Graph &G) {
     for (node v : G.nodes) {
         bfs_SPSS(v, G, distance, edgeCosts);
         for(node w : G.nodes) {
-            if(2*distance[w] + 1 > sepSize) {
+            if(2*distance[w] + 1 >= sepSize) {
                 return true;
             }
         }
