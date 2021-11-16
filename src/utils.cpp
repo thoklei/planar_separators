@@ -1,6 +1,7 @@
 
 #include <utils.h>
 #include <ogdf/basic/simple_graph_alg.h>
+#include <climits>
 
 bool isGraphFile(std::string path) {
     std::string extension = path.substr(path.rfind("."));

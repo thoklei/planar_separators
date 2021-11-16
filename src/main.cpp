@@ -12,6 +12,7 @@
 #include <regex>
 #include <vector>
 #include <unistd.h>
+#include <cassert>
 
 #include <property_recorder.h>
 

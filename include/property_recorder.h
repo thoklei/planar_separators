@@ -4,6 +4,7 @@
 #include <map>
 #include <iostream>
 #include <tinyxml2.h>
+#include <filesystem>
 
 /**
  * Records the properties of all instances, i.e. metadata on size, diameters etc. and stores them

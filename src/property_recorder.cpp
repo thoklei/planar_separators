@@ -17,8 +17,7 @@ PropertyRecorder::PropertyRecorder(const std::string &file) : fileName{file} {
             it = it->NextSibling();
         }
     } else { // if not, create the file, dict stays empty
-        std::ofstream os;
-        os.open(file, 'w');
+        std::ofstream os(file, std::ios_base::out);
         os.close();
 
         doc.LoadFile( file.c_str() );
