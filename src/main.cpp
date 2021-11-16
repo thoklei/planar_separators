@@ -219,11 +219,12 @@ private:
 
             std::cout << "\t" << "with " << sep.getName() << std::endl;
 
-            for (int i = 0; i < min(attempts, G.numberOfNodes()); ++i) {
+			for(node no : G.nodes) {
 				// solve the instance with sep and all combinations of postprocessors
-                setSeed(i);
-                solve(sep, G, prop);
-            }
+				setSeed(42);
+				sep.setStartIndex(no->index());
+				solve(sep, G, prop);
+			}
         }
 
     }
