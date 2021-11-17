@@ -209,8 +209,8 @@ private:
 	 */
     void apply(const std::string &path, PlanarSeparatorModule &sep) {
 
-        unsigned long hash = getHashCode(path);
-        PropertyRecorder::Properties prop = recorder.getProperties(hash);
+
+        PropertyRecorder::Properties prop = recorder.getProperties(path);
 
         Graph G;
         readGraph(G, path);
