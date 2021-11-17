@@ -27,7 +27,7 @@ PropertyRecorder::PropertyRecorder(const std::string &file) : fileName{file} {
 void PropertyRecorder::readInstanceProperties(tinyxml2::XMLNode* inst) {
 
     Properties prop;
-    unsigned long hash = std::stoul(inst->FirstChildElement("hash")->GetText());
+    std::string identifier = inst->FirstChildElement("identifier")->GetText();
 
     prop.name = inst->FirstChildElement("name")->GetText();
     prop.diameter = atoi(inst->FirstChildElement("diameter")->GetText());
@@ -35,7 +35,7 @@ void PropertyRecorder::readInstanceProperties(tinyxml2::XMLNode* inst) {
     prop.diameter_uB = atoi(inst->FirstChildElement("diameter_uB")->GetText());
     prop.radius = atoi(inst->FirstChildElement("radius")->GetText());
 
-    propMap[hash] = prop;
+    propMap[identifier] = prop;
 }
 
 void PropertyRecorder::apply(std::string directory) {
@@ -59,37 +59,37 @@ void PropertyRecorder::apply(std::string directory) {
 
 void PropertyRecorder::processInstance(std::string path) {
     std::cout << "Processing " << path << std::endl;
-    unsigned long hash = getHashCode(path);
 
+	std::string identifier = path;
     Graph G;
     readGraph(G, path);
 
     Properties prop;
-    if(propMap.find(hash) == propMap.end()) { // instance is unknown
-        propMap[hash] = prop;
+    if(propMap.find(identifier) == propMap.end()) { // instance is unknown
+        propMap[identifier] = prop;
     }
 
-    if(propMap[hash].diameter == -1 || propMap[hash].radius == -1) {
+    if(propMap[identifier].diameter == -1 || propMap[identifier].radius == -1) {
         if(G.nodes.size() < 33000) {
             std::pair<int, int> distances = calculateDistances(G);
             int diameter = distances.first;
             int radius = distances.second;
-            propMap[hash].diameter = diameter;
-            propMap[hash].radius = radius;
+            propMap[identifier].diameter = diameter;
+            propMap[identifier].radius = radius;
         } else {
-            propMap[hash].diameter = -1;
-            propMap[hash].radius = -1;
+            propMap[identifier].diameter = -1;
+            propMap[identifier].radius = -1;
         }
     }
 
-    if(propMap[hash].diameter_uB == -1) {
+    if(propMap[identifier].diameter_uB == -1) {
         auto bounds = calculateDiameterBounds(G);
-        propMap[hash].diameter_lB = bounds.first;
-        propMap[hash].diameter_uB = bounds.second;
+        propMap[identifier].diameter_lB = bounds.first;
+        propMap[identifier].diameter_uB = bounds.second;
     }
 
-    if(propMap[hash].name == "anonymous") {
-        propMap[hash].name = extractFullFileName(path);
+    if(propMap[identifier].name == "anonymous") {
+        propMap[identifier].name = extractFullFileName(path);
     }
 
 }
@@ -99,7 +99,7 @@ void PropertyRecorder::exportData() {
     tinyxml2::XMLElement* instances = doc.NewElement("instances");
     for(const auto &prop : propMap) {
         tinyxml2::XMLElement* instance = instances->InsertNewChildElement("instance");
-        instance->InsertNewChildElement("hash")->SetText(to_string(prop.first).c_str());
+        instance->InsertNewChildElement("identifier")->SetText(prop.first.c_str());
         instance->InsertNewChildElement("name")->SetText(prop.second.name.c_str());
         instance->InsertNewChildElement("diameter")->SetText(to_string(prop.second.diameter).c_str());
         instance->InsertNewChildElement("radius")->SetText(to_string(prop.second.radius).c_str());
@@ -110,7 +110,7 @@ void PropertyRecorder::exportData() {
     doc.SaveFile(fileName.c_str());
 }
 
-PropertyRecorder::Properties PropertyRecorder::getProperties(unsigned long hash) {
+PropertyRecorder::Properties PropertyRecorder::getProperties(const std::string &identifier) {
     // todo error catching!
-    return propMap[hash];
+    return propMap[identifier];
 }

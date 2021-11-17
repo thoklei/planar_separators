@@ -56,12 +56,12 @@ public:
 	 * @param hash the hash to identify the file with
 	 * @return a properties-object with all the data of the file
 	 */
-    Properties getProperties(unsigned long hash);
+    Properties getProperties(const std::string &identifier);
 
 private:
 
 	/* maps file contents-hash to properties */
-    std::map<unsigned long, Properties> propMap;
+    std::map<std::string, Properties> propMap;
 
     tinyxml2::XMLDocument doc; // handle for xml document
 
