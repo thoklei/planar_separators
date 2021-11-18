@@ -291,16 +291,16 @@ private:
 
         // currently, 2 post-processors
         NodeExpulsor expulsor;
-        DMDecomposer decomposer;
+//        DMDecomposer decomposer;
 
         std::vector<Postprocessor*> postProcessors;
-        postProcessors.push_back(nullptr);
+//        postProcessors.push_back(nullptr);
         postProcessors.push_back( &expulsor );
-        postProcessors.push_back( &decomposer );
+//        postProcessors.push_back( &decomposer );
 
         // 4. solve with all permutations of postProcessors
-        do {
-			if(postProcessors.front() == nullptr) continue;
+//        do {
+//			if(postProcessors.front() == nullptr) continue;
 
 			List<node> separatorCopy = separator;
 			List<node> firstCopy = first;
@@ -309,7 +309,7 @@ private:
             std::string postName = "";
             auto start = std::chrono::high_resolution_clock::now();
             for(const auto post : postProcessors) {
-                if(post == nullptr) break;
+//                if(post == nullptr) break;
                 post->apply(G, separatorCopy, firstCopy, secondCopy);
                 postName += "_" + post->getName();
             }
@@ -319,7 +319,7 @@ private:
             Result res(name+postName, prop, G.numberOfNodes(), G.numberOfEdges(), duration.count(), separatorCopy.size(), firstCopy.size(), secondCopy.size(), "post");
             writeResults(res);
 
-        } while (std::next_permutation(postProcessors.begin(), postProcessors.end()));
+//        } while (std::next_permutation(postProcessors.begin(), postProcessors.end()));
     }
 
 
