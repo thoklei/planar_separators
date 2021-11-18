@@ -47,9 +47,5 @@ cmake_install.cmake
 tmp/
 __pycache__/
 
-# results (are too chaotic for now)
-results/
-!results/LT_compare.csv
-
 # excluding random instances because they are monstrous - generate them using the instance generator!
 instances/random/
