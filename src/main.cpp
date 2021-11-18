@@ -132,7 +132,7 @@ public:
 	 * @param postprocessing whether to apply postprocessing or not
 	 */
     Experiment(const std::string &res_file, const std::string &target_dir, const std::string &propertyFile, int limit, bool test, int attempts, short algorithm, bool postprocessing)
-        : res_file{res_file}, instance_dir{target_dir}, limit{limit}, test{test}, attempts{attempts}, selectedAlgorithms{algorithm}, recorder{propertyFile}, postProcessing{postprocessing} {
+        : res_file{res_file}, instance_dir{target_dir}, limit{limit}, test{test}, attempts{attempts}, selectedAlgorithms{algorithm}, postProcessing{postprocessing}, recorder{propertyFile} {
 
         file.open(res_file);
         file << Result::get_head();
@@ -219,11 +219,19 @@ private:
 
             std::cout << "\t" << "with " << sep.getName() << std::endl;
 
-			for(node no : G.nodes) {
-				// solve the instance with sep and all combinations of postprocessors
-				setSeed(42);
-				sep.setStartIndex(no->index());
-				solve(sep, G, prop);
+			if(attempts <= 0) {
+				for (node no: G.nodes) {
+					// solve the instance with sep and all combinations of postprocessors
+					setSeed(42);
+					sep.setStartIndex(no->index());
+					solve(sep, G, prop);
+				}
+			} else {
+				sep.setStartIndex(-1);
+				for(int i = 0; i < attempts; i++) {
+					setSeed(i);
+					solve(sep, G, prop);
+				}
 			}
         }
 
