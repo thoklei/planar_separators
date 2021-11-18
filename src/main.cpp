@@ -316,7 +316,7 @@ private:
             auto end = std::chrono::high_resolution_clock::now();
             auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
 
-            Result res(name+postName, prop, G.numberOfNodes(), G.numberOfEdges(), duration.count(), separator.size(), first.size(), second.size(), "post");
+            Result res(name+postName, prop, G.numberOfNodes(), G.numberOfEdges(), duration.count(), separatorCopy.size(), firstCopy.size(), secondCopy.size(), "post");
             writeResults(res);
 
         } while (std::next_permutation(postProcessors.begin(), postProcessors.end()));

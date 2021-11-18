@@ -96,30 +96,6 @@
         <diameter_uB>11</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/random/random_128000_0.gml</identifier>
-        <name>random/random_128000_0</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_128000_1.gml</identifier>
-        <name>random/random_128000_1</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_128000_2.gml</identifier>
-        <name>random/random_128000_2</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
         <identifier>../instances/random/random_16000_0.gml</identifier>
         <name>random/random_16000_0</name>
         <diameter>36</diameter>
@@ -192,54 +168,6 @@
         <diameter_uB>15</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/random/random_256000_0.gml</identifier>
-        <name>random/random_256000_0</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_256000_1.gml</identifier>
-        <name>random/random_256000_1</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_256000_2.gml</identifier>
-        <name>random/random_256000_2</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_32000_0.gml</identifier>
-        <name>random/random_32000_0</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_32000_1.gml</identifier>
-        <name>random/random_32000_1</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_32000_2.gml</identifier>
-        <name>random/random_32000_2</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
         <identifier>../instances/random/random_4000_0.gml</identifier>
         <name>random/random_4000_0</name>
         <diameter>27</diameter>
@@ -286,54 +214,6 @@
         <radius>10</radius>
         <diameter_lB>13</diameter_lB>
         <diameter_uB>19</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_512000_0.gml</identifier>
-        <name>random/random_512000_0</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_512000_1.gml</identifier>
-        <name>random/random_512000_1</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_512000_2.gml</identifier>
-        <name>random/random_512000_2</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_64000_0.gml</identifier>
-        <name>random/random_64000_0</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_64000_1.gml</identifier>
-        <name>random/random_64000_1</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/random/random_64000_2.gml</identifier>
-        <name>random/random_64000_2</name>
-        <diameter>-1</diameter>
-        <radius>1</radius>
-        <diameter_lB>1</diameter_lB>
-        <diameter_uB>1</diameter_uB>
     </instance>
     <instance>
         <identifier>../instances/random/random_8000_0.gml</identifier>

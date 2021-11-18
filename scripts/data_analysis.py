@@ -32,7 +32,7 @@ def main(path):
     # Looks like all separators benefit from NE the most, but this did not really change anything.
 
     # What about combinations of postproccesors?
-    analyze_separator_size(df, "rel_sepsize_complex_post", utils.complex_postprocessors, instances)
+    analyze_separator_size(df, "rel_sepsize_complex_post", utils.all_algs_and_post, instances)
 
     # Looks like multiple postprocessors are not really better than just the NodeExpulsor.
 

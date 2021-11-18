@@ -4,6 +4,7 @@ Utility functions and data to analyze data
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.colors import rgb_to_hsv, hsv_to_rgb, to_hex, to_rgb
 
 # mapping algorithm names to color
 cmap = {"LT": "#092cbe",
@@ -41,7 +42,22 @@ mmap = {"LT": "o",
 
 core_algorithms = [alg for alg in cmap.keys() if not "_" in alg]
 simple_postprocessors = [alg for alg in cmap.keys() if alg.count("_") <= 1]
-complex_postprocessors = [alg for alg in cmap.keys() if alg.count("_") != 1]
+complex_postprocessors = [alg for alg in cmap.keys() if alg.count("_") != 1]  # only core + DMD_NE, NE_DMD
+all_algs_and_post = [alg for alg in cmap.keys()]
+
+
+def brighten(hsv, factor):
+    """
+    Brightens a hsv-color by a certain amount of saturation.
+
+    :param hsv: hue, saturation, value
+    :param factor: relative difference in saturation
+    :return: the new color
+    """
+    h, s, v = hsv
+    res = h, s * factor, v
+    res = hsv_to_rgb(res)
+    return to_hex(res)
 
 
 def get_color(algorithm):
@@ -51,11 +67,24 @@ def get_color(algorithm):
     :param algorithm: the name of the algorithm
     :return: the characteristic color
     """
-    if algorithm in cmap:
-        return cmap[algorithm]
-    else:
-        print("WARNING: using unkown algorithm")
-        return "#000000"
+    core_alg = algorithm[0:algorithm.find("_")] if algorithm.find("_") != -1 else algorithm
+    core_color = cmap[core_alg] if core_alg in cmap else "#000000"
+
+    hsv = rgb_to_hsv(to_rgb(core_color))
+
+    if "NE_DMD" in algorithm:
+        return brighten(hsv, 0.2)
+
+    if "DMD_NE" in algorithm:
+        return brighten(hsv, 0.4)
+
+    if "DMD" in algorithm:
+        return brighten(hsv, 0.6)
+
+    if "NE" in algorithm:
+        return brighten(hsv, 0.8)
+
+    return to_hex(hsv_to_rgb(hsv))
 
 
 def get_marker(algorithm):
