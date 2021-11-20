@@ -236,8 +236,8 @@ void gen_globe(const std::string &location) {
     std::cout << "Generating globe..." << std::endl;
 
     std::vector< std::pair<int, int> > sizes = { std::make_pair(50, 100),
-                                                 std::make_pair(100, 100),
-                                                 std::make_pair(10, 1000) };
+												 std::make_pair(100, 100),
+                                                 std::make_pair(10, 1000)};
 
     for(const auto p : sizes) {
         Graph G;
@@ -863,5 +863,5 @@ int main() {
 //    gen_ogdf_max(instance_dir + "ogdf/");
 //    gen_random(instance_dir + "random/");
 //    gen_twin(instance_dir + "twin/");
-    gen_delaunay(instance_dir + "delaunay/");
+//    gen_delaunay(instance_dir + "delaunay/");
 }

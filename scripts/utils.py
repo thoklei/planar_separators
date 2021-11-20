@@ -286,7 +286,7 @@ def extract_short_instance_name(full_instance_name):
     :param full_instance_name: the full name of the instance
     :return: the shorter name
     """
-    start = full_instance_name.rfind("/")
+    start = full_instance_name.rfind("/") + 1
     return full_instance_name[start:]
 
 
@@ -338,12 +338,122 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
     xs = range(len(instances))
     for algo in algorithms:
         ys = [results[algo][inst] for inst in instances]
-        plt.scatter(xs, ys, c=get_color(algo), marker=get_marker(algo))
+        plt.scatter(xs, ys, c=get_color(algo), marker=get_marker(algo), label=algo)
     plt.xticks(xs, [extract_short_instance_name(inst) for inst in instances], rotation=45, ha='right')
+    plt.legend()
     plt.tight_layout()
     plt.savefig("../results/plots/"+name+".png")
     if show:
         plt.show()
+
+
+def create_table(dataframe):
+    """
+    Creates a string representation of a latex table of the
+    :param dataframe:
+    :return:
+    """
+
+    def get_summary_dict(df):
+        instances = df['instance'].unique()
+        algorithms = df['algorithm'].unique()
+        algorithms = [alg for alg in algorithms if not "_" in alg]
+
+        res = {}  # maps instance name to
+
+        for alg in algorithms:
+            algo_dict = {}  # maps algorithm to results
+            algo_df = df[df['algorithm'] == alg]
+
+            for inst in instances:
+                inst_df = algo_df[algo_df['instance'] == inst]
+                mean = int(np.round(inst_df['sep_size'].mean()))
+                mini = inst_df['sep_size'].min()
+
+                algo_dict[inst] = (mini, mean)
+
+            res[alg] = algo_dict
+
+        return res
+
+    def get_instance_prop(df, inst):
+        inst_dict = {}
+        inst_df = df[df['instance'] == inst]
+
+        inst_dict['nodes'] = inst_df['nodes'].min()
+        inst_dict['edges'] = inst_df['edges'].min()
+        inst_dict['diameter'] = inst_df['diameter'].min()
+        inst_dict['radius'] = inst_df['radius'].min()
+
+        return inst_dict
+
+    def clean_inst_name(inst_name):
+        """
+        Removes the exact specifications of an instance name.
+
+        :param inst_name:
+        :return:
+        """
+        return inst_name[0:inst_name.find("_")] if inst_name.find("_") != -1 else inst_name
+
+    def make_table_line(df, inst_name, res):
+
+        # get instance properties
+        prop = get_instance_prop(df, inst_name)
+
+        # write instance properties
+        line = clean_inst_name(extract_short_instance_name(inst_name)) + " & "
+        line += " & ".join([str(x) for x in [prop['nodes'], prop['edges'], prop['diameter'], prop['radius']]])
+
+        # write algorithm results
+        for alg in res.keys():
+            mini, mean = res[alg][inst_name]
+            line += " & " + str(mini) + " & " + str(mean)
+
+        line += " \\\\ \n"
+
+        return line
+
+    # map every algorithm
+    res_dict = get_summary_dict(dataframe)
+
+    numalg = len(list(res_dict.keys()))
+
+    latex = "\\begin{center}\n" \
+            "\\begin{table}\n" \
+            "\\resizebox{\\textwidth}{!}{" \
+            "\\begin{tabular}{@{}" + "r" * (5+2*numalg) + "@{} } \n" \
+            "\\toprule \n"
+
+    # write header
+    latex += "graph & nodes & edges & diam. & rad. & " \
+             + " & ".join(["\\multicolumn{2}{c}{" + str(alg) + "}" for alg in res_dict.keys()]) + " \\\\ \n"
+
+    # write layer below for min and mean
+    latex += " & " * 5 + " & " .join(["min & mean "] * numalg) + "\\\\ \n"
+
+    latex += "\\midrule \n"
+
+    instances = dataframe['instance'].unique()
+
+    # convert every instance in a line of the table
+    for instance in instances:
+        table_line = make_table_line(dataframe, instance, res_dict)
+        latex += table_line
+
+    latex += "\\bottomrule \n\\end{tabular} }\n\\end{table}\n\\end{center}"
+
+    def clean_latex(lat):
+        """
+        Cleans latex-string by escaping all underscores.
+
+        :param lat:
+        :return:
+        """
+        return lat.replace("_", "\_")
+
+    return clean_latex(latex)
+
 
 
 # def analyze_runtime_development(dataframe):
