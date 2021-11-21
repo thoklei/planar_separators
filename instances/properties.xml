@@ -280,6 +280,14 @@
         <diameter_uB>201</diameter_uB>
     </instance>
     <instance>
+        <identifier>../instances/table/globe/globe_50_100.gml</identifier>
+        <name>table/globe/globe_50_100</name>
+        <diameter>101</diameter>
+        <radius>76</radius>
+        <diameter_lB>101</diameter_lB>
+        <diameter_uB>151</diameter_uB>
+    </instance>
+    <instance>
         <identifier>../instances/table/grid/grid_100.gml</identifier>
         <name>table/grid/grid_100</name>
         <diameter>198</diameter>

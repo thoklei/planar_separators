@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.colors import rgb_to_hsv, hsv_to_rgb, to_hex, to_rgb
+import os
 
 # mapping algorithm names to color
 cmap = {"LT": "#092cbe",
@@ -166,7 +167,7 @@ def analyze_separator_speed(df, name, algorithms, instances):
                      "algorithm", "relative average speed", True)
 
 
-def analyze_separator_size(df, name, algorithms, instances):
+def analyze_separator_size(df, name, algorithms, instances, target):
     """
     Plots the relative separator sizes for core algorithms as a bar chart, across all instances
 
@@ -174,11 +175,12 @@ def analyze_separator_size(df, name, algorithms, instances):
     :param name: the name of the resulting file
     :param algorithms: list of strings, algorithm identifiers
     :param instances: list of strings, instance identifiers
+    :param target: path to folder to store plots in
     """
 
     algo_results = analysis_core(df, algorithms, instances, 'sep_size')
     create_algo_plot(algo_results, name, "Average separator size relative to smallest known separator",
-                     "algorithm", "relative average separator size", True)
+                     "algorithm", "relative average separator size", True, target)
 
 
 def analyze_runtime_development(df, name, algorithms, instances, show):
@@ -241,7 +243,7 @@ def analyze_runtime_development(df, name, algorithms, instances, show):
         plt.show()
 
 
-def analyze_instance_performance(df, name, instances, algorithms):
+def analyze_instance_performance(df, name, instances, algorithms, target):
     """
     Creates a scatter-plot to visualize relative algorithm performance for each instance.
 
@@ -249,6 +251,7 @@ def analyze_instance_performance(df, name, instances, algorithms):
     :param name: the name of the resulting file
     :param instances: list of strings, instance identifiers
     :param algorithms: list of strings, algorithm identifiers
+    :param target: path to target directory that contains plots
     """
 
     clean_instances = []  # instances without those that have 0-separators
@@ -276,7 +279,7 @@ def analyze_instance_performance(df, name, instances, algorithms):
 
     create_scatter_plot(clean_instances, algorithms, algo_results, name,
                         "Average separator size relative to smallest known separator per instance",
-                        "instance", "relative average separator size", True)
+                        "instance", "relative average separator size", True, target)
 
 
 def extract_short_instance_name(full_instance_name):
@@ -290,7 +293,7 @@ def extract_short_instance_name(full_instance_name):
     return full_instance_name[start:]
 
 
-def create_algo_plot(results, name, title, xlabel, ylabel, show):
+def create_algo_plot(results, name, title, xlabel, ylabel, show, target):
     """
     Plots a dictionary mapping algorithms to some value as a bar chart.
 
@@ -300,6 +303,7 @@ def create_algo_plot(results, name, title, xlabel, ylabel, show):
     :param xlabel: labels of x-axis
     :param ylabel: labels of y-axis
     :param show: whether to show the plot or not
+    :param target: path to plots-folder
     """
 
     colors = [get_color(alg) for alg in list(results.keys())]
@@ -312,12 +316,12 @@ def create_algo_plot(results, name, title, xlabel, ylabel, show):
     plt.bar(xs, [results[alg][0] for alg in results], tick_label=list(results.keys()), width=0.6, color=colors)
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
-    plt.savefig("../results/plots/"+name+".png")
+    plt.savefig(os.path.join(target,name+".png"))
     if show:
         plt.show()
 
 
-def create_scatter_plot(instances, algorithms, results, name, title, xlabel, ylabel, show):
+def create_scatter_plot(instances, algorithms, results, name, title, xlabel, ylabel, show, target):
     """
     Plots a dictionary mapping instance names to values for each algorithm.
 
@@ -329,6 +333,7 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
     :param xlabel: labels of x-axis
     :param ylabel: labels of y-axis
     :param show: whether to show the plot or not
+    :param target: path to target directory with plots-folder
     """
     plt.figure()
     plt.title(title)
@@ -342,7 +347,7 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
     plt.xticks(xs, [extract_short_instance_name(inst) for inst in instances], rotation=45, ha='right')
     plt.legend()
     plt.tight_layout()
-    plt.savefig("../results/plots/"+name+".png")
+    plt.savefig(os.path.join(target, name+".png"))
     if show:
         plt.show()
 
@@ -357,7 +362,7 @@ def create_table(dataframe):
     def get_summary_dict(df):
         instances = df['instance'].unique()
         algorithms = df['algorithm'].unique()
-        algorithms = [alg for alg in algorithms if not "_" in alg]
+        algorithms = [alg for alg in algorithms if "_" in alg]
 
         res = {}  # maps instance name to
 
@@ -391,8 +396,8 @@ def create_table(dataframe):
         """
         Removes the exact specifications of an instance name.
 
-        :param inst_name:
-        :return:
+        :param inst_name: instance name
+        :return: only the name, without size specifications
         """
         return inst_name[0:inst_name.find("_")] if inst_name.find("_") != -1 else inst_name
 
@@ -422,7 +427,7 @@ def create_table(dataframe):
     latex = "\\begin{center}\n" \
             "\\begin{table}\n" \
             "\\resizebox{\\textwidth}{!}{" \
-            "\\begin{tabular}{@{}" + "r" * (5+2*numalg) + "@{} } \n" \
+            "\\begin{tabular}{@{}" + "r" * 5 + "|rr"*numalg + "@{} } \n" \
             "\\toprule \n"
 
     # write header
