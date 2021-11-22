@@ -47,8 +47,6 @@ cmake_install.cmake
 tmp/
 __pycache__/
 
-# excluding random instances because they are monstrous - generate them using the instance generator!
-instances/random/
 
 plots/
 plots_100/

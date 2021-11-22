@@ -427,7 +427,7 @@ def create_table(dataframe):
     latex = "\\begin{center}\n" \
             "\\begin{table}\n" \
             "\\resizebox{\\textwidth}{!}{" \
-            "\\begin{tabular}{@{}" + "r" * 5 + "|rr"*numalg + "@{} } \n" \
+            "\\begin{tabular}{@{}" + "l" + "r" * 4 + "|rr"*numalg + "@{} } \n" \
             "\\toprule \n"
 
     # write header
