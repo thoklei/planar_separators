@@ -30,6 +30,8 @@ void PropertyRecorder::readInstanceProperties(tinyxml2::XMLNode* inst) {
     std::string identifier = inst->FirstChildElement("identifier")->GetText();
 
     prop.name = inst->FirstChildElement("name")->GetText();
+	prop.nodes = atoi(inst->FirstChildElement("nodes")->GetText());
+	prop.edges = atoi(inst->FirstChildElement("edges")->GetText());
     prop.diameter = atoi(inst->FirstChildElement("diameter")->GetText());
     prop.diameter_lB = atoi(inst->FirstChildElement("diameter_lB")->GetText());
     prop.diameter_uB = atoi(inst->FirstChildElement("diameter_uB")->GetText());
@@ -69,6 +71,9 @@ void PropertyRecorder::processInstance(std::string path) {
         propMap[identifier] = prop;
     }
 
+	propMap[identifier].nodes = G.numberOfNodes();
+	propMap[identifier].edges = G.numberOfEdges();
+
     if(propMap[identifier].diameter == -1 || propMap[identifier].radius == -1) {
         if(G.nodes.size() < 33000) {
             std::pair<int, int> distances = calculateDistances(G);
@@ -101,6 +106,8 @@ void PropertyRecorder::exportData() {
         tinyxml2::XMLElement* instance = instances->InsertNewChildElement("instance");
         instance->InsertNewChildElement("identifier")->SetText(prop.first.c_str());
         instance->InsertNewChildElement("name")->SetText(prop.second.name.c_str());
+		instance->InsertNewChildElement("nodes")->SetText(to_string(prop.second.nodes).c_str());
+		instance->InsertNewChildElement("edges")->SetText(to_string(prop.second.edges).c_str());
         instance->InsertNewChildElement("diameter")->SetText(to_string(prop.second.diameter).c_str());
         instance->InsertNewChildElement("radius")->SetText(to_string(prop.second.radius).c_str());
         instance->InsertNewChildElement("diameter_lB")->SetText(to_string(prop.second.diameter_lB).c_str());

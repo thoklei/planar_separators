@@ -2,6 +2,8 @@
     <instance>
         <identifier>../instances/city/Berlin.gml</identifier>
         <name>city/Berlin</name>
+        <nodes>28411</nodes>
+        <edges>40603</edges>
         <diameter>353</diameter>
         <radius>1</radius>
         <diameter_lB>229</diameter_lB>
@@ -10,6 +12,8 @@
     <instance>
         <identifier>../instances/city/Köln.gml</identifier>
         <name>city/Köln</name>
+        <nodes>13719</nodes>
+        <edges>18147</edges>
         <diameter>225</diameter>
         <radius>1</radius>
         <diameter_lB>217</diameter_lB>
@@ -18,6 +22,8 @@
     <instance>
         <identifier>../instances/city/Lindlar.gml</identifier>
         <name>city/Lindlar</name>
+        <nodes>983</nodes>
+        <edges>1054</edges>
         <diameter>60</diameter>
         <radius>1</radius>
         <diameter_lB>57</diameter_lB>
@@ -26,6 +32,8 @@
     <instance>
         <identifier>../instances/city/München.gml</identifier>
         <name>city/München</name>
+        <nodes>12671</nodes>
+        <edges>18360</edges>
         <diameter>227</diameter>
         <radius>1</radius>
         <diameter_lB>200</diameter_lB>
@@ -34,6 +42,8 @@
     <instance>
         <identifier>../instances/city/Osnabrück.gml</identifier>
         <name>city/Osnabrück</name>
+        <nodes>3218</nodes>
+        <edges>4002</edges>
         <diameter>86</diameter>
         <radius>1</radius>
         <diameter_lB>77</diameter_lB>
@@ -42,6 +52,8 @@
     <instance>
         <identifier>../instances/city/San Francisco.gml</identifier>
         <name>city/San Francisco</name>
+        <nodes>20413</nodes>
+        <edges>29946</edges>
         <diameter>223</diameter>
         <radius>1</radius>
         <diameter_lB>170</diameter_lB>
@@ -50,6 +62,8 @@
     <instance>
         <identifier>../instances/random/random_1000_0.gml</identifier>
         <name>random/random_1000_0</name>
+        <nodes>1000</nodes>
+        <edges>1684</edges>
         <diameter>19</diameter>
         <radius>11</radius>
         <diameter_lB>14</diameter_lB>
@@ -58,6 +72,8 @@
     <instance>
         <identifier>../instances/random/random_1000_1.gml</identifier>
         <name>random/random_1000_1</name>
+        <nodes>1000</nodes>
+        <edges>2061</edges>
         <diameter>16</diameter>
         <radius>9</radius>
         <diameter_lB>13</diameter_lB>
@@ -66,6 +82,8 @@
     <instance>
         <identifier>../instances/random/random_1000_2.gml</identifier>
         <name>random/random_1000_2</name>
+        <nodes>1000</nodes>
+        <edges>2192</edges>
         <diameter>16</diameter>
         <radius>8</radius>
         <diameter_lB>13</diameter_lB>
@@ -74,6 +92,8 @@
     <instance>
         <identifier>../instances/random/random_125_0.gml</identifier>
         <name>random/random_125_0</name>
+        <nodes>125</nodes>
+        <edges>297</edges>
         <diameter>9</diameter>
         <radius>5</radius>
         <diameter_lB>6</diameter_lB>
@@ -82,6 +102,8 @@
     <instance>
         <identifier>../instances/random/random_125_1.gml</identifier>
         <name>random/random_125_1</name>
+        <nodes>125</nodes>
+        <edges>162</edges>
         <diameter>15</diameter>
         <radius>8</radius>
         <diameter_lB>10</diameter_lB>
@@ -90,6 +112,8 @@
     <instance>
         <identifier>../instances/random/random_125_2.gml</identifier>
         <name>random/random_125_2</name>
+        <nodes>125</nodes>
+        <edges>293</edges>
         <diameter>11</diameter>
         <radius>6</radius>
         <diameter_lB>10</diameter_lB>
@@ -98,6 +122,8 @@
     <instance>
         <identifier>../instances/random/random_16000_0.gml</identifier>
         <name>random/random_16000_0</name>
+        <nodes>16000</nodes>
+        <edges>18732</edges>
         <diameter>36</diameter>
         <radius>19</radius>
         <diameter_lB>21</diameter_lB>
@@ -106,6 +132,8 @@
     <instance>
         <identifier>../instances/random/random_16000_1.gml</identifier>
         <name>random/random_16000_1</name>
+        <nodes>16000</nodes>
+        <edges>45733</edges>
         <diameter>30</diameter>
         <radius>15</radius>
         <diameter_lB>19</diameter_lB>
@@ -114,6 +142,8 @@
     <instance>
         <identifier>../instances/random/random_16000_2.gml</identifier>
         <name>random/random_16000_2</name>
+        <nodes>16000</nodes>
+        <edges>39720</edges>
         <diameter>30</diameter>
         <radius>15</radius>
         <diameter_lB>21</diameter_lB>
@@ -122,6 +152,8 @@
     <instance>
         <identifier>../instances/random/random_2000_0.gml</identifier>
         <name>random/random_2000_0</name>
+        <nodes>2000</nodes>
+        <edges>4732</edges>
         <diameter>21</diameter>
         <radius>11</radius>
         <diameter_lB>15</diameter_lB>
@@ -130,6 +162,8 @@
     <instance>
         <identifier>../instances/random/random_2000_1.gml</identifier>
         <name>random/random_2000_1</name>
+        <nodes>2000</nodes>
+        <edges>3061</edges>
         <diameter>29</diameter>
         <radius>15</radius>
         <diameter_lB>20</diameter_lB>
@@ -138,6 +172,8 @@
     <instance>
         <identifier>../instances/random/random_2000_2.gml</identifier>
         <name>random/random_2000_2</name>
+        <nodes>2000</nodes>
+        <edges>5240</edges>
         <diameter>19</diameter>
         <radius>10</radius>
         <diameter_lB>15</diameter_lB>
@@ -146,6 +182,8 @@
     <instance>
         <identifier>../instances/random/random_250_0.gml</identifier>
         <name>random/random_250_0</name>
+        <nodes>250</nodes>
+        <edges>422</edges>
         <diameter>17</diameter>
         <radius>9</radius>
         <diameter_lB>12</diameter_lB>
@@ -154,6 +192,8 @@
     <instance>
         <identifier>../instances/random/random_250_1.gml</identifier>
         <name>random/random_250_1</name>
+        <nodes>250</nodes>
+        <edges>287</edges>
         <diameter>18</diameter>
         <radius>9</radius>
         <diameter_lB>13</diameter_lB>
@@ -162,6 +202,8 @@
     <instance>
         <identifier>../instances/random/random_250_2.gml</identifier>
         <name>random/random_250_2</name>
+        <nodes>250</nodes>
+        <edges>418</edges>
         <diameter>14</diameter>
         <radius>7</radius>
         <diameter_lB>8</diameter_lB>
@@ -170,6 +212,8 @@
     <instance>
         <identifier>../instances/random/random_4000_0.gml</identifier>
         <name>random/random_4000_0</name>
+        <nodes>4000</nodes>
+        <edges>6732</edges>
         <diameter>27</diameter>
         <radius>14</radius>
         <diameter_lB>17</diameter_lB>
@@ -178,6 +222,8 @@
     <instance>
         <identifier>../instances/random/random_4000_1.gml</identifier>
         <name>random/random_4000_1</name>
+        <nodes>4000</nodes>
+        <edges>9157</edges>
         <diameter>26</diameter>
         <radius>13</radius>
         <diameter_lB>16</diameter_lB>
@@ -186,6 +232,8 @@
     <instance>
         <identifier>../instances/random/random_4000_2.gml</identifier>
         <name>random/random_4000_2</name>
+        <nodes>4000</nodes>
+        <edges>11336</edges>
         <diameter>19</diameter>
         <radius>10</radius>
         <diameter_lB>12</diameter_lB>
@@ -194,6 +242,8 @@
     <instance>
         <identifier>../instances/random/random_500_0.gml</identifier>
         <name>random/random_500_0</name>
+        <nodes>500</nodes>
+        <edges>1184</edges>
         <diameter>14</diameter>
         <radius>8</radius>
         <diameter_lB>11</diameter_lB>
@@ -202,6 +252,8 @@
     <instance>
         <identifier>../instances/random/random_500_1.gml</identifier>
         <name>random/random_500_1</name>
+        <nodes>500</nodes>
+        <edges>537</edges>
         <diameter>19</diameter>
         <radius>10</radius>
         <diameter_lB>13</diameter_lB>
@@ -210,6 +262,8 @@
     <instance>
         <identifier>../instances/random/random_500_2.gml</identifier>
         <name>random/random_500_2</name>
+        <nodes>500</nodes>
+        <edges>668</edges>
         <diameter>19</diameter>
         <radius>10</radius>
         <diameter_lB>13</diameter_lB>
@@ -218,6 +272,8 @@
     <instance>
         <identifier>../instances/random/random_8000_0.gml</identifier>
         <name>random/random_8000_0</name>
+        <nodes>8000</nodes>
+        <edges>10732</edges>
         <diameter>38</diameter>
         <radius>20</radius>
         <diameter_lB>29</diameter_lB>
@@ -226,6 +282,8 @@
     <instance>
         <identifier>../instances/random/random_8000_1.gml</identifier>
         <name>random/random_8000_1</name>
+        <nodes>8000</nodes>
+        <edges>21349</edges>
         <diameter>23</diameter>
         <radius>12</radius>
         <diameter_lB>16</diameter_lB>
@@ -234,30 +292,18 @@
     <instance>
         <identifier>../instances/random/random_8000_2.gml</identifier>
         <name>random/random_8000_2</name>
+        <nodes>8000</nodes>
+        <edges>15336</edges>
         <diameter>30</diameter>
         <radius>15</radius>
         <diameter_lB>21</diameter_lB>
         <diameter_uB>32</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/table/city/Berlin.gml</identifier>
-        <name>table/city/Berlin</name>
-        <diameter>353</diameter>
-        <radius>1</radius>
-        <diameter_lB>229</diameter_lB>
-        <diameter_uB>357</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/table/city/San Francisco.gml</identifier>
-        <name>table/city/San Francisco</name>
-        <diameter>223</diameter>
-        <radius>1</radius>
-        <diameter_lB>163</diameter_lB>
-        <diameter_uB>224</diameter_uB>
-    </instance>
-    <instance>
         <identifier>../instances/table/delaunay/delaunay_10000.gml</identifier>
         <name>table/delaunay/delaunay_10000</name>
+        <nodes>10000</nodes>
+        <edges>29994</edges>
         <diameter>66</diameter>
         <radius>61</radius>
         <diameter_lB>64</diameter_lB>
@@ -266,22 +312,18 @@
     <instance>
         <identifier>../instances/table/diameter/diameter_3333.gml</identifier>
         <name>table/diameter/diameter_3333</name>
+        <nodes>10000</nodes>
+        <edges>26661</edges>
         <diameter>3333</diameter>
         <radius>1667</radius>
         <diameter_lB>2223</diameter_lB>
         <diameter_uB>4443</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/table/globe/globe_100_100.gml</identifier>
-        <name>table/globe/globe_100_100</name>
-        <diameter>101</diameter>
-        <radius>101</radius>
-        <diameter_lB>101</diameter_lB>
-        <diameter_uB>201</diameter_uB>
-    </instance>
-    <instance>
         <identifier>../instances/table/globe/globe_50_100.gml</identifier>
         <name>table/globe/globe_50_100</name>
+        <nodes>10002</nodes>
+        <edges>20100</edges>
         <diameter>101</diameter>
         <radius>76</radius>
         <diameter_lB>101</diameter_lB>
@@ -290,6 +332,8 @@
     <instance>
         <identifier>../instances/table/grid/grid_100.gml</identifier>
         <name>table/grid/grid_100</name>
+        <nodes>10000</nodes>
+        <edges>19800</edges>
         <diameter>198</diameter>
         <radius>100</radius>
         <diameter_lB>180</diameter_lB>
@@ -298,6 +342,8 @@
     <instance>
         <identifier>../instances/table/ogdf/ogdf-max_10000.gml</identifier>
         <name>table/ogdf/ogdf-max_10000</name>
+        <nodes>10000</nodes>
+        <edges>29994</edges>
         <diameter>19</diameter>
         <radius>10</radius>
         <diameter_lB>13</diameter_lB>
@@ -306,6 +352,8 @@
     <instance>
         <identifier>../instances/table/ogdf/ogdf_10000_25000.gml</identifier>
         <name>table/ogdf/ogdf_10000_25000</name>
+        <nodes>10000</nodes>
+        <edges>25000</edges>
         <diameter>24</diameter>
         <radius>13</radius>
         <diameter_lB>17</diameter_lB>
@@ -314,6 +362,8 @@
     <instance>
         <identifier>../instances/table/rect/rect_500_20.gml</identifier>
         <name>table/rect/rect_500_20</name>
+        <nodes>10000</nodes>
+        <edges>19480</edges>
         <diameter>518</diameter>
         <radius>260</radius>
         <diameter_lB>306</diameter_lB>
@@ -322,6 +372,8 @@
     <instance>
         <identifier>../instances/table/sixgrid/sixgrid_237_20.gml</identifier>
         <name>table/sixgrid/sixgrid_237_20</name>
+        <nodes>9994</nodes>
+        <edges>14733</edges>
         <diameter>495</diameter>
         <radius>248</radius>
         <diameter_lB>491</diameter_lB>
@@ -330,6 +382,8 @@
     <instance>
         <identifier>../instances/table/sphere/sphere_5.gml</identifier>
         <name>table/sphere/sphere_5</name>
+        <nodes>10242</nodes>
+        <edges>30720</edges>
         <diameter>96</diameter>
         <radius>80</radius>
         <diameter_lB>90</diameter_lB>
@@ -338,6 +392,8 @@
     <instance>
         <identifier>../instances/table/triangular/triangular_100.gml</identifier>
         <name>table/triangular/triangular_100</name>
+        <nodes>5050</nodes>
+        <edges>14850</edges>
         <diameter>99</diameter>
         <radius>66</radius>
         <diameter_lB>99</diameter_lB>
@@ -346,6 +402,8 @@
     <instance>
         <identifier>../instances/table/twin/c-globe_9792.gml</identifier>
         <name>table/twin/c-globe_9792</name>
+        <nodes>9792</nodes>
+        <edges>19790</edges>
         <diameter>101</diameter>
         <radius>70</radius>
         <diameter_lB>101</diameter_lB>
@@ -354,6 +412,8 @@
     <instance>
         <identifier>../instances/table/twin/c-grid_10087.gml</identifier>
         <name>table/twin/c-grid_10087</name>
+        <nodes>10087</nodes>
+        <edges>20046</edges>
         <diameter>198</diameter>
         <radius>99</radius>
         <diameter_lB>160</diameter_lB>
@@ -362,6 +422,8 @@
     <instance>
         <identifier>../instances/table/twin/c-ogdf_10005.gml</identifier>
         <name>table/twin/c-ogdf_10005</name>
+        <nodes>10005</nodes>
+        <edges>24558</edges>
         <diameter>34</diameter>
         <radius>17</radius>
         <diameter_lB>24</diameter_lB>
@@ -370,6 +432,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue2087.stp</identifier>
         <name>vlsi/ALUE/alue2087</name>
+        <nodes>1244</nodes>
+        <edges>1971</edges>
         <diameter>73</diameter>
         <radius>37</radius>
         <diameter_lB>64</diameter_lB>
@@ -378,6 +442,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue2105.stp</identifier>
         <name>vlsi/ALUE/alue2105</name>
+        <nodes>1220</nodes>
+        <edges>1858</edges>
         <diameter>77</diameter>
         <radius>39</radius>
         <diameter_lB>74</diameter_lB>
@@ -386,6 +452,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue3146.stp</identifier>
         <name>vlsi/ALUE/alue3146</name>
+        <nodes>3626</nodes>
+        <edges>5869</edges>
         <diameter>151</diameter>
         <radius>76</radius>
         <diameter_lB>133</diameter_lB>
@@ -394,6 +462,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue5067.stp</identifier>
         <name>vlsi/ALUE/alue5067</name>
+        <nodes>3524</nodes>
+        <edges>5560</edges>
         <diameter>129</diameter>
         <radius>65</radius>
         <diameter_lB>117</diameter_lB>
@@ -402,6 +472,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue5345.stp</identifier>
         <name>vlsi/ALUE/alue5345</name>
+        <nodes>5179</nodes>
+        <edges>8165</edges>
         <diameter>185</diameter>
         <radius>93</radius>
         <diameter_lB>159</diameter_lB>
@@ -410,6 +482,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue5623.stp</identifier>
         <name>vlsi/ALUE/alue5623</name>
+        <nodes>4472</nodes>
+        <edges>6938</edges>
         <diameter>184</diameter>
         <radius>92</radius>
         <diameter_lB>146</diameter_lB>
@@ -418,6 +492,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue5901.stp</identifier>
         <name>vlsi/ALUE/alue5901</name>
+        <nodes>11543</nodes>
+        <edges>18429</edges>
         <diameter>276</diameter>
         <radius>138</radius>
         <diameter_lB>264</diameter_lB>
@@ -426,6 +502,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue6179.stp</identifier>
         <name>vlsi/ALUE/alue6179</name>
+        <nodes>3372</nodes>
+        <edges>5213</edges>
         <diameter>125</diameter>
         <radius>63</radius>
         <diameter_lB>120</diameter_lB>
@@ -434,6 +512,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue6457.stp</identifier>
         <name>vlsi/ALUE/alue6457</name>
+        <nodes>3932</nodes>
+        <edges>6137</edges>
         <diameter>141</diameter>
         <radius>71</radius>
         <diameter_lB>129</diameter_lB>
@@ -442,6 +522,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue6735.stp</identifier>
         <name>vlsi/ALUE/alue6735</name>
+        <nodes>4119</nodes>
+        <edges>6696</edges>
         <diameter>147</diameter>
         <radius>74</radius>
         <diameter_lB>142</diameter_lB>
@@ -450,6 +532,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue6951.stp</identifier>
         <name>vlsi/ALUE/alue6951</name>
+        <nodes>2818</nodes>
+        <edges>4419</edges>
         <diameter>114</diameter>
         <radius>58</radius>
         <diameter_lB>99</diameter_lB>
@@ -458,6 +542,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue7065.stp</identifier>
         <name>vlsi/ALUE/alue7065</name>
+        <nodes>34046</nodes>
+        <edges>54841</edges>
         <diameter>-1</diameter>
         <radius>-1</radius>
         <diameter_lB>384</diameter_lB>
@@ -466,6 +552,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue7066.stp</identifier>
         <name>vlsi/ALUE/alue7066</name>
+        <nodes>6405</nodes>
+        <edges>10454</edges>
         <diameter>193</diameter>
         <radius>97</radius>
         <diameter_lB>150</diameter_lB>
@@ -474,6 +562,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue7080.stp</identifier>
         <name>vlsi/ALUE/alue7080</name>
+        <nodes>34479</nodes>
+        <edges>55494</edges>
         <diameter>-1</diameter>
         <radius>-1</radius>
         <diameter_lB>408</diameter_lB>
@@ -482,6 +572,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUE/alue7229.stp</identifier>
         <name>vlsi/ALUE/alue7229</name>
+        <nodes>940</nodes>
+        <edges>1474</edges>
         <diameter>64</diameter>
         <radius>33</radius>
         <diameter_lB>56</diameter_lB>
@@ -490,6 +582,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUT/alut0787.stp</identifier>
         <name>vlsi/ALUT/alut0787</name>
+        <nodes>1160</nodes>
+        <edges>2089</edges>
         <diameter>109</diameter>
         <radius>55</radius>
         <diameter_lB>94</diameter_lB>
@@ -498,6 +592,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUT/alut0805.stp</identifier>
         <name>vlsi/ALUT/alut0805</name>
+        <nodes>966</nodes>
+        <edges>1666</edges>
         <diameter>79</diameter>
         <radius>40</radius>
         <diameter_lB>73</diameter_lB>
@@ -506,6 +602,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUT/alut1181.stp</identifier>
         <name>vlsi/ALUT/alut1181</name>
+        <nodes>3041</nodes>
+        <edges>5693</edges>
         <diameter>146</diameter>
         <radius>74</radius>
         <diameter_lB>144</diameter_lB>
@@ -514,6 +612,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUT/alut2010.stp</identifier>
         <name>vlsi/ALUT/alut2010</name>
+        <nodes>6104</nodes>
+        <edges>11011</edges>
         <diameter>254</diameter>
         <radius>128</radius>
         <diameter_lB>199</diameter_lB>
@@ -522,6 +622,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUT/alut2288.stp</identifier>
         <name>vlsi/ALUT/alut2288</name>
+        <nodes>9070</nodes>
+        <edges>16595</edges>
         <diameter>248</diameter>
         <radius>125</radius>
         <diameter_lB>231</diameter_lB>
@@ -530,6 +632,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUT/alut2566.stp</identifier>
         <name>vlsi/ALUT/alut2566</name>
+        <nodes>5021</nodes>
+        <edges>9055</edges>
         <diameter>180</diameter>
         <radius>90</radius>
         <diameter_lB>159</diameter_lB>
@@ -538,6 +642,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUT/alut2610.stp</identifier>
         <name>vlsi/ALUT/alut2610</name>
+        <nodes>33901</nodes>
+        <edges>62816</edges>
         <diameter>-1</diameter>
         <radius>-1</radius>
         <diameter_lB>389</diameter_lB>
@@ -546,6 +652,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUT/alut2625.stp</identifier>
         <name>vlsi/ALUT/alut2625</name>
+        <nodes>36711</nodes>
+        <edges>68117</edges>
         <diameter>-1</diameter>
         <radius>-1</radius>
         <diameter_lB>396</diameter_lB>
@@ -554,6 +662,8 @@
     <instance>
         <identifier>../instances/vlsi/ALUT/alut2764.stp</identifier>
         <name>vlsi/ALUT/alut2764</name>
+        <nodes>387</nodes>
+        <edges>626</edges>
         <diameter>81</diameter>
         <radius>41</radius>
         <diameter_lB>80</diameter_lB>
@@ -562,6 +672,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0234.stp</identifier>
         <name>vlsi/DIW/diw0234</name>
+        <nodes>5349</nodes>
+        <edges>10086</edges>
         <diameter>152</diameter>
         <radius>76</radius>
         <diameter_lB>147</diameter_lB>
@@ -570,6 +682,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0250.stp</identifier>
         <name>vlsi/DIW/diw0250</name>
+        <nodes>353</nodes>
+        <edges>608</edges>
         <diameter>42</diameter>
         <radius>21</radius>
         <diameter_lB>36</diameter_lB>
@@ -578,6 +692,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0260.stp</identifier>
         <name>vlsi/DIW/diw0260</name>
+        <nodes>539</nodes>
+        <edges>985</edges>
         <diameter>84</diameter>
         <radius>42</radius>
         <diameter_lB>76</diameter_lB>
@@ -586,6 +702,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0313.stp</identifier>
         <name>vlsi/DIW/diw0313</name>
+        <nodes>468</nodes>
+        <edges>822</edges>
         <diameter>53</diameter>
         <radius>27</radius>
         <diameter_lB>49</diameter_lB>
@@ -594,6 +712,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0393.stp</identifier>
         <name>vlsi/DIW/diw0393</name>
+        <nodes>212</nodes>
+        <edges>381</edges>
         <diameter>29</diameter>
         <radius>15</radius>
         <diameter_lB>22</diameter_lB>
@@ -602,6 +722,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0445.stp</identifier>
         <name>vlsi/DIW/diw0445</name>
+        <nodes>1804</nodes>
+        <edges>3311</edges>
         <diameter>118</diameter>
         <radius>60</radius>
         <diameter_lB>116</diameter_lB>
@@ -610,6 +732,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0459.stp</identifier>
         <name>vlsi/DIW/diw0459</name>
+        <nodes>3636</nodes>
+        <edges>6789</edges>
         <diameter>165</diameter>
         <radius>83</radius>
         <diameter_lB>158</diameter_lB>
@@ -618,6 +742,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0460.stp</identifier>
         <name>vlsi/DIW/diw0460</name>
+        <nodes>339</nodes>
+        <edges>579</edges>
         <diameter>52</diameter>
         <radius>28</radius>
         <diameter_lB>36</diameter_lB>
@@ -626,6 +752,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0473.stp</identifier>
         <name>vlsi/DIW/diw0473</name>
+        <nodes>2213</nodes>
+        <edges>4135</edges>
         <diameter>116</diameter>
         <radius>58</radius>
         <diameter_lB>104</diameter_lB>
@@ -634,6 +762,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0487.stp</identifier>
         <name>vlsi/DIW/diw0487</name>
+        <nodes>2414</nodes>
+        <edges>4386</edges>
         <diameter>176</diameter>
         <radius>90</radius>
         <diameter_lB>154</diameter_lB>
@@ -642,6 +772,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0495.stp</identifier>
         <name>vlsi/DIW/diw0495</name>
+        <nodes>938</nodes>
+        <edges>1655</edges>
         <diameter>86</diameter>
         <radius>43</radius>
         <diameter_lB>83</diameter_lB>
@@ -650,6 +782,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0513.stp</identifier>
         <name>vlsi/DIW/diw0513</name>
+        <nodes>918</nodes>
+        <edges>1684</edges>
         <diameter>62</diameter>
         <radius>31</radius>
         <diameter_lB>50</diameter_lB>
@@ -658,6 +792,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0523.stp</identifier>
         <name>vlsi/DIW/diw0523</name>
+        <nodes>1080</nodes>
+        <edges>2015</edges>
         <diameter>74</diameter>
         <radius>37</radius>
         <diameter_lB>71</diameter_lB>
@@ -666,6 +802,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0540.stp</identifier>
         <name>vlsi/DIW/diw0540</name>
+        <nodes>286</nodes>
+        <edges>465</edges>
         <diameter>39</diameter>
         <radius>21</radius>
         <diameter_lB>35</diameter_lB>
@@ -674,6 +812,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0559.stp</identifier>
         <name>vlsi/DIW/diw0559</name>
+        <nodes>3738</nodes>
+        <edges>7013</edges>
         <diameter>153</diameter>
         <radius>77</radius>
         <diameter_lB>144</diameter_lB>
@@ -682,6 +822,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0778.stp</identifier>
         <name>vlsi/DIW/diw0778</name>
+        <nodes>7231</nodes>
+        <edges>13727</edges>
         <diameter>178</diameter>
         <radius>90</radius>
         <diameter_lB>163</diameter_lB>
@@ -690,6 +832,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0779.stp</identifier>
         <name>vlsi/DIW/diw0779</name>
+        <nodes>11821</nodes>
+        <edges>22516</edges>
         <diameter>240</diameter>
         <radius>121</radius>
         <diameter_lB>213</diameter_lB>
@@ -698,6 +842,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0795.stp</identifier>
         <name>vlsi/DIW/diw0795</name>
+        <nodes>3221</nodes>
+        <edges>5938</edges>
         <diameter>138</diameter>
         <radius>70</radius>
         <diameter_lB>123</diameter_lB>
@@ -706,6 +852,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0801.stp</identifier>
         <name>vlsi/DIW/diw0801</name>
+        <nodes>3023</nodes>
+        <edges>5575</edges>
         <diameter>138</diameter>
         <radius>69</radius>
         <diameter_lB>115</diameter_lB>
@@ -714,6 +862,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0819.stp</identifier>
         <name>vlsi/DIW/diw0819</name>
+        <nodes>10553</nodes>
+        <edges>20066</edges>
         <diameter>225</diameter>
         <radius>113</radius>
         <diameter_lB>177</diameter_lB>
@@ -722,6 +872,8 @@
     <instance>
         <identifier>../instances/vlsi/DIW/diw0820.stp</identifier>
         <name>vlsi/DIW/diw0820</name>
+        <nodes>11749</nodes>
+        <edges>22384</edges>
         <diameter>238</diameter>
         <radius>119</radius>
         <diameter_lB>196</diameter_lB>
@@ -730,6 +882,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa0296.stp</identifier>
         <name>vlsi/DMXA/dmxa0296</name>
+        <nodes>233</nodes>
+        <edges>386</edges>
         <diameter>30</diameter>
         <radius>16</radius>
         <diameter_lB>24</diameter_lB>
@@ -738,6 +892,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa0368.stp</identifier>
         <name>vlsi/DMXA/dmxa0368</name>
+        <nodes>2050</nodes>
+        <edges>3676</edges>
         <diameter>130</diameter>
         <radius>65</radius>
         <diameter_lB>103</diameter_lB>
@@ -746,6 +902,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa0454.stp</identifier>
         <name>vlsi/DMXA/dmxa0454</name>
+        <nodes>1848</nodes>
+        <edges>3286</edges>
         <diameter>113</diameter>
         <radius>58</radius>
         <diameter_lB>96</diameter_lB>
@@ -754,6 +912,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa0628.stp</identifier>
         <name>vlsi/DMXA/dmxa0628</name>
+        <nodes>169</nodes>
+        <edges>280</edges>
         <diameter>31</diameter>
         <radius>16</radius>
         <diameter_lB>22</diameter_lB>
@@ -762,6 +922,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa0734.stp</identifier>
         <name>vlsi/DMXA/dmxa0734</name>
+        <nodes>663</nodes>
+        <edges>1154</edges>
         <diameter>55</diameter>
         <radius>28</radius>
         <diameter_lB>51</diameter_lB>
@@ -770,6 +932,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa0848.stp</identifier>
         <name>vlsi/DMXA/dmxa0848</name>
+        <nodes>499</nodes>
+        <edges>861</edges>
         <diameter>47</diameter>
         <radius>24</radius>
         <diameter_lB>37</diameter_lB>
@@ -778,6 +942,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa0903.stp</identifier>
         <name>vlsi/DMXA/dmxa0903</name>
+        <nodes>632</nodes>
+        <edges>1087</edges>
         <diameter>52</diameter>
         <radius>26</radius>
         <diameter_lB>42</diameter_lB>
@@ -786,6 +952,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa1010.stp</identifier>
         <name>vlsi/DMXA/dmxa1010</name>
+        <nodes>3983</nodes>
+        <edges>7108</edges>
         <diameter>129</diameter>
         <radius>65</radius>
         <diameter_lB>119</diameter_lB>
@@ -794,6 +962,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa1109.stp</identifier>
         <name>vlsi/DMXA/dmxa1109</name>
+        <nodes>343</nodes>
+        <edges>559</edges>
         <diameter>38</diameter>
         <radius>19</radius>
         <diameter_lB>36</diameter_lB>
@@ -802,6 +972,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa1200.stp</identifier>
         <name>vlsi/DMXA/dmxa1200</name>
+        <nodes>770</nodes>
+        <edges>1383</edges>
         <diameter>62</diameter>
         <radius>32</radius>
         <diameter_lB>61</diameter_lB>
@@ -810,6 +982,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa1304.stp</identifier>
         <name>vlsi/DMXA/dmxa1304</name>
+        <nodes>298</nodes>
+        <edges>503</edges>
         <diameter>37</diameter>
         <radius>19</radius>
         <diameter_lB>32</diameter_lB>
@@ -818,6 +992,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa1516.stp</identifier>
         <name>vlsi/DMXA/dmxa1516</name>
+        <nodes>720</nodes>
+        <edges>1269</edges>
         <diameter>60</diameter>
         <radius>30</radius>
         <diameter_lB>58</diameter_lB>
@@ -826,6 +1002,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa1721.stp</identifier>
         <name>vlsi/DMXA/dmxa1721</name>
+        <nodes>1005</nodes>
+        <edges>1731</edges>
         <diameter>92</diameter>
         <radius>47</radius>
         <diameter_lB>69</diameter_lB>
@@ -834,6 +1012,8 @@
     <instance>
         <identifier>../instances/vlsi/DMXA/dmxa1801.stp</identifier>
         <name>vlsi/DMXA/dmxa1801</name>
+        <nodes>2333</nodes>
+        <edges>4137</edges>
         <diameter>118</diameter>
         <radius>60</radius>
         <diameter_lB>110</diameter_lB>
@@ -842,6 +1022,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap1307.stp</identifier>
         <name>vlsi/GAP/gap1307</name>
+        <nodes>342</nodes>
+        <edges>552</edges>
         <diameter>38</diameter>
         <radius>20</radius>
         <diameter_lB>32</diameter_lB>
@@ -850,6 +1032,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap1413.stp</identifier>
         <name>vlsi/GAP/gap1413</name>
+        <nodes>541</nodes>
+        <edges>906</edges>
         <diameter>48</diameter>
         <radius>25</radius>
         <diameter_lB>44</diameter_lB>
@@ -858,6 +1042,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap1500.stp</identifier>
         <name>vlsi/GAP/gap1500</name>
+        <nodes>220</nodes>
+        <edges>374</edges>
         <diameter>29</diameter>
         <radius>15</radius>
         <diameter_lB>26</diameter_lB>
@@ -866,6 +1052,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap1810.stp</identifier>
         <name>vlsi/GAP/gap1810</name>
+        <nodes>429</nodes>
+        <edges>702</edges>
         <diameter>45</diameter>
         <radius>23</radius>
         <diameter_lB>43</diameter_lB>
@@ -874,6 +1062,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap1904.stp</identifier>
         <name>vlsi/GAP/gap1904</name>
+        <nodes>735</nodes>
+        <edges>1256</edges>
         <diameter>63</diameter>
         <radius>32</radius>
         <diameter_lB>61</diameter_lB>
@@ -882,6 +1072,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap2007.stp</identifier>
         <name>vlsi/GAP/gap2007</name>
+        <nodes>2039</nodes>
+        <edges>3548</edges>
         <diameter>94</diameter>
         <radius>48</radius>
         <diameter_lB>86</diameter_lB>
@@ -890,6 +1082,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap2119.stp</identifier>
         <name>vlsi/GAP/gap2119</name>
+        <nodes>1724</nodes>
+        <edges>2975</edges>
         <diameter>97</diameter>
         <radius>49</radius>
         <diameter_lB>89</diameter_lB>
@@ -898,6 +1092,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap2740.stp</identifier>
         <name>vlsi/GAP/gap2740</name>
+        <nodes>1196</nodes>
+        <edges>2084</edges>
         <diameter>78</diameter>
         <radius>39</radius>
         <diameter_lB>75</diameter_lB>
@@ -906,6 +1102,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap2800.stp</identifier>
         <name>vlsi/GAP/gap2800</name>
+        <nodes>386</nodes>
+        <edges>653</edges>
         <diameter>42</diameter>
         <radius>22</radius>
         <diameter_lB>41</diameter_lB>
@@ -914,6 +1112,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap2975.stp</identifier>
         <name>vlsi/GAP/gap2975</name>
+        <nodes>179</nodes>
+        <edges>293</edges>
         <diameter>30</diameter>
         <radius>16</radius>
         <diameter_lB>29</diameter_lB>
@@ -922,6 +1122,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap3036.stp</identifier>
         <name>vlsi/GAP/gap3036</name>
+        <nodes>346</nodes>
+        <edges>583</edges>
         <diameter>41</diameter>
         <radius>21</radius>
         <diameter_lB>37</diameter_lB>
@@ -930,6 +1132,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap3100.stp</identifier>
         <name>vlsi/GAP/gap3100</name>
+        <nodes>921</nodes>
+        <edges>1558</edges>
         <diameter>79</diameter>
         <radius>40</radius>
         <diameter_lB>64</diameter_lB>
@@ -938,6 +1142,8 @@
     <instance>
         <identifier>../instances/vlsi/GAP/gap3128.stp</identifier>
         <name>vlsi/GAP/gap3128</name>
+        <nodes>10393</nodes>
+        <edges>18043</edges>
         <diameter>222</diameter>
         <radius>111</radius>
         <diameter_lB>202</diameter_lB>
@@ -946,6 +1152,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin01.stp</identifier>
         <name>vlsi/LIN/lin01</name>
+        <nodes>53</nodes>
+        <edges>80</edges>
         <diameter>10</diameter>
         <radius>7</radius>
         <diameter_lB>10</diameter_lB>
@@ -954,6 +1162,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin02.stp</identifier>
         <name>vlsi/LIN/lin02</name>
+        <nodes>55</nodes>
+        <edges>82</edges>
         <diameter>11</diameter>
         <radius>7</radius>
         <diameter_lB>10</diameter_lB>
@@ -962,6 +1172,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin03.stp</identifier>
         <name>vlsi/LIN/lin03</name>
+        <nodes>57</nodes>
+        <edges>84</edges>
         <diameter>11</diameter>
         <radius>8</radius>
         <diameter_lB>11</diameter_lB>
@@ -970,6 +1182,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin04.stp</identifier>
         <name>vlsi/LIN/lin04</name>
+        <nodes>157</nodes>
+        <edges>266</edges>
         <diameter>19</diameter>
         <radius>11</radius>
         <diameter_lB>15</diameter_lB>
@@ -978,6 +1192,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin05.stp</identifier>
         <name>vlsi/LIN/lin05</name>
+        <nodes>160</nodes>
+        <edges>269</edges>
         <diameter>20</diameter>
         <radius>11</radius>
         <diameter_lB>18</diameter_lB>
@@ -986,6 +1202,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin06.stp</identifier>
         <name>vlsi/LIN/lin06</name>
+        <nodes>165</nodes>
+        <edges>274</edges>
         <diameter>19</diameter>
         <radius>12</radius>
         <diameter_lB>18</diameter_lB>
@@ -994,6 +1212,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin07.stp</identifier>
         <name>vlsi/LIN/lin07</name>
+        <nodes>307</nodes>
+        <edges>526</edges>
         <diameter>24</diameter>
         <radius>17</radius>
         <diameter_lB>23</diameter_lB>
@@ -1002,6 +1222,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin08.stp</identifier>
         <name>vlsi/LIN/lin08</name>
+        <nodes>311</nodes>
+        <edges>530</edges>
         <diameter>25</diameter>
         <radius>16</radius>
         <diameter_lB>22</diameter_lB>
@@ -1010,6 +1232,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin09.stp</identifier>
         <name>vlsi/LIN/lin09</name>
+        <nodes>313</nodes>
+        <edges>532</edges>
         <diameter>25</diameter>
         <radius>16</radius>
         <diameter_lB>22</diameter_lB>
@@ -1018,6 +1242,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin10.stp</identifier>
         <name>vlsi/LIN/lin10</name>
+        <nodes>321</nodes>
+        <edges>540</edges>
         <diameter>24</diameter>
         <radius>16</radius>
         <diameter_lB>22</diameter_lB>
@@ -1026,6 +1252,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin11.stp</identifier>
         <name>vlsi/LIN/lin11</name>
+        <nodes>816</nodes>
+        <edges>1460</edges>
         <diameter>40</diameter>
         <radius>27</radius>
         <diameter_lB>39</diameter_lB>
@@ -1034,6 +1262,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin12.stp</identifier>
         <name>vlsi/LIN/lin12</name>
+        <nodes>818</nodes>
+        <edges>1462</edges>
         <diameter>40</diameter>
         <radius>27</radius>
         <diameter_lB>39</diameter_lB>
@@ -1042,6 +1272,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin13.stp</identifier>
         <name>vlsi/LIN/lin13</name>
+        <nodes>822</nodes>
+        <edges>1466</edges>
         <diameter>41</diameter>
         <radius>27</radius>
         <diameter_lB>39</diameter_lB>
@@ -1050,6 +1282,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin14.stp</identifier>
         <name>vlsi/LIN/lin14</name>
+        <nodes>828</nodes>
+        <edges>1472</edges>
         <diameter>41</diameter>
         <radius>27</radius>
         <diameter_lB>39</diameter_lB>
@@ -1058,6 +1292,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin15.stp</identifier>
         <name>vlsi/LIN/lin15</name>
+        <nodes>840</nodes>
+        <edges>1484</edges>
         <diameter>41</diameter>
         <radius>27</radius>
         <diameter_lB>40</diameter_lB>
@@ -1066,6 +1302,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin16.stp</identifier>
         <name>vlsi/LIN/lin16</name>
+        <nodes>1981</nodes>
+        <edges>3633</edges>
         <diameter>66</diameter>
         <radius>40</radius>
         <diameter_lB>65</diameter_lB>
@@ -1074,6 +1312,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin17.stp</identifier>
         <name>vlsi/LIN/lin17</name>
+        <nodes>1989</nodes>
+        <edges>3641</edges>
         <diameter>66</diameter>
         <radius>40</radius>
         <diameter_lB>63</diameter_lB>
@@ -1082,6 +1322,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin18.stp</identifier>
         <name>vlsi/LIN/lin18</name>
+        <nodes>1994</nodes>
+        <edges>3646</edges>
         <diameter>66</diameter>
         <radius>40</radius>
         <diameter_lB>64</diameter_lB>
@@ -1090,6 +1332,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin19.stp</identifier>
         <name>vlsi/LIN/lin19</name>
+        <nodes>2010</nodes>
+        <edges>3662</edges>
         <diameter>67</diameter>
         <radius>41</radius>
         <diameter_lB>64</diameter_lB>
@@ -1098,6 +1342,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin20.stp</identifier>
         <name>vlsi/LIN/lin20</name>
+        <nodes>3675</nodes>
+        <edges>6709</edges>
         <diameter>85</diameter>
         <radius>54</radius>
         <diameter_lB>80</diameter_lB>
@@ -1106,6 +1352,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin21.stp</identifier>
         <name>vlsi/LIN/lin21</name>
+        <nodes>3683</nodes>
+        <edges>6717</edges>
         <diameter>85</diameter>
         <radius>54</radius>
         <diameter_lB>81</diameter_lB>
@@ -1114,6 +1362,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin22.stp</identifier>
         <name>vlsi/LIN/lin22</name>
+        <nodes>3692</nodes>
+        <edges>6726</edges>
         <diameter>85</diameter>
         <radius>54</radius>
         <diameter_lB>75</diameter_lB>
@@ -1122,6 +1372,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin23.stp</identifier>
         <name>vlsi/LIN/lin23</name>
+        <nodes>3716</nodes>
+        <edges>6750</edges>
         <diameter>85</diameter>
         <radius>54</radius>
         <diameter_lB>80</diameter_lB>
@@ -1130,6 +1382,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin24.stp</identifier>
         <name>vlsi/LIN/lin24</name>
+        <nodes>7998</nodes>
+        <edges>14734</edges>
         <diameter>128</diameter>
         <radius>75</radius>
         <diameter_lB>123</diameter_lB>
@@ -1138,6 +1392,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin25.stp</identifier>
         <name>vlsi/LIN/lin25</name>
+        <nodes>8007</nodes>
+        <edges>14743</edges>
         <diameter>128</diameter>
         <radius>75</radius>
         <diameter_lB>120</diameter_lB>
@@ -1146,6 +1402,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin26.stp</identifier>
         <name>vlsi/LIN/lin26</name>
+        <nodes>8013</nodes>
+        <edges>14749</edges>
         <diameter>129</diameter>
         <radius>75</radius>
         <diameter_lB>121</diameter_lB>
@@ -1154,6 +1412,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin27.stp</identifier>
         <name>vlsi/LIN/lin27</name>
+        <nodes>8017</nodes>
+        <edges>14753</edges>
         <diameter>128</diameter>
         <radius>75</radius>
         <diameter_lB>113</diameter_lB>
@@ -1162,6 +1422,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin28.stp</identifier>
         <name>vlsi/LIN/lin28</name>
+        <nodes>8062</nodes>
+        <edges>14798</edges>
         <diameter>128</diameter>
         <radius>76</radius>
         <diameter_lB>121</diameter_lB>
@@ -1170,6 +1432,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin29.stp</identifier>
         <name>vlsi/LIN/lin29</name>
+        <nodes>19083</nodes>
+        <edges>35636</edges>
         <diameter>201</diameter>
         <radius>119</radius>
         <diameter_lB>192</diameter_lB>
@@ -1178,6 +1442,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin30.stp</identifier>
         <name>vlsi/LIN/lin30</name>
+        <nodes>19091</nodes>
+        <edges>35644</edges>
         <diameter>201</diameter>
         <radius>119</radius>
         <diameter_lB>184</diameter_lB>
@@ -1186,6 +1452,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin31.stp</identifier>
         <name>vlsi/LIN/lin31</name>
+        <nodes>19100</nodes>
+        <edges>35653</edges>
         <diameter>201</diameter>
         <radius>119</radius>
         <diameter_lB>192</diameter_lB>
@@ -1194,6 +1462,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin32.stp</identifier>
         <name>vlsi/LIN/lin32</name>
+        <nodes>19112</nodes>
+        <edges>35665</edges>
         <diameter>201</diameter>
         <radius>119</radius>
         <diameter_lB>187</diameter_lB>
@@ -1202,6 +1472,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin33.stp</identifier>
         <name>vlsi/LIN/lin33</name>
+        <nodes>19177</nodes>
+        <edges>35730</edges>
         <diameter>201</diameter>
         <radius>119</radius>
         <diameter_lB>172</diameter_lB>
@@ -1210,6 +1482,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin34.stp</identifier>
         <name>vlsi/LIN/lin34</name>
+        <nodes>38282</nodes>
+        <edges>71521</edges>
         <diameter>-1</diameter>
         <radius>-1</radius>
         <diameter_lB>268</diameter_lB>
@@ -1218,6 +1492,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin35.stp</identifier>
         <name>vlsi/LIN/lin35</name>
+        <nodes>38294</nodes>
+        <edges>71533</edges>
         <diameter>-1</diameter>
         <radius>-1</radius>
         <diameter_lB>260</diameter_lB>
@@ -1226,6 +1502,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin36.stp</identifier>
         <name>vlsi/LIN/lin36</name>
+        <nodes>38307</nodes>
+        <edges>71546</edges>
         <diameter>-1</diameter>
         <radius>-1</radius>
         <diameter_lB>264</diameter_lB>
@@ -1234,6 +1512,8 @@
     <instance>
         <identifier>../instances/vlsi/LIN/lin37.stp</identifier>
         <name>vlsi/LIN/lin37</name>
+        <nodes>38418</nodes>
+        <edges>71657</edges>
         <diameter>-1</diameter>
         <radius>-1</radius>
         <diameter_lB>268</diameter_lB>
@@ -1242,6 +1522,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm0580.stp</identifier>
         <name>vlsi/MSM/msm0580</name>
+        <nodes>338</nodes>
+        <edges>541</edges>
         <diameter>42</diameter>
         <radius>22</radius>
         <diameter_lB>38</diameter_lB>
@@ -1250,6 +1532,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm0654.stp</identifier>
         <name>vlsi/MSM/msm0654</name>
+        <nodes>1290</nodes>
+        <edges>2270</edges>
         <diameter>74</diameter>
         <radius>37</radius>
         <diameter_lB>65</diameter_lB>
@@ -1258,6 +1542,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm0709.stp</identifier>
         <name>vlsi/MSM/msm0709</name>
+        <nodes>1442</nodes>
+        <edges>2403</edges>
         <diameter>88</diameter>
         <radius>44</radius>
         <diameter_lB>79</diameter_lB>
@@ -1266,6 +1552,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm0920.stp</identifier>
         <name>vlsi/MSM/msm0920</name>
+        <nodes>752</nodes>
+        <edges>1264</edges>
         <diameter>66</diameter>
         <radius>33</radius>
         <diameter_lB>60</diameter_lB>
@@ -1274,6 +1562,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm1008.stp</identifier>
         <name>vlsi/MSM/msm1008</name>
+        <nodes>402</nodes>
+        <edges>695</edges>
         <diameter>40</diameter>
         <radius>21</radius>
         <diameter_lB>38</diameter_lB>
@@ -1282,6 +1572,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm1234.stp</identifier>
         <name>vlsi/MSM/msm1234</name>
+        <nodes>933</nodes>
+        <edges>1632</edges>
         <diameter>65</diameter>
         <radius>33</radius>
         <diameter_lB>59</diameter_lB>
@@ -1290,6 +1582,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm1477.stp</identifier>
         <name>vlsi/MSM/msm1477</name>
+        <nodes>1199</nodes>
+        <edges>2078</edges>
         <diameter>90</diameter>
         <radius>46</radius>
         <diameter_lB>85</diameter_lB>
@@ -1298,6 +1592,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm1707.stp</identifier>
         <name>vlsi/MSM/msm1707</name>
+        <nodes>278</nodes>
+        <edges>478</edges>
         <diameter>47</diameter>
         <radius>24</radius>
         <diameter_lB>45</diameter_lB>
@@ -1306,6 +1602,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm1844.stp</identifier>
         <name>vlsi/MSM/msm1844</name>
+        <nodes>90</nodes>
+        <edges>135</edges>
         <diameter>22</diameter>
         <radius>11</radius>
         <diameter_lB>21</diameter_lB>
@@ -1314,6 +1612,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm1931.stp</identifier>
         <name>vlsi/MSM/msm1931</name>
+        <nodes>875</nodes>
+        <edges>1522</edges>
         <diameter>60</diameter>
         <radius>31</radius>
         <diameter_lB>50</diameter_lB>
@@ -1322,6 +1622,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm2000.stp</identifier>
         <name>vlsi/MSM/msm2000</name>
+        <nodes>898</nodes>
+        <edges>1562</edges>
         <diameter>61</diameter>
         <radius>31</radius>
         <diameter_lB>48</diameter_lB>
@@ -1330,6 +1632,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm2152.stp</identifier>
         <name>vlsi/MSM/msm2152</name>
+        <nodes>2132</nodes>
+        <edges>3702</edges>
         <diameter>98</diameter>
         <radius>49</radius>
         <diameter_lB>82</diameter_lB>
@@ -1338,6 +1642,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm2326.stp</identifier>
         <name>vlsi/MSM/msm2326</name>
+        <nodes>418</nodes>
+        <edges>723</edges>
         <diameter>43</diameter>
         <radius>22</radius>
         <diameter_lB>38</diameter_lB>
@@ -1346,6 +1652,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm2492.stp</identifier>
         <name>vlsi/MSM/msm2492</name>
+        <nodes>4045</nodes>
+        <edges>7094</edges>
         <diameter>133</diameter>
         <radius>67</radius>
         <diameter_lB>131</diameter_lB>
@@ -1354,6 +1662,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm2525.stp</identifier>
         <name>vlsi/MSM/msm2525</name>
+        <nodes>3031</nodes>
+        <edges>5239</edges>
         <diameter>197</diameter>
         <radius>99</radius>
         <diameter_lB>192</diameter_lB>
@@ -1362,6 +1672,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm2601.stp</identifier>
         <name>vlsi/MSM/msm2601</name>
+        <nodes>2961</nodes>
+        <edges>5100</edges>
         <diameter>157</diameter>
         <radius>80</radius>
         <diameter_lB>110</diameter_lB>
@@ -1370,6 +1682,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm2705.stp</identifier>
         <name>vlsi/MSM/msm2705</name>
+        <nodes>1359</nodes>
+        <edges>2458</edges>
         <diameter>78</diameter>
         <radius>40</radius>
         <diameter_lB>74</diameter_lB>
@@ -1378,6 +1692,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm2802.stp</identifier>
         <name>vlsi/MSM/msm2802</name>
+        <nodes>1709</nodes>
+        <edges>2963</edges>
         <diameter>106</diameter>
         <radius>54</radius>
         <diameter_lB>94</diameter_lB>
@@ -1386,6 +1702,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm2846.stp</identifier>
         <name>vlsi/MSM/msm2846</name>
+        <nodes>3263</nodes>
+        <edges>5783</edges>
         <diameter>119</diameter>
         <radius>60</radius>
         <diameter_lB>90</diameter_lB>
@@ -1394,6 +1712,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm3277.stp</identifier>
         <name>vlsi/MSM/msm3277</name>
+        <nodes>1704</nodes>
+        <edges>2991</edges>
         <diameter>83</diameter>
         <radius>42</radius>
         <diameter_lB>76</diameter_lB>
@@ -1402,6 +1722,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm3676.stp</identifier>
         <name>vlsi/MSM/msm3676</name>
+        <nodes>957</nodes>
+        <edges>1554</edges>
         <diameter>68</diameter>
         <radius>35</radius>
         <diameter_lB>56</diameter_lB>
@@ -1410,6 +1732,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm3727.stp</identifier>
         <name>vlsi/MSM/msm3727</name>
+        <nodes>4640</nodes>
+        <edges>8255</edges>
         <diameter>163</diameter>
         <radius>82</radius>
         <diameter_lB>143</diameter_lB>
@@ -1418,6 +1742,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm3829.stp</identifier>
         <name>vlsi/MSM/msm3829</name>
+        <nodes>4221</nodes>
+        <edges>7255</edges>
         <diameter>160</diameter>
         <radius>80</radius>
         <diameter_lB>155</diameter_lB>
@@ -1426,6 +1752,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm4038.stp</identifier>
         <name>vlsi/MSM/msm4038</name>
+        <nodes>237</nodes>
+        <edges>390</edges>
         <diameter>32</diameter>
         <radius>17</radius>
         <diameter_lB>28</diameter_lB>
@@ -1434,6 +1762,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm4114.stp</identifier>
         <name>vlsi/MSM/msm4114</name>
+        <nodes>402</nodes>
+        <edges>690</edges>
         <diameter>40</diameter>
         <radius>21</radius>
         <diameter_lB>37</diameter_lB>
@@ -1442,6 +1772,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm4190.stp</identifier>
         <name>vlsi/MSM/msm4190</name>
+        <nodes>391</nodes>
+        <edges>666</edges>
         <diameter>42</diameter>
         <radius>21</radius>
         <diameter_lB>39</diameter_lB>
@@ -1450,6 +1782,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm4224.stp</identifier>
         <name>vlsi/MSM/msm4224</name>
+        <nodes>191</nodes>
+        <edges>302</edges>
         <diameter>33</diameter>
         <radius>17</radius>
         <diameter_lB>32</diameter_lB>
@@ -1458,6 +1792,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm4312.stp</identifier>
         <name>vlsi/MSM/msm4312</name>
+        <nodes>5181</nodes>
+        <edges>8893</edges>
         <diameter>180</diameter>
         <radius>90</radius>
         <diameter_lB>163</diameter_lB>
@@ -1466,6 +1802,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm4414.stp</identifier>
         <name>vlsi/MSM/msm4414</name>
+        <nodes>317</nodes>
+        <edges>476</edges>
         <diameter>59</diameter>
         <radius>30</radius>
         <diameter_lB>51</diameter_lB>
@@ -1474,6 +1812,8 @@
     <instance>
         <identifier>../instances/vlsi/MSM/msm4515.stp</identifier>
         <name>vlsi/MSM/msm4515</name>
+        <nodes>777</nodes>
+        <edges>1358</edges>
         <diameter>59</diameter>
         <radius>30</radius>
         <diameter_lB>55</diameter_lB>
@@ -1482,6 +1822,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0014.stp</identifier>
         <name>vlsi/TAQ/taq0014</name>
+        <nodes>6466</nodes>
+        <edges>11046</edges>
         <diameter>184</diameter>
         <radius>92</radius>
         <diameter_lB>169</diameter_lB>
@@ -1490,6 +1832,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0023.stp</identifier>
         <name>vlsi/TAQ/taq0023</name>
+        <nodes>572</nodes>
+        <edges>963</edges>
         <diameter>51</diameter>
         <radius>26</radius>
         <diameter_lB>41</diameter_lB>
@@ -1498,6 +1842,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0365.stp</identifier>
         <name>vlsi/TAQ/taq0365</name>
+        <nodes>4186</nodes>
+        <edges>7074</edges>
         <diameter>157</diameter>
         <radius>79</radius>
         <diameter_lB>121</diameter_lB>
@@ -1506,6 +1852,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0377.stp</identifier>
         <name>vlsi/TAQ/taq0377</name>
+        <nodes>6836</nodes>
+        <edges>11715</edges>
         <diameter>190</diameter>
         <radius>96</radius>
         <diameter_lB>169</diameter_lB>
@@ -1514,6 +1862,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0431.stp</identifier>
         <name>vlsi/TAQ/taq0431</name>
+        <nodes>1128</nodes>
+        <edges>1905</edges>
         <diameter>73</diameter>
         <radius>37</radius>
         <diameter_lB>59</diameter_lB>
@@ -1522,6 +1872,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0631.stp</identifier>
         <name>vlsi/TAQ/taq0631</name>
+        <nodes>609</nodes>
+        <edges>932</edges>
         <diameter>58</diameter>
         <radius>32</radius>
         <diameter_lB>50</diameter_lB>
@@ -1530,6 +1882,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0739.stp</identifier>
         <name>vlsi/TAQ/taq0739</name>
+        <nodes>837</nodes>
+        <edges>1438</edges>
         <diameter>60</diameter>
         <radius>31</radius>
         <diameter_lB>57</diameter_lB>
@@ -1538,6 +1892,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0741.stp</identifier>
         <name>vlsi/TAQ/taq0741</name>
+        <nodes>712</nodes>
+        <edges>1217</edges>
         <diameter>56</diameter>
         <radius>29</radius>
         <diameter_lB>50</diameter_lB>
@@ -1546,6 +1902,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0751.stp</identifier>
         <name>vlsi/TAQ/taq0751</name>
+        <nodes>1051</nodes>
+        <edges>1791</edges>
         <diameter>68</diameter>
         <radius>34</radius>
         <diameter_lB>59</diameter_lB>
@@ -1554,6 +1912,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0891.stp</identifier>
         <name>vlsi/TAQ/taq0891</name>
+        <nodes>331</nodes>
+        <edges>560</edges>
         <diameter>37</diameter>
         <radius>19</radius>
         <diameter_lB>31</diameter_lB>
@@ -1562,6 +1922,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0903.stp</identifier>
         <name>vlsi/TAQ/taq0903</name>
+        <nodes>6163</nodes>
+        <edges>10490</edges>
         <diameter>181</diameter>
         <radius>92</radius>
         <diameter_lB>170</diameter_lB>
@@ -1570,6 +1932,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0910.stp</identifier>
         <name>vlsi/TAQ/taq0910</name>
+        <nodes>310</nodes>
+        <edges>514</edges>
         <diameter>36</diameter>
         <radius>18</radius>
         <diameter_lB>32</diameter_lB>
@@ -1578,6 +1942,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0920.stp</identifier>
         <name>vlsi/TAQ/taq0920</name>
+        <nodes>122</nodes>
+        <edges>194</edges>
         <diameter>23</diameter>
         <radius>13</radius>
         <diameter_lB>18</diameter_lB>
@@ -1586,6 +1952,8 @@
     <instance>
         <identifier>../instances/vlsi/TAQ/taq0978.stp</identifier>
         <name>vlsi/TAQ/taq0978</name>
+        <nodes>777</nodes>
+        <edges>1239</edges>
         <diameter>69</diameter>
         <radius>35</radius>
         <diameter_lB>68</diameter_lB>

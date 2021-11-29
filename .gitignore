@@ -49,4 +49,6 @@ __pycache__/
 
 
 plots/
-plots_100/
+# todo use git lfs
+results/table.csv
+results/vlsi_1000.csv

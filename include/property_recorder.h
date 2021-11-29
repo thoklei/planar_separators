@@ -17,6 +17,8 @@ public:
 
 	/**
 	 * The actual properties that we store. If a graph is too larger, the diameter is estimated.
+	 * nodes = the number of nodes in the graph
+	 * edges = the number of edges in the graph
 	 * diameter = the longest shortest path in the graph
 	 * radius = the minimum eccentricity of any vertex
 	 * diameter_lB = lower bound of the diameter
@@ -24,6 +26,8 @@ public:
 	 * name = name of the instance (filename)
 	 */
     struct Properties {
+		int nodes = 0;
+		int edges = 0;
         int diameter = -1;
         int radius = -1;
         int diameter_lB = -1;

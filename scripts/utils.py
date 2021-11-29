@@ -45,6 +45,7 @@ core_algorithms = [alg for alg in cmap.keys() if not "_" in alg]
 simple_postprocessors = [alg for alg in cmap.keys() if alg.count("_") <= 1]
 complex_postprocessors = [alg for alg in cmap.keys() if alg.count("_") != 1]  # only core + DMD_NE, NE_DMD
 all_algs_and_post = [alg for alg in cmap.keys()]
+dmd_only = [alg for alg in cmap.keys() if alg.count("_") == 1 and "DMD" in alg]
 
 
 def brighten(hsv, factor):
@@ -98,7 +99,7 @@ def get_marker(algorithm):
     if algorithm in mmap:
         return mmap[algorithm]
     else:
-        print("WARNING: using unkown algorithm")
+        print("WARNING: using unknown algorithm")
         return "."
 
 
@@ -153,7 +154,44 @@ def analysis_core(df, algorithms, instances, column_name):
     return algo_results
 
 
-def analyze_separator_speed(df, name, algorithms, instances):
+def analysis_per_node(df, algorithms, instances, column_name):
+    """
+    Core of the analysis methods - creates a dictionary that maps algorithm name to list of relative performance values,
+    i.e. either the speed or the separator size relative to the minimum value for the instance.
+
+    :param df: the main dataframe
+    :param algorithms: list of strings, algorithm identifiers
+    :param instances: list of strings, instance identifiers
+    :param column_name: either 'time' or 'separator_size'
+    :return: performance-dictionary
+    """
+
+    # maps algorithm to average property (e.g. separator size) per node
+    algo_results = dict()
+    for algo in algorithms:
+        algo_results[algo] = []
+
+    for instance in instances:
+
+        # reduce df to just this instance
+        inst_df = df[df['instance'] == instance]
+        nodes = inst_df['nodes'].min()
+        print(f"Instance {instance} has {nodes} nodes.")
+
+        if nodes == 0:  # ignore instances without nodes
+            print(f"WARNING: Instance {instance} has 0 nodes!")
+        else:
+
+            # for each algorithm, calculate average value relative to number of nodes
+            for algo in algorithms:
+                algo_df = inst_df[inst_df['algorithm'] == algo]
+                data = list(algo_df[column_name]) / nodes
+                algo_results[algo] += list(data)
+
+    return algo_results
+
+
+def analyze_separator_speed(df, name, algorithms, instances, target):
     """
     Plots the relative speed for core algorithms as a bar chart, across all instances
 
@@ -161,10 +199,42 @@ def analyze_separator_speed(df, name, algorithms, instances):
     :param name: the name of the resulting file
     :param algorithms: list of strings, algorithm identifiers
     :param instances: list of strings, instance identifiers
+    :param target: path to folder to store plots in
     """
-    algo_results = analysis_core(df, algorithms, instances, 'time')
-    create_algo_plot(algo_results, name, "Average separator speed relative to fastest algorithm",
-                     "algorithm", "relative average speed", True)
+    algo_results = analysis_per_node(df, algorithms, instances, 'time')
+
+    # create histogram to check distribution
+    for algo in algo_results:
+        analyze_histogram(algo_results[algo], algo, target, True)
+
+    create_boxplot(algo_results, name, "Average separator speed per node", "algorithm",
+                   "average speed in microseconds per node", True, target)
+
+    for algo in algo_results:
+        algo_results[algo] = np.mean(algo_results[algo])
+    create_algo_plot(algo_results, name, "Average separator speed per node",
+                     "algorithm", "average speed in us per node", True, target)
+
+    algo_df = df[df['algorithm'].isin(core_algorithms)]
+    average_speed = algo_df['time'].mean() / 1000.0
+    print(f"Average speed over all instances and all algorithms: {average_speed} ms")
+
+
+def analyze_histogram(data, algo, name, show):
+    mini = np.min(data)
+    maxi = np.max(data)
+    std = np.std(data)
+    print(f"min: {mini} and max: {maxi} and std: {std}")
+
+    plt.figure()
+    plt.title(f"Distribution of runtimes for {algo}")
+    plt.xlabel("runtime in us per node")
+    plt.ylabel("frequency")
+    plt.hist(data, 25, density=True, facecolor='g', alpha=0.75)
+    plt.savefig(f"{name}/{algo}_hist.png")
+
+    if show:
+        plt.show()
 
 
 def analyze_separator_size(df, name, algorithms, instances, target):
@@ -181,6 +251,29 @@ def analyze_separator_size(df, name, algorithms, instances, target):
     algo_results = analysis_core(df, algorithms, instances, 'sep_size')
     create_algo_plot(algo_results, name, "Average separator size relative to smallest known separator",
                      "algorithm", "relative average separator size", True, target)
+
+
+def analyze_separator_balance(df, name, algorithms, instances, target):
+    """
+    Plots the relative balance for core algorithms as a bar chart, across all instances
+
+    :param df: the main dataframe
+    :param name: the name of the resulting file
+    :param algorithms: list of strings, algorithm identifiers
+    :param instances: list of strings, instance identifiers
+    :param target: path to folder to store plots in
+    """
+
+    algo_results = dict()
+
+    for algo in algorithms:
+        # reduce df to just this algorithm
+        algo_df = df[df['algorithm'] == algo]
+        mean = algo_df['balance'].mean()
+        algo_results[algo] = [mean]
+
+    create_algo_plot(algo_results, name, "Average balance between components",
+                     "algorithm", "average balance", True, target)
 
 
 def analyze_runtime_development(df, name, algorithms, instances, show):
@@ -297,7 +390,7 @@ def create_algo_plot(results, name, title, xlabel, ylabel, show, target):
     """
     Plots a dictionary mapping algorithms to some value as a bar chart.
 
-    :param results: dictionary mapping algorithm name to value
+    :param results: dictionary mapping algorithm name to list of values
     :param name: filename under which this plot should be stored
     :param title: title of the diagram
     :param xlabel: labels of x-axis
@@ -306,17 +399,47 @@ def create_algo_plot(results, name, title, xlabel, ylabel, show, target):
     :param target: path to plots-folder
     """
 
-    colors = [get_color(alg) for alg in list(results.keys())]
+    colors = [get_color(alg) for alg in list(results)]
 
     plt.figure()
     xs = [i for i in range(len(results))]
     plt.title(title)
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
-    plt.bar(xs, [results[alg][0] for alg in results], tick_label=list(results.keys()), width=0.6, color=colors)
+    plt.bar(xs, [np.sum(results[alg]) for alg in results], tick_label=list(results), width=0.6, color=colors)
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
-    plt.savefig(os.path.join(target,name+".png"))
+    plt.savefig(os.path.join(target, name+".png"))
+    if show:
+        plt.show()
+
+
+def create_boxplot(results, name, title, xlabel, ylabel, show, target):
+    """
+    Plots a dictionary mapping algorithms to some value as a boxplot chart.
+
+    :param results: dictionary mapping algorithm name to list of values
+    :param name: filename under which this plot should be stored
+    :param title: title of the diagram
+    :param xlabel: labels of x-axis
+    :param ylabel: labels of y-axis
+    :param show: whether to show the plot or not
+    :param target: path to plots-folder
+    """
+
+    colors = [get_color(alg) for alg in list(results)]
+
+    plt.figure()
+    xs = [i for i in range(len(results))]
+    plt.title(title)
+    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)
+    for i, algo in enumerate(results):
+        bp = plt.boxplot(results[algo], positions=[i], labels=[algo])
+        plt.setp(bp['boxes'], color=get_color(algo))
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    plt.savefig(os.path.join(target, name+".png"))
     if show:
         plt.show()
 
@@ -411,9 +534,21 @@ def create_table(dataframe):
         line += " & ".join([str(x) for x in [prop['nodes'], prop['edges'], prop['diameter'], prop['radius']]])
 
         # write algorithm results
-        for alg in res.keys():
-            mini, mean = res[alg][inst_name]
-            line += " & " + str(mini) + " & " + str(mean)
+
+        # extract minima
+        minis = [res[alg][inst_name][0] for alg in res]
+        mini_mini = np.min(minis)
+        means = [res[alg][inst_name][1] for alg in res]
+        mini_mean = np.min(means)
+
+        for mini, mean in zip(minis, means):
+            line += " & "
+
+            line += "\\textbf{"+str(mini)+"}" if mini == mini_mini else str(mini)
+
+            line += " & "
+
+            line += "\\textit{"+str(mean)+"}" if mean == mini_mean else str(mean)
 
         line += " \\\\ \n"
 
