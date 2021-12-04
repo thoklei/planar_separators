@@ -798,7 +798,7 @@ void gen_delaunay(const std::string &location) {
     std::cout << "Generating delaunay..." << std::endl;
 
     int versions = 3;
-    std::vector< int > sizes = { 1000, 5000, 10000, 25000 };
+    std::vector< int > sizes = { 1000, 2000, 4000, 8000, 16000, 32000 };
 
     for(const int size : sizes) {
         Graph G;
@@ -863,5 +863,5 @@ int main() {
 //    gen_ogdf_max(instance_dir + "ogdf/");
 //    gen_random(instance_dir + "random/");
 //    gen_twin(instance_dir + "twin/");
-//    gen_delaunay(instance_dir + "delaunay/");
+    gen_delaunay(instance_dir + "delaunay/");
 }
