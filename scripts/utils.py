@@ -3,6 +3,7 @@ Utility functions and data to analyze data
 """
 import numpy as np
 import pandas as pd
+import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.colors import rgb_to_hsv, hsv_to_rgb, to_hex, to_rgb
 import os
@@ -193,7 +194,7 @@ def analysis_per_node(df, algorithms, instances, column_name):
 
 def analyze_separator_speed(df, name, algorithms, instances, target):
     """
-    Plots the relative speed for core algorithms as a bar chart, across all instances
+    Plots the average speed per node for core algorithms as violin plot, boxplot, and bar chart, across all instances.
 
     :param df: the main dataframe
     :param name: the name of the resulting file
@@ -203,9 +204,8 @@ def analyze_separator_speed(df, name, algorithms, instances, target):
     """
     algo_results = analysis_per_node(df, algorithms, instances, 'time')
 
-    # create histogram to check distribution
-    for algo in algo_results:
-        analyze_histogram(algo_results[algo], algo, target, True)
+    create_violin_plot(algo_results, name, "Average separator speed per node", "algorithm",
+                       "average speed in microseconds per node", True, target)
 
     create_boxplot(algo_results, name, "Average separator speed per node", "algorithm",
                    "average speed in microseconds per node", True, target)
@@ -220,6 +220,7 @@ def analyze_separator_speed(df, name, algorithms, instances, target):
     print(f"Average speed over all instances and all algorithms: {average_speed} ms")
 
 
+# todo delete
 def analyze_histogram(data, algo, name, show):
     mini = np.min(data)
     maxi = np.max(data)
@@ -414,6 +415,45 @@ def create_algo_plot(results, name, title, xlabel, ylabel, show, target):
         plt.show()
 
 
+def create_violin_plot(results, name, title, xlabel, ylabel, show, target):
+    """
+    Plots a dictionary mapping algorithms to some value as a boxplot chart.
+
+    :param results: dictionary mapping algorithm name to list of values
+    :param name: filename under which this plot should be stored
+    :param title: title of the diagram
+    :param xlabel: labels of x-axis
+    :param ylabel: labels of y-axis
+    :param show: whether to show the plot or not
+    :param target: path to plots-folder
+    """
+
+    # get data in proper shape for seaborn
+    data = np.zeros(shape=(len(results), len(results['HP'])))
+    for i, algo in enumerate(results):
+        data[i] = results[algo]
+    data = data.T
+
+    plt.figure()
+    plt.title(title)
+    plt.ylabel(ylabel)
+    plt.xlabel(xlabel)
+
+    # create violin plot
+    colors = {alg: get_color(alg) for alg in list(results)}
+    ax = sns.violinplot(data=data, saturation=0.8, colors=colors)
+    ax.set_xticklabels(list(results.keys()))
+
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+
+    plt.savefig(os.path.join(target, name+"_violin.png"))
+
+    # show if desired
+    if show:
+        plt.show()
+
+
 def create_boxplot(results, name, title, xlabel, ylabel, show, target):
     """
     Plots a dictionary mapping algorithms to some value as a boxplot chart.
@@ -427,19 +467,19 @@ def create_boxplot(results, name, title, xlabel, ylabel, show, target):
     :param target: path to plots-folder
     """
 
-    colors = [get_color(alg) for alg in list(results)]
-
     plt.figure()
-    xs = [i for i in range(len(results))]
     plt.title(title)
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
+
     for i, algo in enumerate(results):
         bp = plt.boxplot(results[algo], positions=[i], labels=[algo])
         plt.setp(bp['boxes'], color=get_color(algo))
+
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
-    plt.savefig(os.path.join(target, name+".png"))
+    plt.savefig(os.path.join(target, name+"_box.png"))
+
     if show:
         plt.show()
 
