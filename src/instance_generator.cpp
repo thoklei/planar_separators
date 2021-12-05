@@ -798,7 +798,7 @@ void gen_delaunay(const std::string &location) {
     std::cout << "Generating delaunay..." << std::endl;
 
     int versions = 3;
-    std::vector< int > sizes = { 1000, 2000, 4000, 8000, 16000, 32000 };
+    std::vector< int > sizes = { 64000 };
 
     for(const int size : sizes) {
         Graph G;

@@ -110,6 +110,16 @@
         <diameter_uB>76</diameter_uB>
     </instance>
     <instance>
+        <identifier>../instances/big_delaunay/delaunay_64000.gml</identifier>
+        <name>big_delaunay/delaunay_64000</name>
+        <nodes>64000</nodes>
+        <edges>191994</edges>
+        <diameter>-1</diameter>
+        <radius>-1</radius>
+        <diameter_lB>161</diameter_lB>
+        <diameter_uB>310</diameter_uB>
+    </instance>
+    <instance>
         <identifier>../instances/delaunay/delaunay_8000.gml</identifier>
         <name>delaunay/delaunay_8000</name>
         <nodes>8000</nodes>
