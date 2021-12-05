@@ -60,6 +60,66 @@
         <diameter_uB>223</diameter_uB>
     </instance>
     <instance>
+        <identifier>../instances/delaunay/delaunay_1000.gml</identifier>
+        <name>delaunay/delaunay_1000</name>
+        <nodes>1000</nodes>
+        <edges>2994</edges>
+        <diameter>22</diameter>
+        <radius>19</radius>
+        <diameter_lB>22</diameter_lB>
+        <diameter_uB>38</diameter_uB>
+    </instance>
+    <instance>
+        <identifier>../instances/delaunay/delaunay_16000.gml</identifier>
+        <name>delaunay/delaunay_16000</name>
+        <nodes>16000</nodes>
+        <edges>47994</edges>
+        <diameter>83</diameter>
+        <radius>78</radius>
+        <diameter_lB>82</diameter_lB>
+        <diameter_uB>156</diameter_uB>
+    </instance>
+    <instance>
+        <identifier>../instances/delaunay/delaunay_2000.gml</identifier>
+        <name>delaunay/delaunay_2000</name>
+        <nodes>2000</nodes>
+        <edges>5994</edges>
+        <diameter>31</diameter>
+        <radius>27</radius>
+        <diameter_lB>30</diameter_lB>
+        <diameter_uB>54</diameter_uB>
+    </instance>
+    <instance>
+        <identifier>../instances/delaunay/delaunay_32000.gml</identifier>
+        <name>delaunay/delaunay_32000</name>
+        <nodes>32000</nodes>
+        <edges>95994</edges>
+        <diameter>117</diameter>
+        <radius>110</radius>
+        <diameter_lB>115</diameter_lB>
+        <diameter_uB>222</diameter_uB>
+    </instance>
+    <instance>
+        <identifier>../instances/delaunay/delaunay_4000.gml</identifier>
+        <name>delaunay/delaunay_4000</name>
+        <nodes>4000</nodes>
+        <edges>11994</edges>
+        <diameter>42</diameter>
+        <radius>38</radius>
+        <diameter_lB>42</diameter_lB>
+        <diameter_uB>76</diameter_uB>
+    </instance>
+    <instance>
+        <identifier>../instances/delaunay/delaunay_8000.gml</identifier>
+        <name>delaunay/delaunay_8000</name>
+        <nodes>8000</nodes>
+        <edges>23994</edges>
+        <diameter>60</diameter>
+        <radius>55</radius>
+        <diameter_lB>58</diameter_lB>
+        <diameter_uB>111</diameter_uB>
+    </instance>
+    <instance>
         <identifier>../instances/random/random_1000_0.gml</identifier>
         <name>random/random_1000_0</name>
         <nodes>1000</nodes>

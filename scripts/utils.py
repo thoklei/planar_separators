@@ -277,7 +277,7 @@ def analyze_separator_balance(df, name, algorithms, instances, target):
                      "algorithm", "average balance", True, target)
 
 
-def analyze_runtime_development(df, name, algorithms, instances, show):
+def analyze_runtime_development(df, name, algorithms, instances, show, target):
     """
     Analyzes the runtime development, i.e. plots instance size against solving speed for the selected instances.
 
@@ -286,6 +286,7 @@ def analyze_runtime_development(df, name, algorithms, instances, show):
     :param algorithms: list of strings, algorithm identifiers
     :param instances: list of strings, instance identifiers - should be ordered by size for the plot to make sense
     :param show: whether to show the plot or just save it
+    :param target: where the plot should be stored
     """
 
     # maps algorithm to list of times, which are already ordered by instance size
@@ -294,11 +295,14 @@ def analyze_runtime_development(df, name, algorithms, instances, show):
         algo_results[algo] = {}
 
     sizes = []  # stores instance sizes (in #nodes)
+    print("Instances: ", instances)
     for instance in instances:
 
         # reduce df to just this instance
         inst_df = df[df['instance'] == instance]
-        size = inst_df['nodes'].mean()  # taking the mean here, but the values are all the same
+        size = inst_df['nodes'].min()  # taking the min here, but the values are all the same
+        print(f"Min: {int(inst_df['nodes'].min())}, Mean: {int(inst_df['nodes'].mean())}")
+        assert int(inst_df['nodes'].min()) == int(inst_df['nodes'].mean())
         sizes.append(size)
 
         # for each algorithm, calculate average speed
@@ -332,7 +336,7 @@ def analyze_runtime_development(df, name, algorithms, instances, show):
     plt.ylabel("runtime (ms)")
     plt.legend()
     plt.tight_layout()
-    plt.savefig("../results/plots/"+name+".png")
+    plt.savefig(os.path.join(target, name+".png"))
     if show:
         plt.show()
 
