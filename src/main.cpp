@@ -215,6 +215,10 @@ private:
         Graph G;
         readGraph(G, path);
 
+		// ensure that conditions hold
+		makeSimpleUndirected(G);
+		planarEmbedPlanarGraph(G);
+
         if(G.numberOfNodes() <= limit) {
 
             std::cout << "\t" << "with " << sep.getName() << std::endl;

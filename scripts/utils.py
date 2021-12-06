@@ -315,6 +315,16 @@ def analyze_runtime_development(df, name, algorithms, instances, show, target):
 
             algo_results[algo][size].append(mean_val)
 
+            # analyzing the exit points
+            exit_points = {}
+            exits = algo_df['exit']
+            for ex in exits:
+                if ex in exit_points:
+                    exit_points[ex] += 1
+                else:
+                    exit_points[ex] = 1
+            print(f"Exit Points for algorithm {algo}: {exit_points}")
+
     print("sizes:", sizes)
     print("algo results: ", algo_results)
 
