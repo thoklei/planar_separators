@@ -532,14 +532,35 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
 def create_table(dataframe):
     """
     Creates a string representation of a latex table of the
-    :param dataframe:
+    :param dataframe: the dataframe of the full csv file
     :return:
     """
+
+    # reordering the rows so that they look like Holzer et al
+    new_df = pd.DataFrame()
+    table_instances = [
+        "table/grid/grid_100",
+        "table/rect/rect_500_20",
+        "table/sixgrid/sixgrid_237_20",
+        "table/triangular/triangular_100",
+        "table/globe/globe_50_100",
+        "table/sphere/sphere_5",
+        "table/diameter/diameter_3333",
+        "table/delaunay/delaunay_10000",
+        "table/ogdf/ogdf_10000_25000",
+        "table/ogdf/ogdf-max_10000",
+        "table/twin/c-grid_10087",
+        "table/twin/c-globe_9792",
+        "table/twin/c-ogdf_10005"
+    ]
+    for inst in table_instances:
+        new_df = new_df.append(dataframe[dataframe['instance'] == inst])
+    dataframe = new_df
 
     def get_summary_dict(df):
         instances = df['instance'].unique()
         algorithms = df['algorithm'].unique()
-        algorithms = [alg for alg in algorithms if "_" in alg]
+        algorithms = [alg for alg in algorithms if "_DMD_NE" in alg]
 
         res = {}  # maps instance name to
 

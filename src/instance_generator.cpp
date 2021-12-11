@@ -235,9 +235,12 @@ void globeGraph(Graph& G, int meridians, int latitudes) {
 void gen_globe(const std::string &location) {
     std::cout << "Generating globe..." << std::endl;
 
-    std::vector< std::pair<int, int> > sizes = { std::make_pair(50, 100),
-												 std::make_pair(100, 100),
-                                                 std::make_pair(10, 1000)};
+	// number of nodes will be t1 * t2 * 2 + 2
+    std::vector< std::pair<int, int> > sizes = { std::make_pair(25, 25), // 1.200
+												 std::make_pair(50, 50), // 5.000
+												 std::make_pair(75, 75), // 11.000
+                                                 std::make_pair(100, 100), // 20.000
+												 std::make_pair(150, 150)}; // 45.000
 
     for(const auto p : sizes) {
         Graph G;
@@ -857,11 +860,11 @@ int main() {
 //    gen_rect(instance_dir + "rect/");
 //    gen_sixgrid(instance_dir + "sixgrid/");
 //    gen_triangular(instance_dir + "triangular/");
-//    gen_globe(instance_dir + "globe/");
+    gen_globe(instance_dir + "globe/");
 //    gen_sphere(instance_dir + "sphere/");
 //    gen_diameter(instance_dir + "diameter/");
 //    gen_ogdf_max(instance_dir + "ogdf/");
 //    gen_random(instance_dir + "random/");
 //    gen_twin(instance_dir + "twin/");
-    gen_delaunay(instance_dir + "delaunay/");
+//    gen_delaunay(instance_dir + "delaunay/");
 }
