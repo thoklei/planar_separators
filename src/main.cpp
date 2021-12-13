@@ -257,8 +257,10 @@ private:
         List<node> first;
         List<node> second;
 
+		GraphCopy graphCopy(G);
+
         auto start = std::chrono::high_resolution_clock::now();
-        sep.separate(G, separator, first, second);
+        sep.separate(G, graphCopy, separator, first, second);
         auto end = std::chrono::high_resolution_clock::now();
 
         // if test-flag is set, verify that the instance was solved correctly
@@ -282,7 +284,7 @@ private:
 	 * Applies all postprocessor and all possible combinations of postprocessors to a given solution.
 	 * This is done separately instead of adding the postprocessors to the separators directly, because that would mean
 	 * re-solving the instance for all combination of postprocessors.
-	 * The solution is passed by value, not by reference, on purpose b
+	 * The solution is passed by value, not by reference, on purpose.
 	 *
 	 * @param G the graph
 	 * @param name the name of the algorithm
