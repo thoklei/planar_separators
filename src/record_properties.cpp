@@ -6,7 +6,7 @@ int main() {
 
     PropertyRecorder propRec("../instances/properties.xml");
 
-    std::string instance_dir = "../instances/";
+    std::string instance_dir = "../instances/europe/";
 
     propRec.apply(instance_dir);
 

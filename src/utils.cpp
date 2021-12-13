@@ -2,6 +2,8 @@
 #include <utils.h>
 #include <ogdf/basic/simple_graph_alg.h>
 #include <climits>
+#include <ogdf/graphalg/SeparatorHarPeled.h>
+#include <ogdf/graphalg/SeparatorDual.h>
 
 bool isGraphFile(std::string path) {
     std::string extension = path.substr(path.rfind("."));
@@ -236,24 +238,28 @@ bool testSeparator(const Graph &G, const List<node> &sep, const List<node> &firs
 }
 
 std::pair<int, int> calculateDiameterBounds(const Graph &G) {
+	std::cout << "Working on graph with " << G.numberOfNodes() << " nodes." << std::endl;
 
     if(!isPlanar(G)) throw std::invalid_argument("Graph has to be planar!");
 
-    if(G.nodes.size() < 20) {
+    if(G.numberOfNodes() < 20) {
         int diam = calculateDistances(G).second;
         return std::make_pair(diam, diam);
     }
 
+	std::cout << "isConnected: " << isConnected(G) << std::endl;
     if(!isConnected(G)) {
         // run this algorithm for every component of the graph, take maxima over all components for both bounds
         NodeArray<int> comps;
         comps.init(G);
         int numComps = connectedComponents(G, comps);
+		std::cout << "Number of components: " << numComps << std::endl;
 
         int maxLower = -1;
         int maxUpper = -1;
 
         for(int i = 0; i < numComps; ++i) {
+			std::cout << "Working on Component " << i << std::endl;
             GraphCopy g;
             g.init(G);
             g.clear();
@@ -276,6 +282,9 @@ std::pair<int, int> calculateDiameterBounds(const Graph &G) {
                 continue;
             }
 
+			makeSimpleUndirected(g);
+			planarEmbedPlanarGraph(g);
+
             auto res = calculateDiameterBounds(g);
 
             maxLower = max(maxLower, res.first);
@@ -285,6 +294,7 @@ std::pair<int, int> calculateDiameterBounds(const Graph &G) {
         return std::make_pair(maxLower, maxUpper);
     }
 
+	std::cout << "Working on separator..." << std::endl;
 
     SeparatorLiptonTarjanFC sep;
     NodeExpulsor post(false);
@@ -294,7 +304,9 @@ std::pair<int, int> calculateDiameterBounds(const Graph &G) {
     List<node> second;
 
     sep.separate(G, separator, first, second);
-    post.apply(G, separator, first, second);
+    //post.apply(G, separator, first, second);
+
+	std::cout << "Separator success: " << separator.size() << std::endl;
 
     if(separator.empty()) { // can happen if the graph was really small / had huge diameter
         int diam = calculateDistances(G).second;
@@ -317,6 +329,7 @@ std::pair<int, int> calculateDiameterBounds(const Graph &G) {
     int upperBound = INT_MAX;  // sum of longest and second longest shortest path of each separator-node
 
     for(node n : separator) {
+		std::cout << "Dealing with separator node: " << n << std::endl;
 
         int maxDist = 0; // max dist from n to any other node
         int secondMaxDist = 0; // second largest dist from n to any other node

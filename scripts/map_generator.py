@@ -30,17 +30,19 @@ def query_osm(path):
     :param path: the target path for the results
     """
 
-    if not os.path.exists(path):
-        os.makedirs(path)
+    # 30 largest european cities, all with > 1,000,000 inhabitants
+    cities = ["Istanbul", "Moscow", "London", "Saint Petersburg", "Berlin", "Madrid", "Kyiv", "Rome", "Bucharest",
+              "Paris", "Minsk", "Vienna", "Hamburg", "Warsaw", "Budapest", "Barcelona", "Munich", "Kharkiv", "Milan",
+              "Belgrade", "Prague", "Nizhny Novgorod", "Kazan", "Sofia", "Birmingham", "Brussels", "Samara",
+              "Ufa", "Rostov-on-Don", "Cologne", "Voronezh", "Perm", "Volgograd", "Odessa"]
 
-    cities = ["Lindlar", "Osnabrück", "Köln", "Berlin", "München", "San Francisco"]
-
+    print(f"Querying {len(cities)} cities...")
     api = overpy.Overpass()
 
     for city in cities:
 
         print("Working on city:", city)
-        real_query = "area[\"name\"=\""+city+"\"]->.b; way(area.b)[\"highway\"~\"primary|secondary|tertiary|residential\"];(._;>;);out skel;"
+        real_query = "area[\"name\"=\""+city+"\"]->.b; way(area.b)[\"highway\"~\"primary|secondary|tertiary\"];(._;>;);out skel;"
         result = api.query(real_query)
 
         id_max = 1
@@ -112,5 +114,9 @@ def query_osm(path):
 
 
 if __name__ == "__main__":
-    resource_dir = "../resources/city"
+    resource_dir = "../resources/europe"
+
+    if not os.path.exists(resource_dir):
+        os.mkdir(resource_dir)
+
     query_osm(resource_dir)

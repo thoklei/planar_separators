@@ -12,12 +12,14 @@ def main(path):
     """
 
     # read csv file
-    df = pd.read_csv(path, sep=r'\s*,\s*', encoding='utf-8')
+    df = pd.read_csv(path, sep=r'\s*,\s*', encoding='utf-8', engine='python')
 
     # create table
-    table_tex = create_table(df)
+    base_algorithms = ["Dual", "DualFC", "HP"]
+    algorithms = [str(algo) + "_DMD_NE" for algo in base_algorithms]
+    table_tex = create_table(df, algorithms)
 
-    # for debugging, print
+    # just print resulting LaTex to console
     print(table_tex)
 
 

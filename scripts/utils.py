@@ -204,10 +204,10 @@ def analyze_separator_speed(df, name, algorithms, instances, target):
     """
     algo_results = analysis_per_node(df, algorithms, instances, 'time')
 
-    create_violin_plot(algo_results, name, "Average separator speed per node", "algorithm",
+    create_violin_plot(algo_results, algorithms, name, "Average separator speed per node", "algorithm",
                        "average speed in microseconds per node", True, target)
 
-    create_boxplot(algo_results, name, "Average separator speed per node", "algorithm",
+    create_boxplot(algo_results, algorithms, name, "Average separator speed per node", "algorithm",
                    "average speed in microseconds per node", True, target)
 
     for algo in algo_results:
@@ -386,7 +386,7 @@ def analyze_instance_performance(df, name, instances, algorithms, target):
                 algo_results[algo][instance] = mean_sep_size / mini
 
     create_scatter_plot(clean_instances, algorithms, algo_results, name,
-                        "Average separator size relative to smallest known separator per instance",
+                        "Average separator size relative to smallest known separator",
                         "instance", "relative average separator size", True, target)
 
 
@@ -429,11 +429,12 @@ def create_algo_plot(results, name, title, xlabel, ylabel, show, target):
         plt.show()
 
 
-def create_violin_plot(results, name, title, xlabel, ylabel, show, target):
+def create_violin_plot(results, algorithms, name, title, xlabel, ylabel, show, target):
     """
     Plots a dictionary mapping algorithms to some value as a boxplot chart.
 
     :param results: dictionary mapping algorithm name to list of values
+    :param algorithms: list of algorithm names - used to keep order like in other plots
     :param name: filename under which this plot should be stored
     :param title: title of the diagram
     :param xlabel: labels of x-axis
@@ -444,7 +445,7 @@ def create_violin_plot(results, name, title, xlabel, ylabel, show, target):
 
     # get data in proper shape for seaborn
     data = np.zeros(shape=(len(results), len(results['HP'])))
-    for i, algo in enumerate(results):
+    for i, algo in enumerate(algorithms):
         data[i] = results[algo]
     data = data.T
 
@@ -454,9 +455,9 @@ def create_violin_plot(results, name, title, xlabel, ylabel, show, target):
     plt.xlabel(xlabel)
 
     # create violin plot
-    colors = {alg: get_color(alg) for alg in list(results)}
-    ax = sns.violinplot(data=data, saturation=0.8, colors=colors)
-    ax.set_xticklabels(list(results.keys()))
+    colors = [get_color(alg) for alg in algorithms]
+    ax = sns.violinplot(data=data, saturation=0.8, palette=colors)
+    ax.set_xticklabels(algorithms)
 
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
@@ -468,11 +469,12 @@ def create_violin_plot(results, name, title, xlabel, ylabel, show, target):
         plt.show()
 
 
-def create_boxplot(results, name, title, xlabel, ylabel, show, target):
+def create_boxplot(results, algorithms, name, title, xlabel, ylabel, show, target):
     """
     Plots a dictionary mapping algorithms to some value as a boxplot chart.
 
     :param results: dictionary mapping algorithm name to list of values
+    :param algorithms: list of algorithm names - used to keep order like in other plots
     :param name: filename under which this plot should be stored
     :param title: title of the diagram
     :param xlabel: labels of x-axis
@@ -486,7 +488,7 @@ def create_boxplot(results, name, title, xlabel, ylabel, show, target):
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
 
-    for i, algo in enumerate(results):
+    for i, algo in enumerate(algorithms):
         bp = plt.boxplot(results[algo], positions=[i], labels=[algo])
         plt.setp(bp['boxes'], color=get_color(algo))
 
@@ -529,10 +531,11 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
         plt.show()
 
 
-def create_table(dataframe):
+def create_table(dataframe, algorithms):
     """
     Creates a string representation of a latex table of the
     :param dataframe: the dataframe of the full csv file
+    :param algorithms: the algorithms to be analysed
     :return:
     """
 
@@ -559,8 +562,6 @@ def create_table(dataframe):
 
     def get_summary_dict(df):
         instances = df['instance'].unique()
-        algorithms = df['algorithm'].unique()
-        algorithms = [alg for alg in algorithms if "_DMD_NE" in alg]
 
         res = {}  # maps instance name to
 
@@ -598,6 +599,15 @@ def create_table(dataframe):
         :return: only the name, without size specifications
         """
         return inst_name[0:inst_name.find("_")] if inst_name.find("_") != -1 else inst_name
+
+    def clean_algo_name(algo_name):
+        """
+        Removes the additional modifiers from an algorithm and replaces it with + sign.
+
+        :param algo_name: the full algorithm name
+        :return:
+        """
+        return algo_name[0:algo_name.find("_")] + "+" if algo_name.find("_") != -1 else algo_name
 
     def make_table_line(df, inst_name, res):
 
@@ -642,7 +652,7 @@ def create_table(dataframe):
 
     # write header
     latex += "graph & nodes & edges & diam. & rad. & " \
-             + " & ".join(["\\multicolumn{2}{c}{" + str(alg) + "}" for alg in res_dict.keys()]) + " \\\\ \n"
+             + " & ".join(["\\multicolumn{2}{c}{" + str(clean_algo_name(alg)) + "}" for alg in res_dict.keys()]) + " \\\\ \n"
 
     # write layer below for min and mean
     latex += " & " * 5 + " & " .join(["min & mean "] * numalg) + "\\\\ \n"
@@ -656,7 +666,14 @@ def create_table(dataframe):
         table_line = make_table_line(dataframe, instance, res_dict)
         latex += table_line
 
-    latex += "\\bottomrule \n\\end{tabular} }\n\\end{table}\n\\end{center}"
+    latex += "\\bottomrule \n\\end{tabular} }\n\\captionsetup{width=14cm} \n"
+
+    latex += "\\caption{Performance of different algorithms on the Holzer-instances. " \
+             "Note that the algorithm denoted here as \\textit{Dual} corresponds to Holzer's \\textit{LT}, " \
+             "while \\textit{DualFC} corresponds to their \\textit{FC}. The $+$ indicates that postprocessing " \
+             "was applied, in this case Dulmage-Mendelsohn Decomposition followed by NodeExpulsor.} \n"
+
+    latex += "\\end{table}\n\\end{center}"
 
     def clean_latex(lat):
         """

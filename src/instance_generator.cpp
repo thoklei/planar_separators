@@ -667,7 +667,7 @@ void planarizeGraphs(const std::string &resource_path, const std::string &target
 
                 if(!isSimple(G)) {
                     int edgeCountBefore = G.edges.size();
-                    makeSimple(G);
+                    makeSimpleUndirected(G);
                     int edgeCountAfter = G.edges.size();
                     std::cout << "Simplifying " << city_name << " by deleting "
                               << (edgeCountBefore - edgeCountAfter) << " / " << edgeCountBefore << " edges." << std::endl;
@@ -677,7 +677,7 @@ void planarizeGraphs(const std::string &resource_path, const std::string &target
                 }
 
                 assert(isPlanar(G));
-                assert(isSimple(G));
+                assert(isSimpleUndirected(G));
 
                 GraphIO::write(G, target_path + city_name + ".gml", GraphIO::writeGML);
 
@@ -844,14 +844,14 @@ int main() {
 
     // 1. generate directories for all types of graphs
     std::vector<std::string> subdirs = {"grid", "rect", "sixgrid","triangular", "globe", "sphere", "diameter",
-                                        "ogdf", "city", "random", "delaunay", "twin" };
+                                        "ogdf", "city", "random", "delaunay", "twin", "europe" };
     for(const auto& sub : subdirs) {
         fs::create_directories(instance_dir + sub);
     }
 
     // 2. planarize city graphs
-//    std::cout << "Planarizing city graphs..." << std::endl;
-//    planarizeGraphs(resource_dir+"city/", instance_dir + "city/");
+    std::cout << "Planarizing city graphs..." << std::endl;
+    planarizeGraphs(resource_dir+"europe/", instance_dir + "europe/");
 
     // 3. generate other types of graphs
     std::cout << "Generating instances..." << std::endl;
@@ -860,7 +860,7 @@ int main() {
 //    gen_rect(instance_dir + "rect/");
 //    gen_sixgrid(instance_dir + "sixgrid/");
 //    gen_triangular(instance_dir + "triangular/");
-    gen_globe(instance_dir + "globe/");
+//    gen_globe(instance_dir + "globe/");
 //    gen_sphere(instance_dir + "sphere/");
 //    gen_diameter(instance_dir + "diameter/");
 //    gen_ogdf_max(instance_dir + "ogdf/");

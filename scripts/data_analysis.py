@@ -25,32 +25,33 @@ def main(path, target):
 
     # Which core algorithm yields the smallest relative separators?
     instances = df['instance'].unique()
-    # analyze_separator_size(df, "rel_sepsize_core", utils.core_algorithms, instances, target)
-    #
-    # # Okay, looks like Har-Peled is the best core separator.
-    #
-    # # Does this change if post-processing is applied?
-    # analyze_separator_size(df, "rel_sepsize_simple_post", utils.simple_postprocessors, instances, target)
-    #
-    # # Looks like all separators benefit from NE the most, but this did not really change anything.
-    #
-    # # What about combinations of postproccesors?
-    # analyze_separator_size(df, "rel_sepsize_complex_post", utils.all_algs_and_post, instances, target)
-    #
-    # # Looks like multiple postprocessors are not really better than just the NodeExpulsor.
-    #
-    # # Now, let's check the performance of all algorithms + NE per instance in one huge plot.
-    # analyze_instance_performance(df, "per_instance", instances, utils.core_algorithms, target)
+    analyze_separator_size(df, "rel_sepsize_core", utils.core_algorithms, instances, target)
+
+    # Okay, looks like Har-Peled is the best core separator.
+
+    # Does this change if post-processing is applied?
+    analyze_separator_size(df, "rel_sepsize_simple_post", utils.simple_postprocessors, instances, target)
+
+    # Looks like all separators benefit from NE the most, but this did not really change anything.
+
+    # What about combinations of postproccesors?
+    analyze_separator_size(df, "rel_sepsize_complex_post", utils.all_algs_and_post, instances, target)
+
+    # Now, let's check the performance of all algorithms per instance in one huge plot.
+    ignores = ["table/twin/c-ogdf_10005", "table/ogdf/ogdf-max_10000",
+               "table/ogdf/ogdf_10000_25000", "table/diameter/diameter_3333"]
+    per_inst_instances = [i for i in instances if i not in ignores]  # ignoring huge diff
+    analyze_instance_performance(df, "per_instance", per_inst_instances, utils.core_algorithms, target)
 
     # Ok looks like Har-Peled is the best algorithm everywhere, except for maybe diameter graphs.
 
     # Next, let's check runtime:
-    algorithms = df['algorithm'].unique()
-    algorithms = [alg for alg in algorithms if alg in utils.core_algorithms]
+    present_algorithms = df['algorithm'].unique()
+    algorithms = [alg for alg in utils.core_algorithms if alg in present_algorithms]
     analyze_separator_speed(df, "rel_speed_core", algorithms, instances, target)
 
     # Also analyse the average balance between components:
-    # analyze_separator_balance(df, "avg_balance", utils.dmd_only, instances, target)
+    analyze_separator_balance(df, "avg_balance", utils.core_algorithms, instances, target)
 
 
 if __name__ == "__main__":
