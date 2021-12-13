@@ -800,8 +800,7 @@ void delaunayGraph(Graph &G, int n) {
 void gen_delaunay(const std::string &location) {
     std::cout << "Generating delaunay..." << std::endl;
 
-    int versions = 3;
-    std::vector< int > sizes = { 64000 };
+    std::vector< int > sizes = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000 };
 
     for(const int size : sizes) {
         Graph G;
@@ -844,14 +843,14 @@ int main() {
 
     // 1. generate directories for all types of graphs
     std::vector<std::string> subdirs = {"grid", "rect", "sixgrid","triangular", "globe", "sphere", "diameter",
-                                        "ogdf", "city", "random", "delaunay", "twin", "europe" };
+                                        "ogdf", "city", "random", "delaunay", "twin", "europe", "delaunay_small" };
     for(const auto& sub : subdirs) {
         fs::create_directories(instance_dir + sub);
     }
 
     // 2. planarize city graphs
     std::cout << "Planarizing city graphs..." << std::endl;
-    planarizeGraphs(resource_dir+"europe/", instance_dir + "europe/");
+//    planarizeGraphs(resource_dir+"europe/", instance_dir + "europe/");
 
     // 3. generate other types of graphs
     std::cout << "Generating instances..." << std::endl;
@@ -866,5 +865,5 @@ int main() {
 //    gen_ogdf_max(instance_dir + "ogdf/");
 //    gen_random(instance_dir + "random/");
 //    gen_twin(instance_dir + "twin/");
-//    gen_delaunay(instance_dir + "delaunay/");
+    gen_delaunay(instance_dir + "delaunay_small/");
 }
