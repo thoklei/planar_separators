@@ -297,11 +297,7 @@ std::pair<int, int> calculateDiameterBounds(const Graph &G) {
     List<node> first;
     List<node> second;
 
-	GraphCopy g(G);
-	makeSimpleUndirected(g);
-	planarEmbedPlanarGraph(g);
-
-    sep.separate(G, g, separator, first, second);
+    sep.separate(G, separator, first, second);
     post.apply(G, separator, first, second);
 
     if(separator.empty()) { // can happen if the graph was really small / had huge diameter
