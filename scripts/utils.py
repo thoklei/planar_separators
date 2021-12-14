@@ -277,7 +277,7 @@ def analyze_separator_balance(df, name, algorithms, instances, target):
                      "algorithm", "average balance", True, target)
 
 
-def analyze_runtime_development(df, name, algorithms, instances, show, target):
+def analyze_runtime_development(df, name, algorithms, instances, size_limit, show, target):
     """
     Analyzes the runtime development, i.e. plots instance size against solving speed for the selected instances.
 
@@ -286,6 +286,7 @@ def analyze_runtime_development(df, name, algorithms, instances, show, target):
     :param algorithms: list of strings, algorithm identifiers
     :param instances: list of strings, instance identifiers - should be ordered by size for the plot to make sense
     :param show: whether to show the plot or just save it
+    :param size_limit: size limit (in nodes) up to which instances should be taken into account
     :param target: where the plot should be stored
     """
 
@@ -300,30 +301,34 @@ def analyze_runtime_development(df, name, algorithms, instances, show, target):
 
         # reduce df to just this instance
         inst_df = df[df['instance'] == instance]
-        size = inst_df['nodes'].min()  # taking the min here, but the values are all the same
-        print(f"Min: {int(inst_df['nodes'].min())}, Mean: {int(inst_df['nodes'].mean())}")
-        assert int(inst_df['nodes'].min()) == int(inst_df['nodes'].mean())
-        sizes.append(size)
+        measure = 'edges'  # either nodes or edges
+        size = inst_df[measure].min()  # taking the min here, but the values are all the same
 
-        # for each algorithm, calculate average speed
-        for algo in algorithms:
-            algo_df = inst_df[inst_df['algorithm'] == algo]
-            mean_val = algo_df['time'].mean()
+        if inst_df['nodes'].min() < size_limit:
 
-            if size not in algo_results[algo].keys():  # make sure we already have a list here
-                algo_results[algo][size] = []
+            print(f"Min: {int(inst_df[measure].min())}, Mean: {int(inst_df[measure].mean())}")
+            assert int(inst_df[measure].min()) == int(inst_df[measure].mean())
+            sizes.append(size)
 
-            algo_results[algo][size].append(mean_val)
+            # for each algorithm, calculate average speed
+            for algo in algorithms:
+                algo_df = inst_df[inst_df['algorithm'] == algo]
+                mean_val = algo_df['time'].mean()
 
-            # analyzing the exit points
-            exit_points = {}
-            exits = algo_df['exit']
-            for ex in exits:
-                if ex in exit_points:
-                    exit_points[ex] += 1
-                else:
-                    exit_points[ex] = 1
-            print(f"Exit Points for algorithm {algo}: {exit_points}")
+                if size not in algo_results[algo].keys():  # make sure we already have a list here
+                    algo_results[algo][size] = []
+
+                algo_results[algo][size].append(mean_val)
+
+                # analyzing the exit points
+                exit_points = {}
+                exits = algo_df['exit']
+                for ex in exits:
+                    if ex in exit_points:
+                        exit_points[ex] += 1
+                    else:
+                        exit_points[ex] = 1
+                print(f"Exit Points for algorithm {algo}: {exit_points}")
 
     print("sizes:", sizes)
     print("algo results: ", algo_results)
@@ -342,11 +347,11 @@ def analyze_runtime_development(df, name, algorithms, instances, show, target):
 
         plt.plot(unique_sizes, averages, color=get_color(alg), marker=get_marker(alg), label=alg)
     plt.title("runtime development of core algorithms")
-    plt.xlabel("instance size (nodes)")
+    plt.xlabel(f"instance size ({measure})")
     plt.ylabel("runtime (ms)")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(os.path.join(target, name+".png"))
+    plt.savefig(os.path.join(target, name+"_"+measure+"_"+str(size_limit)+".png"))
     if show:
         plt.show()
 

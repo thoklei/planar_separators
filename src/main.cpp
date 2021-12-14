@@ -257,10 +257,8 @@ private:
         List<node> first;
         List<node> second;
 
-		GraphCopy graphCopy(G);
-
         auto start = std::chrono::high_resolution_clock::now();
-        sep.separate(G, graphCopy, separator, first, second);
+        sep.separate(G, separator, first, second);
         auto end = std::chrono::high_resolution_clock::now();
 
         // if test-flag is set, verify that the instance was solved correctly
