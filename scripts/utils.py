@@ -42,7 +42,7 @@ mmap = {"LT": "o",
         "DualFC": "s",
         "HP": "*"}
 
-core_algorithms = [alg for alg in cmap.keys() if not "_" in alg]
+core_algorithms = [alg for alg in cmap.keys() if "_" not in alg]
 simple_postprocessors = [alg for alg in cmap.keys() if alg.count("_") <= 1]
 complex_postprocessors = [alg for alg in cmap.keys() if alg.count("_") != 1]  # only core + DMD_NE, NE_DMD
 all_algs_and_post = [alg for alg in cmap.keys()]
@@ -167,7 +167,7 @@ def analysis_per_node(df, algorithms, instances, column_name):
     :return: performance-dictionary
     """
 
-    # maps algorithm to average property (e.g. separator size) per node
+    # maps algorithm to average property (e.g. separator size, runtime) per node
     algo_results = dict()
     for algo in algorithms:
         algo_results[algo] = []
@@ -177,17 +177,19 @@ def analysis_per_node(df, algorithms, instances, column_name):
         # reduce df to just this instance
         inst_df = df[df['instance'] == instance]
         nodes = inst_df['nodes'].min()
-        print(f"Instance {instance} has {nodes} nodes.")
+
+        assert inst_df['nodes'].min() == inst_df['nodes'].mean()
 
         if nodes == 0:  # ignore instances without nodes
             print(f"WARNING: Instance {instance} has 0 nodes!")
         else:
-
             # for each algorithm, calculate average value relative to number of nodes
             for algo in algorithms:
+
                 algo_df = inst_df[inst_df['algorithm'] == algo]
-                data = list(algo_df[column_name]) / nodes
+                data = np.array(list(algo_df[column_name])) / nodes
                 algo_results[algo] += list(data)
+                print(f"Maximum for instance {instance} and algorithm {algo}: {np.max(data)}")
 
     return algo_results
 
@@ -203,6 +205,9 @@ def analyze_separator_speed(df, name, algorithms, instances, target):
     :param target: path to folder to store plots in
     """
     algo_results = analysis_per_node(df, algorithms, instances, 'time')
+
+    for alg in algo_results:
+        print(alg+":", algo_results[alg][0:5], "Length: "+str(len(algo_results[alg])))
 
     create_violin_plot(algo_results, algorithms, name, "Average separator speed per node", "algorithm",
                        "average speed in microseconds per node", True, target)
@@ -254,14 +259,13 @@ def analyze_separator_size(df, name, algorithms, instances, target):
                      "algorithm", "relative average separator size", True, target)
 
 
-def analyze_separator_balance(df, name, algorithms, instances, target):
+def analyze_separator_balance(df, name, algorithms, target):
     """
     Plots the relative balance for core algorithms as a bar chart, across all instances
 
     :param df: the main dataframe
     :param name: the name of the resulting file
     :param algorithms: list of strings, algorithm identifiers
-    :param instances: list of strings, instance identifiers
     :param target: path to folder to store plots in
     """
 
@@ -277,7 +281,7 @@ def analyze_separator_balance(df, name, algorithms, instances, target):
                      "algorithm", "average balance", True, target)
 
 
-def analyze_runtime_development(df, name, algorithms, instances, size_limit, show, target):
+def analyze_runtime_development(df, name, algorithms, instances, size_limit, measure, show, target):
     """
     Analyzes the runtime development, i.e. plots instance size against solving speed for the selected instances.
 
@@ -285,6 +289,7 @@ def analyze_runtime_development(df, name, algorithms, instances, size_limit, sho
     :param name: the name of the resulting file
     :param algorithms: list of strings, algorithm identifiers
     :param instances: list of strings, instance identifiers - should be ordered by size for the plot to make sense
+    :param measure: which measure to use, nodes or edges
     :param show: whether to show the plot or just save it
     :param size_limit: size limit (in nodes) up to which instances should be taken into account
     :param target: where the plot should be stored
@@ -301,7 +306,6 @@ def analyze_runtime_development(df, name, algorithms, instances, size_limit, sho
 
         # reduce df to just this instance
         inst_df = df[df['instance'] == instance]
-        measure = 'edges'  # either nodes or edges
         size = inst_df[measure].min()  # taking the min here, but the values are all the same
 
         if inst_df['nodes'].min() < size_limit:
@@ -392,7 +396,7 @@ def analyze_instance_performance(df, name, instances, algorithms, target):
 
     create_scatter_plot(clean_instances, algorithms, algo_results, name,
                         "Average separator size relative to smallest known separator",
-                        "instance", "relative average separator size", True, target)
+                        "instance", "relative average separator size", target)
 
 
 def extract_short_instance_name(full_instance_name):
@@ -505,7 +509,7 @@ def create_boxplot(results, algorithms, name, title, xlabel, ylabel, show, targe
         plt.show()
 
 
-def create_scatter_plot(instances, algorithms, results, name, title, xlabel, ylabel, show, target):
+def create_scatter_plot(instances, algorithms, results, name, title, xlabel, ylabel, target):
     """
     Plots a dictionary mapping instance names to values for each algorithm.
 
@@ -516,7 +520,6 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
     :param title: title of the diagram
     :param xlabel: labels of x-axis
     :param ylabel: labels of y-axis
-    :param show: whether to show the plot or not
     :param target: path to target directory with plots-folder
     """
     plt.figure()
@@ -525,20 +528,22 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
     plt.xlabel(xlabel)
 
     xs = range(len(instances))
+
     for algo in algorithms:
-        ys = [results[algo][inst] for inst in instances]
+        ys = [results[algo][inst] if results[algo][inst] < 3 else 3 for inst in instances]
         plt.scatter(xs, ys, c=get_color(algo), marker=get_marker(algo), label=algo)
+
+    plt.ylim(0, 3)
     plt.xticks(xs, [extract_short_instance_name(inst) for inst in instances], rotation=45, ha='right')
     plt.legend()
     plt.tight_layout()
-    plt.savefig(os.path.join(target, name+".png"))
-    if show:
-        plt.show()
+    plt.savefig(os.path.join(target, name + ".png"))
+    plt.show()
 
 
 def create_table(dataframe, algorithms):
     """
-    Creates a string representation of a latex table of the
+    Creates a string representation of a latex table.
     :param dataframe: the dataframe of the full csv file
     :param algorithms: the algorithms to be analysed
     :return:

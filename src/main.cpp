@@ -223,7 +223,7 @@ private:
 
             std::cout << "\t" << "with " << sep.getName() << std::endl;
 
-			if(attempts <= 0 || attempts > G.numberOfNodes()) {
+			if(attempts <= 0) {
 				for (node no: G.nodes) {
 					// solve the instance with sep and all combinations of postprocessors
 					setSeed(42);

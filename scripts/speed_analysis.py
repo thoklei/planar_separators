@@ -23,11 +23,12 @@ def main(path, target):
     # sorted_instances = df[df['instance'].str.contains('random')].sort_values('nodes')['instance'].unique()  # random
     sorted_instances = df.sort_values('nodes')['instance'].unique()  # all
 
-    # only analyze the smaller ones up to 1000 nodes
-    analyze_runtime_development(df, "runtime_development", utils.core_algorithms, sorted_instances, 1001, True, target)
+    for measure in ['nodes', 'edges']:
+        # only analyze the smaller ones up to 1000 nodes
+        analyze_runtime_development(df, "runtime_development", utils.core_algorithms, sorted_instances, 1001, measure, True, target)
 
-    # again for all instances
-    analyze_runtime_development(df, "runtime_development", utils.core_algorithms, sorted_instances, 1000000, True, target)
+        # again for all instances
+        analyze_runtime_development(df, "runtime_development", utils.core_algorithms, sorted_instances, 1000000, measure, True, target)
 
     # Har-Peled is significantly slower here, no mincing words - actually, might be reasonable to try this with larger
     # instances, just to make sure that we are not accidentally superlinear.
