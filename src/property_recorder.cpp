@@ -75,7 +75,7 @@ void PropertyRecorder::processInstance(std::string path) {
 	propMap[identifier].edges = G.numberOfEdges();
 
     if(propMap[identifier].diameter == -1 || propMap[identifier].radius == -1) {
-        if(G.nodes.size() < 33000) {
+        if(G.nodes.size() < 10000) {
             std::pair<int, int> distances = calculateDistances(G);
             int diameter = distances.first;
             int radius = distances.second;

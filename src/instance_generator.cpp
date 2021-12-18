@@ -695,7 +695,7 @@ void gen_random(const std::string &location) {
     std::cout << "Generating random..." << std::endl;
 
     int versions = 3;
-    std::vector< int > sizes = { 125, 250, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, 512000 };
+    std::vector< int > sizes = {32000, 64000, 128000 };
 
     for(const int size : sizes) {
         for(int v = 0; v < versions; v++) {
@@ -842,7 +842,7 @@ int main() {
     std::string resource_dir = "../resources/";
 
     // 1. generate directories for all types of graphs
-    std::vector<std::string> subdirs = {"grid", "rect", "sixgrid","triangular", "globe", "sphere", "diameter",
+    std::vector<std::string> subdirs = {"bigrandom", "grid", "rect", "sixgrid","triangular", "globe", "sphere", "diameter",
                                         "ogdf", "city", "random", "delaunay", "twin", "europe", "delaunay_small" };
     for(const auto& sub : subdirs) {
         fs::create_directories(instance_dir + sub);
@@ -863,7 +863,7 @@ int main() {
 //    gen_sphere(instance_dir + "sphere/");
 //    gen_diameter(instance_dir + "diameter/");
 //    gen_ogdf_max(instance_dir + "ogdf/");
-//    gen_random(instance_dir + "random/");
+    gen_random(instance_dir + "bigrandom/");
 //    gen_twin(instance_dir + "twin/");
-    gen_delaunay(instance_dir + "delaunay_small/");
+//    gen_delaunay(instance_dir + "delaunay_small/");
 }

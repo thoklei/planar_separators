@@ -279,7 +279,6 @@ std::pair<int, int> calculateDiameterBounds(const Graph &G) {
             }
 
 			makeSimpleUndirected(g);
-			planarEmbedPlanarGraph(g);
 
             auto res = calculateDiameterBounds(g);
 
