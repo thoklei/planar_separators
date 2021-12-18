@@ -9,7 +9,7 @@ import argparse
 import utils
 import os
 from utils import analyze_separator_size, analyze_instance_performance, analyze_separator_speed, \
-    analyze_separator_balance
+    analyze_separator_balance, analyze_runtime_development
 
 
 def main(path, target):
@@ -23,8 +23,12 @@ def main(path, target):
     # read csv file
     df = pd.read_csv(path, sep=r'\s*,\s*', encoding='utf-8', engine='python')
 
+    print(f"Analyzing instances ranging in size from {df['nodes'].min()} nodes to {df['nodes'].max()} nodes.")
+
     # Which core algorithm yields the smallest relative separators?
+    df = df.sort_values(by=['nodes'])
     instances = df['instance'].unique()
+
     analyze_separator_size(df, "rel_sepsize_core", utils.core_algorithms, instances, target)
 
     # Which simple postprocessor is better?
@@ -43,6 +47,12 @@ def main(path, target):
 
     # Also analyse the average balance between components:
     analyze_separator_balance(df, "avg_balance", utils.core_algorithms, target)
+    analyze_separator_balance(df, "avg_balance_pp", utils.dmd_ne, target)
+
+    # Analyze runtime development
+    analyze_runtime_development(df, "runtime_dev_short", utils.core_algorithms, instances, 1001, 'nodes', True, target)
+    analyze_runtime_development(df, "runtime_dev", utils.core_algorithms, instances, 1000000, 'nodes', True, target)
+
 
 
 if __name__ == "__main__":

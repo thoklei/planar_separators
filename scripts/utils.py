@@ -47,6 +47,7 @@ simple_postprocessors = [alg for alg in cmap.keys() if alg.count("_") <= 1]
 complex_postprocessors = [alg for alg in cmap.keys() if alg.count("_") != 1]  # only core + DMD_NE, NE_DMD
 all_algs_and_post = [alg for alg in cmap.keys()]
 dmd_only = [alg for alg in cmap.keys() if alg.count("_") == 1 and "DMD" in alg]
+dmd_ne = [alg+"_DMD_NE" for alg in core_algorithms]
 
 
 def brighten(hsv, factor):
@@ -355,7 +356,7 @@ def analyze_runtime_development(df, name, algorithms, instances, size_limit, mea
     plt.ylabel("runtime (ms)")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(os.path.join(target, name+"_"+measure+"_"+str(size_limit)+".png"))
+    plt.savefig(os.path.join(target, name+"_"+measure+".png"))
     if show:
         plt.show()
 
@@ -393,6 +394,8 @@ def analyze_instance_performance(df, name, instances, algorithms, target):
                 algo_df = inst_df[inst_df['algorithm'] == algo]
                 mean_sep_size = algo_df['sep_size'].mean()
                 algo_results[algo][instance] = mean_sep_size / mini
+        else:
+            print(f"WARNING: Dropping instance {instance} because it had an empty separator")
 
     create_scatter_plot(clean_instances, algorithms, algo_results, name,
                         "Average separator size relative to smallest known separator",
@@ -527,13 +530,18 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
 
+    everything = [results[algo][inst] for algo in algorithms for inst in instances]
+    mean = np.mean(everything)
+    std = np.std(everything)
+    ub = mean + 1 * std
+
     xs = range(len(instances))
 
     for algo in algorithms:
-        ys = [results[algo][inst] if results[algo][inst] < 3 else 3 for inst in instances]
+        ys = [results[algo][inst] if results[algo][inst] < ub else ub for inst in instances]
         plt.scatter(xs, ys, c=get_color(algo), marker=get_marker(algo), label=algo)
 
-    plt.ylim(0, 3)
+    plt.ylim(0, ub)
     plt.xticks(xs, [extract_short_instance_name(inst) for inst in instances], rotation=45, ha='right')
     plt.legend()
     plt.tight_layout()

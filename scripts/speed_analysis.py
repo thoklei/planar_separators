@@ -17,7 +17,7 @@ def main(path, target):
     """
 
     # read csv file
-    df = pd.read_csv(path, sep=r'\s*,\s*', encoding='utf-8')
+    df = pd.read_csv(path, sep=r'\s*,\s*', encoding='utf-8', engine='python')
 
     # How does the speed develop?
     # sorted_instances = df[df['instance'].str.contains('random')].sort_values('nodes')['instance'].unique()  # random
