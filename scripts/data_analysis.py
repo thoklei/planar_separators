@@ -54,7 +54,6 @@ def main(path, target):
     analyze_runtime_development(df, "runtime_dev", utils.core_algorithms, instances, 1000000, 'nodes', True, target)
 
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Data analysis and plotting.')
     parser.add_argument('--path', type=str, help='Path to data file')

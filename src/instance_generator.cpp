@@ -695,7 +695,7 @@ void gen_random(const std::string &location) {
     std::cout << "Generating random..." << std::endl;
 
     int versions = 3;
-    std::vector< int > sizes = {32000, 64000, 128000 };
+    std::vector< int > sizes = {100000, 200000, 300000, 400000, 500000};
 
     for(const int size : sizes) {
         for(int v = 0; v < versions; v++) {
