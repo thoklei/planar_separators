@@ -695,13 +695,13 @@ void gen_random(const std::string &location) {
     std::cout << "Generating random..." << std::endl;
 
     int versions = 3;
-    std::vector< int > sizes = {100000, 200000, 300000, 400000, 500000};
+    std::vector< int > sizes = {100000, 200000, 300000, 400000};
 
     for(const int size : sizes) {
         for(int v = 0; v < versions; v++) {
             setSeed(v);
             Graph G;
-            int edges = randomNumber(size, 3*size-6);
+            int edges = 2*size; //randomNumber(size, 3*size-6);
             randomPlanarConnectedGraph(G, size, edges);
             assert(isSimple(G));
             GraphIO::write(G, location + "random_" + to_string(size) + "_" + to_string(v) + ".gml", GraphIO::writeGML);
@@ -842,7 +842,7 @@ int main() {
     std::string resource_dir = "../resources/";
 
     // 1. generate directories for all types of graphs
-    std::vector<std::string> subdirs = {"bigrandom", "grid", "rect", "sixgrid","triangular", "globe", "sphere", "diameter",
+    std::vector<std::string> subdirs = {"even_random", "grid", "rect", "sixgrid","triangular", "globe", "sphere", "diameter",
                                         "ogdf", "city", "random", "delaunay", "twin", "europe", "delaunay_small" };
     for(const auto& sub : subdirs) {
         fs::create_directories(instance_dir + sub);
@@ -863,7 +863,7 @@ int main() {
 //    gen_sphere(instance_dir + "sphere/");
 //    gen_diameter(instance_dir + "diameter/");
 //    gen_ogdf_max(instance_dir + "ogdf/");
-    gen_random(instance_dir + "bigrandom/");
+    gen_random(instance_dir + "even_random/");
 //    gen_twin(instance_dir + "twin/");
 //    gen_delaunay(instance_dir + "delaunay_small/");
 }
