@@ -354,6 +354,7 @@ def analyze_runtime_development(df, name, algorithms, instances, size_limit, mea
     plt.title("runtime development of core algorithms")
     plt.xlabel(f"instance size ({measure})")
     plt.ylabel("runtime (ms)")
+    plt.ticklabel_format(axis='x', style='sci', scilimits=(3, 3))
     plt.legend()
     plt.tight_layout()
     plt.savefig(os.path.join(target, name+"_"+measure+".png"))

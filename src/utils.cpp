@@ -344,7 +344,11 @@ std::pair<int, int> calculateDiameterBounds(const Graph &G) {
                 }
             }
         }
-        upperBound = min(upperBound, maxDist + secondMaxDist);
+//        upperBound = min(upperBound, maxDist + secondMaxDist);
+		if(maxDist + secondMaxDist < upperBound) {
+			upperBound = maxDist + secondMaxDist;
+			std::cout << "found new max: " << upperBound << std::endl;
+		}
     }
 
     return std::make_pair(lowerBound, upperBound);
