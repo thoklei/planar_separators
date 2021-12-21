@@ -800,9 +800,10 @@ void delaunayGraph(Graph &G, int n) {
 void gen_delaunay(const std::string &location) {
     std::cout << "Generating delaunay..." << std::endl;
 
-    std::vector< int > sizes = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000 };
+//    std::vector< int > sizes = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000 };
 
-    for(const int size : sizes) {
+//	for(const int size : sizes) {
+    for(int size=10000; size < 200000; size += 10000) {
         Graph G;
         delaunayGraph(G, size);
         GraphIO::write(G, location + "delaunay_" + to_string(size) + ".gml", GraphIO::writeGML);
@@ -842,7 +843,7 @@ int main() {
     std::string resource_dir = "../resources/";
 
     // 1. generate directories for all types of graphs
-    std::vector<std::string> subdirs = {"even_random", "grid", "rect", "sixgrid","triangular", "globe", "sphere", "diameter",
+    std::vector<std::string> subdirs = {"even_random", "delaunay_even", "grid", "rect", "sixgrid","triangular", "globe", "sphere", "diameter",
                                         "ogdf", "city", "random", "delaunay", "twin", "europe", "delaunay_small" };
     for(const auto& sub : subdirs) {
         fs::create_directories(instance_dir + sub);
@@ -863,7 +864,7 @@ int main() {
 //    gen_sphere(instance_dir + "sphere/");
 //    gen_diameter(instance_dir + "diameter/");
 //    gen_ogdf_max(instance_dir + "ogdf/");
-    gen_random(instance_dir + "even_random/");
+//    gen_random(instance_dir + "even_random/");
 //    gen_twin(instance_dir + "twin/");
-//    gen_delaunay(instance_dir + "delaunay_small/");
+    gen_delaunay(instance_dir + "delaunay_even/");
 }
