@@ -31,6 +31,8 @@
 *.out
 *.app
 
+# === my stuff ===
+
 # CLion and MacOS stuff
 *.cbp
 .idea/
@@ -47,8 +49,8 @@ cmake_install.cmake
 tmp/
 __pycache__/
 
-
-plots/
-# todo use git lfs
-results/table.csv
-results/vlsi_1000.csv
+# instances that are too large for github (should have used git lfs...)
+instances/bigrandom
+instances/delaunay_even
+instances/even_random
+instances/random_anomaly

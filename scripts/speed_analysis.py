@@ -26,7 +26,6 @@ def main(path, target):
     for measure in ['nodes', 'edges']:
         # only analyze the smaller ones up to 1000 nodes
         analyze_runtime_development(df, "runtime_development", utils.core_algorithms, sorted_instances, 1001, measure, True, target)
-
         # again for all instances
         analyze_runtime_development(df, "runtime_development", utils.core_algorithms, sorted_instances, 1000000, measure, True, target)
 

@@ -31,8 +31,8 @@ It is perfectly possible to create such a graph with 5050 nodes and 14850 edges,
 pyramid with a base size of 100. But this has to be done in an iterative fashion, as is done here. The recursive 
 algorithm described in the paper "skips" the graph of this size. See code for details.
 
-## Random Graphs
-The largest random instances contain 512,000 nodes, resulting in files that exceed the size limit recommended by GitHub.
+## Large Graphs
+The largest random/delaunay instances contain 100k+ nodes, resulting in files that exceed the size limit recommended by GitHub.
 Therefore, these instances are not included here but should be generated locally instead.
 
 

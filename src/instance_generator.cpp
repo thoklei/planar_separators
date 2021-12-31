@@ -125,7 +125,6 @@ void gen_sixgrid(const std::string &location) {
  */
 void triangleGraph(Graph& G, int base) {
 
-//    int base = pow(2.0, (double) iterations) + 1; // iterations used to be the input
     SListPure<node> lastRow;
 
     while(base > 0) {
@@ -695,7 +694,7 @@ void gen_random(const std::string &location) {
     std::cout << "Generating random..." << std::endl;
 
     int versions = 3;
-    std::vector< int > sizes = {100000, 200000, 300000, 400000};
+    std::vector< int > sizes = {1000, 2000, 4000, 8000, 16000, 32000, 64000};
 
     for(const int size : sizes) {
         for(int v = 0; v < versions; v++) {
@@ -800,10 +799,9 @@ void delaunayGraph(Graph &G, int n) {
 void gen_delaunay(const std::string &location) {
     std::cout << "Generating delaunay..." << std::endl;
 
-//    std::vector< int > sizes = { 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000 };
+    std::vector< int > sizes = { 1000, 2000, 4000, 8000, 16000, 32000, 64000};
 
-//	for(const int size : sizes) {
-    for(int size=10000; size < 200000; size += 10000) {
+	for(const int size : sizes) {
         Graph G;
         delaunayGraph(G, size);
         GraphIO::write(G, location + "delaunay_" + to_string(size) + ".gml", GraphIO::writeGML);
@@ -843,28 +841,31 @@ int main() {
     std::string resource_dir = "../resources/";
 
     // 1. generate directories for all types of graphs
-    std::vector<std::string> subdirs = {"even_random", "delaunay_even", "grid", "rect", "sixgrid","triangular", "globe", "sphere", "diameter",
-                                        "ogdf", "city", "random", "delaunay", "twin", "europe", "delaunay_small" };
+    std::vector<std::string> subdirs = {"grid", "rect", "sixgrid","triangular", "globe", "sphere", "diameter",
+                                        "ogdf", "random", "delaunay", "twin", "europe"};
     for(const auto& sub : subdirs) {
         fs::create_directories(instance_dir + sub);
     }
 
     // 2. planarize city graphs
     std::cout << "Planarizing city graphs..." << std::endl;
-//    planarizeGraphs(resource_dir+"europe/", instance_dir + "europe/");
+    planarizeGraphs(resource_dir+"europe/", instance_dir + "europe/");
 
     // 3. generate other types of graphs
     std::cout << "Generating instances..." << std::endl;
 
-//    gen_grid(instance_dir + "grid/");
-//    gen_rect(instance_dir + "rect/");
-//    gen_sixgrid(instance_dir + "sixgrid/");
-//    gen_triangular(instance_dir + "triangular/");
-//    gen_globe(instance_dir + "globe/");
-//    gen_sphere(instance_dir + "sphere/");
-//    gen_diameter(instance_dir + "diameter/");
-//    gen_ogdf_max(instance_dir + "ogdf/");
-//    gen_random(instance_dir + "even_random/");
-//    gen_twin(instance_dir + "twin/");
-    gen_delaunay(instance_dir + "delaunay_even/");
+    gen_grid(instance_dir + "grid/");				// quadratic grid graphs
+    gen_rect(instance_dir + "rect/"); 				// rectangular grid graphs
+    gen_sixgrid(instance_dir + "sixgrid/"); 		// honeycomb graphs
+    gen_triangular(instance_dir + "triangular/");	// triangular grid
+    gen_globe(instance_dir + "globe/");				// sphere approximation
+    gen_sphere(instance_dir + "sphere/");			// different sphere approximation
+    gen_diameter(instance_dir + "diameter/");		// graphs with huge diameter
+    gen_ogdf_max(instance_dir + "ogdf/");			// random ogdf graphs
+    gen_random(instance_dir + "random/");			// random graphs
+    gen_twin(instance_dir + "twin/");				// twin graphs
+    gen_delaunay(instance_dir + "delaunay/");  		// large delaunay instances
+
+	// Other instances, e.g. for runtime tests, were also generated with these methods, but the
+	// instance files are prohibitively large, so they were left out of GitHub (should have used git lfs...)
 }

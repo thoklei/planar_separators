@@ -41,11 +41,6 @@ if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     target_link_libraries(main stdc++fs)
 endif()
 
-add_executable(tri src/triangulation.cpp)
-target_include_directories(tri PUBLIC include)
-target_include_directories(tri PRIVATE ${CGAL_INCLUDE_DIRS} ${OGDF_INCLUDE_DIRS})
-target_link_libraries(tri CGAL OGDF)
-
 add_executable(instance_gen src/instance_generator.cpp src/utils.cpp)
 target_include_directories(instance_gen PUBLIC include)
 target_include_directories(instance_gen PRIVATE ${CGAL_INCLUDE_DIRS} ${OGDF_INCLUDE_DIRS})

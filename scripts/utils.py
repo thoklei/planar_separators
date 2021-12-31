@@ -144,6 +144,9 @@ def analysis_core(df, algorithms, instances, column_name):
         # reduce df to just this instance
         inst_df = df[df['instance'] == instance]
         mini = inst_df[column_name].min()
+        best_alg = inst_df[inst_df[column_name] == mini]['algorithm'].unique()
+
+        print(f"Minimum {column_name} on instance {instance}: {mini} achieved by {best_alg}")
 
         if mini != 0:  # ignore instances that were solved instantly
 
@@ -153,6 +156,7 @@ def analysis_core(df, algorithms, instances, column_name):
                 mean_val = algo_df[column_name].mean()
                 algo_results[algo].append(mean_val / mini)
 
+    # print(f"Algo results for column {column_name}: {algo_results}")
     return algo_results
 
 
@@ -336,7 +340,6 @@ def analyze_runtime_development(df, name, algorithms, instances, size_limit, mea
                 print(f"Exit Points for algorithm {algo}: {exit_points}")
 
     print("sizes:", sizes)
-    print("algo results: ", algo_results)
 
     plt.figure()
 
@@ -434,7 +437,7 @@ def create_algo_plot(results, name, title, xlabel, ylabel, show, target):
     plt.title(title)
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
-    plt.bar(xs, [np.sum(results[alg]) for alg in results], tick_label=list(results), width=0.6, color=colors)
+    plt.bar(xs, [np.mean(results[alg]) for alg in results], tick_label=list(results), width=0.6, color=colors)
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
     plt.savefig(os.path.join(target, name+".png"))
