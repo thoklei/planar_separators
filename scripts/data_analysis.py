@@ -2,7 +2,13 @@
 This script analyses the experimental data.
 More specifically:
     1. Plots the relative separator sizes as a bar chart, across all instances
-    2. Plots
+        a) for core algorithms
+        b) for simple postprocessing
+        c) for combinations of postprocessing
+    2. Plots the performance per instance as a scatter-plot
+    3. Plots speed of core algorithms as violin- and boxplots
+    4. Plots mean balance as bar-chart
+    5. Plots the runtime development as line chart (0-1K nodes and 0-1M nodes)
 """
 import pandas as pd
 import argparse

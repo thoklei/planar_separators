@@ -1,6 +1,7 @@
 """
 Utility functions and data to analyze data
 """
+
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -8,46 +9,51 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import rgb_to_hsv, hsv_to_rgb, to_hex, to_rgb
 import os
 
-# mapping algorithm names to color
+# mapping core algorithm name to color
 cmap = {"LT": "#092cbe",
-        "LT_NE": "#536bd2",
-        "LT_DMD": "#9dabe5",
-        "LT_DMD_NE": "#9dabe5",
-        "LT_NE_DMD": "#9dabe5",
         "LTFC": "#be0986",
-        "LTFC_NE": "#d253aa",
-        "LTFC_DMD": "#e59dcf",
-        "LTFC_DMD_NE": "#9dabe5",
-        "LTFC_NE_DMD": "#9dabe5",
         "Dual": "#be9b09",
-        "Dual_NE": "#d2b953",
-        "Dual_DMD": "#e5d79d",
-        "Dual_DMD_NE": "#9dabe5",
-        "Dual_NE_DMD": "#9dabe5",
         "DualFC": "#09be40",
-        "DualFC_NE": "#53d279",
-        "DualFC_DMD": "#9de5b3",
-        "DualFC_DMD_NE": "#9dabe5",
-        "DualFC_NE_DMD": "#9dabe5",
-        "HP": "#df150e",
-        "HP_NE": "#e95b56",
-        "HP_DMD": "#f2a19f",
-        "HP_DMD_NE": "#9dabe5",
-        "HP_NE_DMD": "#9dabe5"}
+        "HP": "#df150e"}
 
-# maps core algorithm to scatterplot marker
+# maps core algorithm name to scatterplot marker
 mmap = {"LT": "o",
         "LTFC": "^",
         "Dual": "x",
         "DualFC": "s",
         "HP": "*"}
 
-core_algorithms = [alg for alg in cmap.keys() if "_" not in alg]
-simple_postprocessors = [alg for alg in cmap.keys() if alg.count("_") <= 1]
-complex_postprocessors = [alg for alg in cmap.keys() if alg.count("_") != 1]  # only core + DMD_NE, NE_DMD
-all_algs_and_post = [alg for alg in cmap.keys()]
-dmd_only = [alg for alg in cmap.keys() if alg.count("_") == 1 and "DMD" in alg]
+# generating all necessary combinations
+core_algorithms = list(mmap.keys())
+_postprocessors = ["", "_NE", "_DMD"]
+
+simple_postprocessors = [alg + pp for alg in core_algorithms for pp in _postprocessors]
+
+_complex_all = [alg + pp for alg in simple_postprocessors for pp in _postprocessors if pp == "" or pp not in alg]
+all_algs_and_post = [_complex_all[i] for i in sorted(np.unique(_complex_all, return_index=True)[1])]
+
 dmd_ne = [alg+"_DMD_NE" for alg in core_algorithms]
+
+
+def extract_short_instance_name(full_instance_name):
+    """
+    Extracts the short instance name from the full instance name with directory.
+
+    :param full_instance_name: the full name of the instance
+    :return: the shorter name
+    """
+    start = full_instance_name.rfind("/") + 1
+    return full_instance_name[start:]
+
+
+def extract_pure_algo_name(algo_name):
+    """
+    Removes the additional modifiers from an algorithm.
+
+    :param algo_name: the full algorithm name
+    :return:
+    """
+    return algo_name[0:algo_name.find("_")] if algo_name.find("_") != -1 else algo_name
 
 
 def brighten(hsv, factor):
@@ -136,6 +142,7 @@ def analysis_core(df, algorithms, instances, column_name):
 
     # maps algorithm to relative average separator size
     algo_results = dict()
+    minima_results = {alg: 0 for alg in core_algorithms}
     for algo in algorithms:
         algo_results[algo] = []
 
@@ -145,8 +152,10 @@ def analysis_core(df, algorithms, instances, column_name):
         inst_df = df[df['instance'] == instance]
         mini = inst_df[column_name].min()
         best_alg = inst_df[inst_df[column_name] == mini]['algorithm'].unique()
+        best_alg = [extract_pure_algo_name(ba) for ba in best_alg]
 
-        print(f"Minimum {column_name} on instance {instance}: {mini} achieved by {best_alg}")
+        for ba in np.unique(best_alg):
+            minima_results[ba] += 1
 
         if mini != 0:  # ignore instances that were solved instantly
 
@@ -156,7 +165,7 @@ def analysis_core(df, algorithms, instances, column_name):
                 mean_val = algo_df[column_name].mean()
                 algo_results[algo].append(mean_val / mini)
 
-    # print(f"Algo results for column {column_name}: {algo_results}")
+    print(f"Number of minima found for column {column_name}: {minima_results}")
     return algo_results
 
 
@@ -194,7 +203,6 @@ def analysis_per_node(df, algorithms, instances, column_name):
                 algo_df = inst_df[inst_df['algorithm'] == algo]
                 data = np.array(list(algo_df[column_name])) / nodes
                 algo_results[algo] += list(data)
-                print(f"Maximum for instance {instance} and algorithm {algo}: {np.max(data)}")
 
     return algo_results
 
@@ -211,9 +219,6 @@ def analyze_separator_speed(df, name, algorithms, instances, target):
     """
     algo_results = analysis_per_node(df, algorithms, instances, 'time')
 
-    for alg in algo_results:
-        print(alg+":", algo_results[alg][0:5], "Length: "+str(len(algo_results[alg])))
-
     create_violin_plot(algo_results, algorithms, name, "Average separator speed per node", "algorithm",
                        "average speed in microseconds per node", True, target)
 
@@ -224,28 +229,6 @@ def analyze_separator_speed(df, name, algorithms, instances, target):
         algo_results[algo] = np.mean(algo_results[algo])
     create_algo_plot(algo_results, name, "Average separator speed per node",
                      "algorithm", "average speed in us per node", True, target)
-
-    algo_df = df[df['algorithm'].isin(core_algorithms)]
-    average_speed = algo_df['time'].mean() / 1000.0
-    print(f"Average speed over all instances and all algorithms: {average_speed} ms")
-
-
-# todo delete
-def analyze_histogram(data, algo, name, show):
-    mini = np.min(data)
-    maxi = np.max(data)
-    std = np.std(data)
-    print(f"min: {mini} and max: {maxi} and std: {std}")
-
-    plt.figure()
-    plt.title(f"Distribution of runtimes for {algo}")
-    plt.xlabel("runtime in us per node")
-    plt.ylabel("frequency")
-    plt.hist(data, 25, density=True, facecolor='g', alpha=0.75)
-    plt.savefig(f"{name}/{algo}_hist.png")
-
-    if show:
-        plt.show()
 
 
 def analyze_separator_size(df, name, algorithms, instances, target):
@@ -306,7 +289,6 @@ def analyze_runtime_development(df, name, algorithms, instances, size_limit, mea
         algo_results[algo] = {}
 
     sizes = []  # stores instance sizes (in #nodes)
-    print("Instances: ", instances)
     for instance in instances:
 
         # reduce df to just this instance
@@ -315,7 +297,6 @@ def analyze_runtime_development(df, name, algorithms, instances, size_limit, mea
 
         if inst_df['nodes'].min() < size_limit:
 
-            print(f"Min: {int(inst_df[measure].min())}, Mean: {int(inst_df[measure].mean())}")
             assert int(inst_df[measure].min()) == int(inst_df[measure].mean())
             sizes.append(size)
 
@@ -339,19 +320,15 @@ def analyze_runtime_development(df, name, algorithms, instances, size_limit, mea
                         exit_points[ex] = 1
                 print(f"Exit Points for algorithm {algo}: {exit_points}")
 
-    print("sizes:", sizes)
-
     plt.figure()
 
     for alg in algorithms:
 
         # average values for all instances of the same size
         unique_sizes = np.sort(np.unique(sizes))
-        print("unique sizes:", unique_sizes)
         averages = []
         for size in unique_sizes:
             averages.append(np.mean(algo_results[alg][size]) / 1000.0)  # getting to ms
-        print("averages for", alg, averages)
 
         plt.plot(unique_sizes, averages, color=get_color(alg), marker=get_marker(alg), label=alg)
     plt.title("runtime development of core algorithms")
@@ -404,17 +381,6 @@ def analyze_instance_performance(df, name, instances, algorithms, target):
     create_scatter_plot(clean_instances, algorithms, algo_results, name,
                         "Average separator size relative to smallest known separator",
                         "instance", "relative average separator size", target)
-
-
-def extract_short_instance_name(full_instance_name):
-    """
-    Extracts the short instance name from the full instance name with directory.
-
-    :param full_instance_name: the full name of the instance
-    :return: the shorter name
-    """
-    start = full_instance_name.rfind("/") + 1
-    return full_instance_name[start:]
 
 
 def create_algo_plot(results, name, title, xlabel, ylabel, show, target):
@@ -707,75 +673,3 @@ def create_table(dataframe, algorithms):
         return lat.replace("_", "\_")
 
     return clean_latex(latex)
-
-
-
-# def analyze_runtime_development(dataframe):
-#     algorithms = ['LT', 'LTFC', 'Dual', 'DualFC', 'HP']
-#
-#     def get_runtimes(df, algorithm):
-#         runtimes = []
-#         averages = []
-#         df_alg = df[df['algorithm'] == algorithm]
-#         df_alg = df_alg.sort_values('nodes')
-#         # print(df_alg)
-#         instances = [inst for inst in df_alg['instance'].unique() if 'random' in inst]
-#
-#         for inst in instances:
-#             runtimes.append(df_alg.loc[df_alg['instance'] == inst, 'time'].values[0] / 1000000)
-#
-#         # print(runtimes)
-#
-#         for i in range(0, len(runtimes), 3):
-#             averages.append(np.mean([runtimes[i], runtimes[i+1], runtimes[i+2]]))
-#
-#         return averages
-#
-#     sizes = dataframe[dataframe['instance'].str.contains('random')].sort_values('nodes')['nodes'].unique()
-#     print("sizes:", sizes)
-#     plt.figure()
-#     for alg in algorithms:
-#         plt.plot(sizes, get_runtimes(dataframe, alg), color=cmap[alg], label=alg)
-#     plt.title("runtime development of core algorithms")
-#     plt.xlabel("instance size (nodes)")
-#     plt.ylabel("runtime (s)")
-#     plt.legend()
-#     plt.tight_layout()
-#     plt.savefig("../results/plots/runtime_dev.png")
-#     plt.show()
-#
-#
-# def analyze_individual_instance(df, name):
-#
-#     df = df[df['instance'] == name]
-#     algorithms = df['algorithm'].unique()
-#
-#     diam = not ('diameter' in name)  # plot diameter bounds only for sensible instances
-#
-#     print(df)
-#
-#     data = [df.loc[df['algorithm'] == alg, 'mean_sep_size'].values[0] for alg in algorithms]  # average sep size
-#     minis = [df.loc[df['algorithm'] == alg, 'min_sep_size'].values[0] for alg in algorithms]
-#     diam_lb = df['diam_lB'].iloc[0]
-#     diam_ub = df['diam_uB'].iloc[0]
-#     n = df['nodes'].iloc[0]
-#
-#     colors = [utils.cmap[alg] for alg in algorithms]
-#
-#     plt.figure()
-#     xs = [i for i in range(len(algorithms))]
-#     plt.title("separator size for " + name + " (" + str(n) + " nodes)")
-#     plt.ylabel("average separator size (nodes)")
-#     plt.xlabel("algorithm and postprocessor")
-#     print("results: ", [df.loc[df['algorithm'] == alg, 'mean_sep_size'].values[0] for alg in algorithms])
-#     if diam:
-#         plt.axhline(2*diam_lb+1, c='green')
-#         plt.axhline(2*diam_ub+1, c='red')
-#     plt.bar(xs, data, tick_label=algorithms, width=0.6, color=colors, zorder=0)
-#     plt.scatter(xs, minis, c='white', marker='_', zorder=10)
-#     plt.xticks(rotation=45, ha='right')
-#     plt.tight_layout()
-#     plt.savefig("../results/plots/instances/"+name+".png")
-#     plt.close()
-#     # plt.show()
-

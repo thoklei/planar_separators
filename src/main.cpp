@@ -16,6 +16,7 @@
 
 #include <property_recorder.h>
 
+namespace fs = std::filesystem;
 using namespace ogdf;
 
 /**
@@ -258,7 +259,7 @@ private:
         List<node> second;
 
         auto start = std::chrono::high_resolution_clock::now();
-        sep.separate(G, separator, first, second);
+        sep.separate(G, separator, first, second, false);
         auto end = std::chrono::high_resolution_clock::now();
 
         // if test-flag is set, verify that the instance was solved correctly
@@ -333,6 +334,7 @@ private:
 	 * @param res the result-object
 	 */
     void writeResults(const Result &res) {
+		fs::create_directories(res_file.substr(0, res_file.rfind("/")));
         file.open(res_file, std::ios_base::app);
         file << res.to_csv();
         file.close();

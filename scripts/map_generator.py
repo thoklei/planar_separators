@@ -25,7 +25,6 @@ def write_chaco(filename, nodes, edges, graph_dict, corr_func):
 def query_osm(path):
     """
     Queries OSM and writes results to path.
-    todo break this down into smaller chunks
 
     :param path: the target path for the results
     """

@@ -46,11 +46,6 @@ target_include_directories(instance_gen PUBLIC include)
 target_include_directories(instance_gen PRIVATE ${CGAL_INCLUDE_DIRS} ${OGDF_INCLUDE_DIRS})
 target_link_libraries(instance_gen CGAL OGDF)
 
-add_executable(workbench src/workbench.cpp)
-target_include_directories(workbench PUBLIC include)
-target_include_directories(workbench PRIVATE ${OGDF_INCLUDE_DIRS})
-target_link_libraries(workbench OGDF)
-
 add_executable(properties src/record_properties.cpp src/property_recorder.cpp src/tinyxml2.cpp src/utils.cpp)
 target_include_directories(properties PUBLIC include)
 target_include_directories(properties PRIVATE ${OGDF_INCLUDE_DIRS})

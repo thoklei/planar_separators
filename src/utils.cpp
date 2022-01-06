@@ -54,6 +54,7 @@ std::string currentTime() {
 
     std::string res(std::ctime(&time));
 
+	res = std::regex_replace(res, std::regex("  "), "_");
     res = std::regex_replace(res, std::regex(" "), "_");
     res = std::regex_replace(res, std::regex(":"), "-");
     res = res.substr(0, res.rfind("_")); // year is overkill
@@ -76,12 +77,6 @@ void drawGraph(const Graph& graph, std::string name) {
     }
 
     PlanarizationLayout layout;
-
-//    FMMMLayout layout;
-//    layout.useHighLevelOptions(true);
-//    layout.unitEdgeLength(15.0);
-//    layout.newInitialPlacement(true);
-//    layout.qualityVersusSpeed(FMMMOptions::QualityVsSpeed::NiceAndIncredibleSpeed);
 
     layout.call(GA);
     GraphIO::write(GA, name+".svg", GraphIO::drawSVG);
@@ -344,11 +339,7 @@ std::pair<int, int> calculateDiameterBounds(const Graph &G) {
                 }
             }
         }
-//        upperBound = min(upperBound, maxDist + secondMaxDist);
-		if(maxDist + secondMaxDist < upperBound) {
-			upperBound = maxDist + secondMaxDist;
-			std::cout << "found new max: " << upperBound << std::endl;
-		}
+        upperBound = min(upperBound, maxDist + secondMaxDist);
     }
 
     return std::make_pair(lowerBound, upperBound);
