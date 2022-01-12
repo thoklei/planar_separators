@@ -135,6 +135,7 @@ public:
     Experiment(const std::string &res_file, const std::string &target_dir, const std::string &propertyFile, int limit, bool test, int attempts, short algorithm, bool postprocessing)
         : res_file{res_file}, instance_dir{target_dir}, limit{limit}, test{test}, attempts{attempts}, selectedAlgorithms{algorithm}, postProcessing{postprocessing}, recorder{propertyFile} {
 
+		fs::create_directories(res_file.substr(0, res_file.rfind("/")));
         file.open(res_file);
         file << Result::get_head();
         file.close();
@@ -147,10 +148,10 @@ public:
     void run() {
 
         // all separators
-        SeparatorLiptonTarjan sepLipTar;
-        SeparatorDual sepDual;
-        SeparatorLiptonTarjanFC sepLTFC;
-        SeparatorDualFC sepDFC;
+        SeparatorLiptonTarjan sepLipTar(true, 2);
+        SeparatorDual sepDual(true, 2);
+        SeparatorLiptonTarjanFC sepLTFC(true);
+        SeparatorDualFC sepDFC(true);
         SeparatorHarPeled sepHarPel;
 
         // collection of separators to use
@@ -334,7 +335,6 @@ private:
 	 * @param res the result-object
 	 */
     void writeResults(const Result &res) {
-		fs::create_directories(res_file.substr(0, res_file.rfind("/")));
         file.open(res_file, std::ios_base::app);
         file << res.to_csv();
         file.close();

@@ -31,11 +31,14 @@ def main(path, target):
 
     print(f"Analyzing instances ranging in size from {df['nodes'].min()} nodes to {df['nodes'].max()} nodes.")
 
-    # Which core algorithm yields the smallest relative separators?
     df = df.sort_values(by=['nodes'])
     instances = df['instance'].unique()
 
-    analyze_separator_size(df, "rel_sepsize_core", utils.core_algorithms, instances, target)
+    present_algorithms = df['algorithm'].unique()
+    algorithms = [alg for alg in utils.core_algorithms if alg in present_algorithms]
+
+    # Which core algorithm yields the smallest relative separators?
+    analyze_separator_size(df, "rel_sepsize_core", algorithms, instances, target)
 
     # Which simple postprocessor is better?
     analyze_separator_size(df, "rel_sepsize_simple_post", utils.simple_postprocessors, instances, target)
@@ -44,20 +47,18 @@ def main(path, target):
     analyze_separator_size(df, "rel_sepsize_complex_post", utils.all_algs_and_post, instances, target)
 
     # Now, let's check the performance of all algorithms per instance in one huge plot.
-    analyze_instance_performance(df, "per_instance", instances, utils.core_algorithms, target)
+    analyze_instance_performance(df, "per_instance", instances, algorithms, target)
 
     # Next, let's check runtime:
-    present_algorithms = df['algorithm'].unique()
-    algorithms = [alg for alg in utils.core_algorithms if alg in present_algorithms]
     analyze_separator_speed(df, "rel_speed_core", algorithms, instances, target)
 
     # Also analyse the average balance between components:
-    analyze_separator_balance(df, "avg_balance", utils.core_algorithms, target)
-    analyze_separator_balance(df, "avg_balance_pp", utils.dmd_ne, target)
+    analyze_separator_balance(df, "avg_balance", algorithms, target)
+    # analyze_separator_balance(df, "avg_balance_pp", utils.dmd_ne, target)
 
     # Analyze runtime development
-    analyze_runtime_development(df, "runtime_dev_short", utils.core_algorithms, instances, 1001, 'nodes', True, target)
-    analyze_runtime_development(df, "runtime_dev", utils.core_algorithms, instances, 1000000, 'nodes', True, target)
+    analyze_runtime_development(df, "runtime_dev_short", algorithms, instances, 1001, 'nodes', True, target)
+    analyze_runtime_development(df, "runtime_dev", algorithms, instances, 1000000, 'nodes', True, target)
 
 
 if __name__ == "__main__":

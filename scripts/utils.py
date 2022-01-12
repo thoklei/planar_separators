@@ -1,5 +1,5 @@
 """
-Utility functions and data to analyze data
+Utility functions to analyze data.
 """
 
 import numpy as np
@@ -8,20 +8,21 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.colors import rgb_to_hsv, hsv_to_rgb, to_hex, to_rgb
 import os
+from zlib import crc32
 
 # mapping core algorithm name to color
 cmap = {"LT": "#092cbe",
         "LTFC": "#be0986",
         "Dual": "#be9b09",
         "DualFC": "#09be40",
-        "HP": "#df150e"}
+        "HPN": "#df150e"}
 
 # maps core algorithm name to scatterplot marker
 mmap = {"LT": "o",
         "LTFC": "^",
         "Dual": "x",
         "DualFC": "s",
-        "HP": "*"}
+        "HPN": "*"}
 
 # generating all necessary combinations
 core_algorithms = list(mmap.keys())
@@ -72,13 +73,23 @@ def brighten(hsv, factor):
 
 def get_color(algorithm):
     """
-    Gets the characteristic color for an algorithm, black by default.
+    Gets the characteristic color for the core algorithms, random color otherwise.
 
     :param algorithm: the name of the algorithm
     :return: the characteristic color
     """
+
+    # overcomplicated default color mapping...
+    def bytes_to_float(b):
+        return float(crc32(b) & 0xffffffff) / 2**32
+
+    def str_to_float(s, encoding="utf-8"):
+        return bytes_to_float(s.encode(encoding))
+
+    default_map = plt.cm.get_cmap(plt.cm.hsv, 9)  # if we have more than 10 values, we need to change this
+
     core_alg = algorithm[0:algorithm.find("_")] if algorithm.find("_") != -1 else algorithm
-    core_color = cmap[core_alg] if core_alg in cmap else "#000000"
+    core_color = cmap[core_alg] if core_alg in cmap else default_map(str_to_float(core_alg))
 
     hsv = rgb_to_hsv(to_rgb(core_color))
 
@@ -108,7 +119,7 @@ def get_marker(algorithm):
         return mmap[algorithm]
     else:
         print("WARNING: using unknown algorithm")
-        return "."
+        return "o"
 
 
 def filter_instances(instance_names, dir_names):
@@ -142,7 +153,7 @@ def analysis_core(df, algorithms, instances, column_name):
 
     # maps algorithm to relative average separator size
     algo_results = dict()
-    minima_results = {alg: 0 for alg in core_algorithms}
+    minima_results = {extract_pure_algo_name(alg): 0 for alg in algorithms}
     for algo in algorithms:
         algo_results[algo] = []
 
@@ -163,6 +174,7 @@ def analysis_core(df, algorithms, instances, column_name):
             for algo in algorithms:
                 algo_df = inst_df[inst_df['algorithm'] == algo]
                 mean_val = algo_df[column_name].mean()
+                # print(f"Appending {mean_val} for algo {algo} on instance {instance}")
                 algo_results[algo].append(mean_val / mini)
 
     print(f"Number of minima found for column {column_name}: {minima_results}")
@@ -398,12 +410,16 @@ def create_algo_plot(results, name, title, xlabel, ylabel, show, target):
 
     colors = [get_color(alg) for alg in list(results)]
 
+    data = [np.mean(results[alg]) for alg in results]
+
     plt.figure()
+    if "balance" in title:  # kinda hacky, but if it works it ain't stupid
+        plt.ylim(min(0.5, min(data)-0.1), 1.0)
     xs = [i for i in range(len(results))]
     plt.title(title)
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
-    plt.bar(xs, [np.mean(results[alg]) for alg in results], tick_label=list(results), width=0.6, color=colors)
+    plt.bar(xs, data, tick_label=list(results), width=0.6, color=colors)
     plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
     plt.savefig(os.path.join(target, name+".png"))
@@ -426,7 +442,7 @@ def create_violin_plot(results, algorithms, name, title, xlabel, ylabel, show, t
     """
 
     # get data in proper shape for seaborn
-    data = np.zeros(shape=(len(results), len(results['HP'])))
+    data = np.zeros(shape=(len(results), len(results[algorithms[0]])))
     for i, algo in enumerate(algorithms):
         data[i] = results[algo]
     data = data.T
@@ -505,11 +521,14 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
     std = np.std(everything)
     ub = mean + 1 * std
 
-    xs = range(len(instances))
+    xs = [2*i for i in range(len(instances))]
 
-    for algo in algorithms:
+    n = len(algorithms)
+    delta = 0.8 / n
+
+    for i, algo in enumerate(algorithms):
         ys = [results[algo][inst] if results[algo][inst] < ub else ub for inst in instances]
-        plt.scatter(xs, ys, c=get_color(algo), marker=get_marker(algo), label=algo)
+        plt.scatter([x-0.5 + delta*i for x in xs], ys, c=get_color(algo), marker=get_marker(algo), label=algo)
 
     plt.ylim(0, ub)
     plt.xticks(xs, [extract_short_instance_name(inst) for inst in instances], rotation=45, ha='right')
