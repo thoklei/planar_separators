@@ -364,13 +364,14 @@ def analyze_instance_performance(df, name, instances, algorithms, target):
     :param algorithms: list of strings, algorithm identifiers
     :param target: path to target directory that contains plots
     """
+    algorithms = [algo + "_NE_DMD" for algo in algorithms] # analyse after postprocessing
 
     clean_instances = []  # instances without those that have 0-separators
 
     # maps algorithm to dictionary instance -> relative average separator size
     algo_results = dict()
     for algo in algorithms:
-        algo_results[algo] = {}
+        algo_results[extract_pure_algo_name(algo)] = {}
 
     for instance in instances:
 
@@ -386,11 +387,11 @@ def analyze_instance_performance(df, name, instances, algorithms, target):
             for algo in algorithms:
                 algo_df = inst_df[inst_df['algorithm'] == algo]
                 mean_sep_size = algo_df['sep_size'].mean()
-                algo_results[algo][instance] = mean_sep_size / mini
+                algo_results[extract_pure_algo_name(algo)][instance] = mean_sep_size / mini
         else:
             print(f"WARNING: Dropping instance {instance} because it had an empty separator")
 
-    create_scatter_plot(clean_instances, algorithms, algo_results, name,
+    create_scatter_plot(clean_instances, [extract_pure_algo_name(algo) for algo in algorithms], algo_results, name,
                         "Average separator size relative to smallest known separator",
                         "instance", "relative average separator size", target)
 
@@ -517,14 +518,14 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
     plt.xlabel(xlabel)
 
     everything = [results[algo][inst] for algo in algorithms for inst in instances]
-    mean = np.mean(everything)
+    mean = np.median(everything)
     std = np.std(everything)
     ub = mean + 1 * std
 
     xs = [2*i for i in range(len(instances))]
 
     n = len(algorithms)
-    delta = 0.8 / n
+    delta = 0.9 / n
 
     for i, algo in enumerate(algorithms):
         ys = [results[algo][inst] if results[algo][inst] < ub else ub for inst in instances]
@@ -570,7 +571,7 @@ def create_table(dataframe, algorithms):
     def get_summary_dict(df):
         instances = df['instance'].unique()
 
-        res = {}  # maps instance name to
+        res = {}  # maps algorithm to a dictionary that maps instance to minimum, mean - pair
 
         for alg in algorithms:
             algo_dict = {}  # maps algorithm to results
@@ -578,6 +579,7 @@ def create_table(dataframe, algorithms):
 
             for inst in instances:
                 inst_df = algo_df[algo_df['instance'] == inst]
+                print(f"Mean for instance {inst} for algorithm {alg}: {inst_df['sep_size'].mean()}")
                 mean = int(np.round(inst_df['sep_size'].mean()))
                 mini = inst_df['sep_size'].min()
 

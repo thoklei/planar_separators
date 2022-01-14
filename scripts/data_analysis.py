@@ -29,6 +29,8 @@ def main(path, target):
     # read csv file
     df = pd.read_csv(path, sep=r'\s*,\s*', encoding='utf-8', engine='python')
 
+    df = df[df['instance'] != 'table/diameter/diameter_3333']
+
     print(f"Analyzing instances ranging in size from {df['nodes'].min()} nodes to {df['nodes'].max()} nodes.")
 
     df = df.sort_values(by=['nodes'])
@@ -63,10 +65,10 @@ def main(path, target):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Data analysis and plotting.')
-    parser.add_argument('--path', type=str, help='Path to data file')
+    parser.add_argument('--source', type=str, help='Path to data file')
     parser.add_argument('--target', type=str, help='Path to folder with plots')
     args = parser.parse_args()
 
     if not os.path.exists(args.target):
         os.mkdir(args.target)
-    main(args.path, args.target)
+    main(args.source, args.target)

@@ -15,8 +15,8 @@ def main(path):
     df = pd.read_csv(path, sep=r'\s*,\s*', encoding='utf-8', engine='python')
 
     # create table
-    base_algorithms = ["Dual", "DualFC", "HP", "LTFC"]
-    algorithms = [str(algo) + "_DMD_NE" for algo in base_algorithms]
+    base_algorithms = ["Dual", "DualFC", "HPN", "LTFC"]
+    algorithms = [str(algo) + "_NE_DMD" for algo in base_algorithms]
     table_tex = create_table(df, algorithms)
 
     # just print resulting LaTex to console

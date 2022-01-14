@@ -4,13 +4,15 @@ namespace fs = std::filesystem;
 
 int main() {
 
+	// pass path to where xml should be located
     PropertyRecorder propRec("../instances/properties.xml");
 
-    std::string instance_dir = "../instances/";
+	// pass path to directory from which to take instances
+    std::string instance_dir = "../instances/random";
 
-    propRec.apply(instance_dir);
+    propRec.apply(instance_dir); // record properties
 
-    propRec.exportData();
+    propRec.exportData(); // write to file
 
     return 0;
 }

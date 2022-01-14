@@ -694,13 +694,13 @@ void gen_random(const std::string &location) {
     std::cout << "Generating random..." << std::endl;
 
     int versions = 3;
-    std::vector< int > sizes = {1000, 2000, 4000, 8000, 16000, 32000, 64000};
+    std::vector< int > sizes = {5000, 10000, 15000, 20000, 25000, 30000};
 
     for(const int size : sizes) {
         for(int v = 0; v < versions; v++) {
             setSeed(v);
             Graph G;
-            int edges = 2*size; //randomNumber(size, 3*size-6);
+            int edges = floor(2.5*size);
             randomPlanarConnectedGraph(G, size, edges);
             assert(isSimple(G));
             GraphIO::write(G, location + "random_" + to_string(size) + "_" + to_string(v) + ".gml", GraphIO::writeGML);
@@ -849,22 +849,22 @@ int main() {
 
     // 2. planarize city graphs
     std::cout << "Planarizing city graphs..." << std::endl;
-    planarizeGraphs(resource_dir+"europe/", instance_dir + "europe/");
+//    planarizeGraphs(resource_dir+"europe/", instance_dir + "europe/");
 
     // 3. generate other types of graphs
     std::cout << "Generating instances..." << std::endl;
 
-    gen_grid(instance_dir + "grid/");				// quadratic grid graphs
-    gen_rect(instance_dir + "rect/"); 				// rectangular grid graphs
-    gen_sixgrid(instance_dir + "sixgrid/"); 		// honeycomb graphs
-    gen_triangular(instance_dir + "triangular/");	// triangular grid
-    gen_globe(instance_dir + "globe/");				// sphere approximation
-    gen_sphere(instance_dir + "sphere/");			// different sphere approximation
-    gen_diameter(instance_dir + "diameter/");		// graphs with huge diameter
-    gen_ogdf_max(instance_dir + "ogdf/");			// random ogdf graphs
+//    gen_grid(instance_dir + "grid/");				// quadratic grid graphs
+//    gen_rect(instance_dir + "rect/"); 				// rectangular grid graphs
+//    gen_sixgrid(instance_dir + "sixgrid/"); 		// honeycomb graphs
+//    gen_triangular(instance_dir + "triangular/");	// triangular grid
+//    gen_globe(instance_dir + "globe/");				// sphere approximation
+//    gen_sphere(instance_dir + "sphere/");			// different sphere approximation
+//    gen_diameter(instance_dir + "diameter/");		// graphs with huge diameter
+//    gen_ogdf_max(instance_dir + "ogdf/");			// random ogdf graphs
     gen_random(instance_dir + "random/");			// random graphs
-    gen_twin(instance_dir + "twin/");				// twin graphs
-    gen_delaunay(instance_dir + "delaunay/");  		// large delaunay instances
+//    gen_twin(instance_dir + "twin/");				// twin graphs
+//    gen_delaunay(instance_dir + "delaunay/");  		// large delaunay instances
 
 	// Other instances, e.g. for runtime tests, were also generated with these methods, but the
 	// instance files are prohibitively large, so they were left out of GitHub (should have used git lfs...)
