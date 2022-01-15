@@ -531,7 +531,7 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
         ys = [results[algo][inst] if results[algo][inst] < ub else ub for inst in instances]
         plt.scatter([x-0.5 + delta*i for x in xs], ys, c=get_color(algo), marker=get_marker(algo), label=algo)
 
-    plt.ylim(0, ub)
+    plt.ylim(1, ub)
     plt.xticks(xs, [extract_short_instance_name(inst) for inst in instances], rotation=45, ha='right')
     plt.legend()
     plt.tight_layout()
