@@ -1,77 +1,7 @@
 <instances>
     <instance>
-        <identifier>../instances/delaunay/delaunay_1000.gml</identifier>
-        <name>delaunay/delaunay_1000</name>
-        <nodes>1000</nodes>
-        <edges>2994</edges>
-        <diameter>22</diameter>
-        <radius>19</radius>
-        <diameter_lB>22</diameter_lB>
-        <diameter_uB>38</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/delaunay/delaunay_16000.gml</identifier>
-        <name>delaunay/delaunay_16000</name>
-        <nodes>16000</nodes>
-        <edges>47994</edges>
-        <diameter>83</diameter>
-        <radius>78</radius>
-        <diameter_lB>82</diameter_lB>
-        <diameter_uB>156</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/delaunay/delaunay_2000.gml</identifier>
-        <name>delaunay/delaunay_2000</name>
-        <nodes>2000</nodes>
-        <edges>5994</edges>
-        <diameter>31</diameter>
-        <radius>27</radius>
-        <diameter_lB>30</diameter_lB>
-        <diameter_uB>54</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/delaunay/delaunay_32000.gml</identifier>
-        <name>delaunay/delaunay_32000</name>
-        <nodes>32000</nodes>
-        <edges>95994</edges>
-        <diameter>117</diameter>
-        <radius>110</radius>
-        <diameter_lB>115</diameter_lB>
-        <diameter_uB>222</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/delaunay/delaunay_4000.gml</identifier>
-        <name>delaunay/delaunay_4000</name>
-        <nodes>4000</nodes>
-        <edges>11994</edges>
-        <diameter>42</diameter>
-        <radius>38</radius>
-        <diameter_lB>42</diameter_lB>
-        <diameter_uB>76</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/delaunay/delaunay_64000.gml</identifier>
-        <name>delaunay/delaunay_64000</name>
-        <nodes>64000</nodes>
-        <edges>191994</edges>
-        <diameter>-1</diameter>
-        <radius>-1</radius>
-        <diameter_lB>161</diameter_lB>
-        <diameter_uB>310</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/delaunay/delaunay_8000.gml</identifier>
-        <name>delaunay/delaunay_8000</name>
-        <nodes>8000</nodes>
-        <edges>23994</edges>
-        <diameter>60</diameter>
-        <radius>55</radius>
-        <diameter_lB>58</diameter_lB>
-        <diameter_uB>111</diameter_uB>
-    </instance>
-    <instance>
-        <identifier>../instances/delaunay_even/delaunay_10000.gml</identifier>
-        <name>delaunay_even/delaunay_10000</name>
+        <identifier>../instances/delaunay_large/delaunay_10000.gml</identifier>
+        <name>delaunay_large/delaunay_10000</name>
         <nodes>10000</nodes>
         <edges>29994</edges>
         <diameter>-1</diameter>
@@ -80,8 +10,8 @@
         <diameter_uB>123</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_100000.gml</identifier>
-        <name>delaunay_even/delaunay_100000</name>
+        <identifier>../instances/delaunay_large/delaunay_100000.gml</identifier>
+        <name>delaunay_large/delaunay_100000</name>
         <nodes>100000</nodes>
         <edges>299994</edges>
         <diameter>-1</diameter>
@@ -90,8 +20,8 @@
         <diameter_uB>392</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_110000.gml</identifier>
-        <name>delaunay_even/delaunay_110000</name>
+        <identifier>../instances/delaunay_large/delaunay_110000.gml</identifier>
+        <name>delaunay_large/delaunay_110000</name>
         <nodes>110000</nodes>
         <edges>329994</edges>
         <diameter>-1</diameter>
@@ -100,8 +30,8 @@
         <diameter_uB>408</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_120000.gml</identifier>
-        <name>delaunay_even/delaunay_120000</name>
+        <identifier>../instances/delaunay_large/delaunay_120000.gml</identifier>
+        <name>delaunay_large/delaunay_120000</name>
         <nodes>120000</nodes>
         <edges>359994</edges>
         <diameter>-1</diameter>
@@ -110,8 +40,8 @@
         <diameter_uB>428</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_130000.gml</identifier>
-        <name>delaunay_even/delaunay_130000</name>
+        <identifier>../instances/delaunay_large/delaunay_130000.gml</identifier>
+        <name>delaunay_large/delaunay_130000</name>
         <nodes>130000</nodes>
         <edges>389994</edges>
         <diameter>-1</diameter>
@@ -120,8 +50,8 @@
         <diameter_uB>448</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_140000.gml</identifier>
-        <name>delaunay_even/delaunay_140000</name>
+        <identifier>../instances/delaunay_large/delaunay_140000.gml</identifier>
+        <name>delaunay_large/delaunay_140000</name>
         <nodes>140000</nodes>
         <edges>419994</edges>
         <diameter>-1</diameter>
@@ -130,8 +60,8 @@
         <diameter_uB>462</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_150000.gml</identifier>
-        <name>delaunay_even/delaunay_150000</name>
+        <identifier>../instances/delaunay_large/delaunay_150000.gml</identifier>
+        <name>delaunay_large/delaunay_150000</name>
         <nodes>150000</nodes>
         <edges>449994</edges>
         <diameter>-1</diameter>
@@ -140,8 +70,8 @@
         <diameter_uB>478</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_20000.gml</identifier>
-        <name>delaunay_even/delaunay_20000</name>
+        <identifier>../instances/delaunay_large/delaunay_20000.gml</identifier>
+        <name>delaunay_large/delaunay_20000</name>
         <nodes>20000</nodes>
         <edges>59994</edges>
         <diameter>-1</diameter>
@@ -150,8 +80,8 @@
         <diameter_uB>174</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_30000.gml</identifier>
-        <name>delaunay_even/delaunay_30000</name>
+        <identifier>../instances/delaunay_large/delaunay_30000.gml</identifier>
+        <name>delaunay_large/delaunay_30000</name>
         <nodes>30000</nodes>
         <edges>89994</edges>
         <diameter>-1</diameter>
@@ -160,8 +90,8 @@
         <diameter_uB>214</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_40000.gml</identifier>
-        <name>delaunay_even/delaunay_40000</name>
+        <identifier>../instances/delaunay_large/delaunay_40000.gml</identifier>
+        <name>delaunay_large/delaunay_40000</name>
         <nodes>40000</nodes>
         <edges>119994</edges>
         <diameter>-1</diameter>
@@ -170,8 +100,8 @@
         <diameter_uB>246</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_50000.gml</identifier>
-        <name>delaunay_even/delaunay_50000</name>
+        <identifier>../instances/delaunay_large/delaunay_50000.gml</identifier>
+        <name>delaunay_large/delaunay_50000</name>
         <nodes>50000</nodes>
         <edges>149994</edges>
         <diameter>-1</diameter>
@@ -180,8 +110,8 @@
         <diameter_uB>276</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_60000.gml</identifier>
-        <name>delaunay_even/delaunay_60000</name>
+        <identifier>../instances/delaunay_large/delaunay_60000.gml</identifier>
+        <name>delaunay_large/delaunay_60000</name>
         <nodes>60000</nodes>
         <edges>179994</edges>
         <diameter>-1</diameter>
@@ -190,8 +120,8 @@
         <diameter_uB>300</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_70000.gml</identifier>
-        <name>delaunay_even/delaunay_70000</name>
+        <identifier>../instances/delaunay_large/delaunay_70000.gml</identifier>
+        <name>delaunay_large/delaunay_70000</name>
         <nodes>70000</nodes>
         <edges>209994</edges>
         <diameter>-1</diameter>
@@ -200,8 +130,8 @@
         <diameter_uB>328</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_80000.gml</identifier>
-        <name>delaunay_even/delaunay_80000</name>
+        <identifier>../instances/delaunay_large/delaunay_80000.gml</identifier>
+        <name>delaunay_large/delaunay_80000</name>
         <nodes>80000</nodes>
         <edges>239994</edges>
         <diameter>-1</diameter>
@@ -210,8 +140,8 @@
         <diameter_uB>353</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/delaunay_even/delaunay_90000.gml</identifier>
-        <name>delaunay_even/delaunay_90000</name>
+        <identifier>../instances/delaunay_large/delaunay_90000.gml</identifier>
+        <name>delaunay_large/delaunay_90000</name>
         <nodes>90000</nodes>
         <edges>269994</edges>
         <diameter>-1</diameter>
@@ -590,8 +520,8 @@
         <diameter_uB>27</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_100000_0.gml</identifier>
-        <name>even_random/random_100000_0</name>
+        <identifier>../instances/random_large/random_100000_0.gml</identifier>
+        <name>random_large/random_100000_0</name>
         <nodes>100000</nodes>
         <edges>200000</edges>
         <diameter>-1</diameter>
@@ -600,8 +530,8 @@
         <diameter_uB>40</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_100000_1.gml</identifier>
-        <name>even_random/random_100000_1</name>
+        <identifier>../instances/random_large/random_100000_1.gml</identifier>
+        <name>random_large/random_100000_1</name>
         <nodes>100000</nodes>
         <edges>200000</edges>
         <diameter>-1</diameter>
@@ -610,8 +540,8 @@
         <diameter_uB>40</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_100000_2.gml</identifier>
-        <name>even_random/random_100000_2</name>
+        <identifier>../instances/random_large/random_100000_2.gml</identifier>
+        <name>random_large/random_100000_2</name>
         <nodes>100000</nodes>
         <edges>200000</edges>
         <diameter>-1</diameter>
@@ -620,8 +550,8 @@
         <diameter_uB>45</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_200000_0.gml</identifier>
-        <name>even_random/random_200000_0</name>
+        <identifier>../instances/random_large/random_200000_0.gml</identifier>
+        <name>random_large/random_200000_0</name>
         <nodes>200000</nodes>
         <edges>400000</edges>
         <diameter>-1</diameter>
@@ -630,8 +560,8 @@
         <diameter_uB>48</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_200000_1.gml</identifier>
-        <name>even_random/random_200000_1</name>
+        <identifier>../instances/random_large/random_200000_1.gml</identifier>
+        <name>random_large/random_200000_1</name>
         <nodes>200000</nodes>
         <edges>400000</edges>
         <diameter>-1</diameter>
@@ -640,8 +570,8 @@
         <diameter_uB>55</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_200000_2.gml</identifier>
-        <name>even_random/random_200000_2</name>
+        <identifier>../instances/random_large/random_200000_2.gml</identifier>
+        <name>random_large/random_200000_2</name>
         <nodes>200000</nodes>
         <edges>400000</edges>
         <diameter>-1</diameter>
@@ -650,8 +580,8 @@
         <diameter_uB>46</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_300000_0.gml</identifier>
-        <name>even_random/random_300000_0</name>
+        <identifier>../instances/random_large/random_300000_0.gml</identifier>
+        <name>random_large/random_300000_0</name>
         <nodes>300000</nodes>
         <edges>600000</edges>
         <diameter>-1</diameter>
@@ -660,8 +590,8 @@
         <diameter_uB>51</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_300000_1.gml</identifier>
-        <name>even_random/random_300000_1</name>
+        <identifier>../instances/random_large/random_300000_1.gml</identifier>
+        <name>random_large/random_300000_1</name>
         <nodes>300000</nodes>
         <edges>600000</edges>
         <diameter>-1</diameter>
@@ -670,8 +600,8 @@
         <diameter_uB>44</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_300000_2.gml</identifier>
-        <name>even_random/random_300000_2</name>
+        <identifier>../instances/random_large/random_300000_2.gml</identifier>
+        <name>random_large/random_300000_2</name>
         <nodes>300000</nodes>
         <edges>600000</edges>
         <diameter>-1</diameter>
@@ -680,8 +610,8 @@
         <diameter_uB>54</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_400000_0.gml</identifier>
-        <name>even_random/random_400000_0</name>
+        <identifier>../instances/random_large/random_400000_0.gml</identifier>
+        <name>random_large/random_400000_0</name>
         <nodes>400000</nodes>
         <edges>800000</edges>
         <diameter>-1</diameter>
@@ -690,8 +620,8 @@
         <diameter_uB>55</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_400000_1.gml</identifier>
-        <name>even_random/random_400000_1</name>
+        <identifier>../instances/random_large/random_400000_1.gml</identifier>
+        <name>random_large/random_400000_1</name>
         <nodes>400000</nodes>
         <edges>800000</edges>
         <diameter>-1</diameter>
@@ -700,8 +630,8 @@
         <diameter_uB>60</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_400000_2.gml</identifier>
-        <name>even_random/random_400000_2</name>
+        <identifier>../instances/random_large/random_400000_2.gml</identifier>
+        <name>random_large/random_400000_2</name>
         <nodes>400000</nodes>
         <edges>800000</edges>
         <diameter>-1</diameter>
@@ -710,8 +640,8 @@
         <diameter_uB>46</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_500000_0.gml</identifier>
-        <name>even_random/random_500000_0</name>
+        <identifier>../instances/random_large/random_500000_0.gml</identifier>
+        <name>random_large/random_500000_0</name>
         <nodes>500000</nodes>
         <edges>1000000</edges>
         <diameter>-1</diameter>
@@ -720,8 +650,8 @@
         <diameter_uB>50</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_500000_1.gml</identifier>
-        <name>even_random/random_500000_1</name>
+        <identifier>../instances/random_large/random_500000_1.gml</identifier>
+        <name>random_large/random_500000_1</name>
         <nodes>500000</nodes>
         <edges>1000000</edges>
         <diameter>-1</diameter>
@@ -730,8 +660,8 @@
         <diameter_uB>53</diameter_uB>
     </instance>
     <instance>
-        <identifier>../instances/even_random/random_500000_2.gml</identifier>
-        <name>even_random/random_500000_2</name>
+        <identifier>../instances/random_large/random_500000_2.gml</identifier>
+        <name>random_large/random_500000_2</name>
         <nodes>500000</nodes>
         <edges>1000000</edges>
         <diameter>-1</diameter>

@@ -2,24 +2,27 @@
 
 This directory contains instances for the separator problem, consisting of some real-world data or common datasets as
 well as custom graphs with interesting properties to test the algorithms on.
-Many instance types were directly taken from [Holzer et al. 2005].
+Many instance types were directly taken from [Holzer et al. 2005]. These instances can be found in the folder `table`.
 
 
 | Type          |                                                                                     Description                                                                                    |
-|:-------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| city          | Road networks of selected cities. Sourced from [openstreetmap].                                                                                                                    |
-| delaunay      | Delaunay-triangulations of point clouds on the unit sphere.                                                                                                                        | 
-| diameter      | Diameter graphs as described by Holzer et al.  (Graphs with large diameter but small separator)                                                                                    |
-| globe         | Globe graphs as described by Holzer et al.  (Nodes on a network of meridians and latitudes, with north- and southpole)                                                             |
-| grid          | Grid graphs as described by Holzer et al.                                                                                                                                          |
-| ogdf          | Random graphs to replace Holzer's LEDA-graphs.  (Random maximal planar graph and random graph with less than maximum number of edges)                                              |
-| rect          | Rectangular graphs as described by Holzer et al.                                                                                                                                   |
-| sixgrid       | Honeycomb graphs as described by Holzer et al.                                                                                                                                     |
-| sphere        | Sphere approximation graphs generated from splitting an icosaeder as described in Holzer et al.                                                                                    |
-| triangular    | Graphs derived from subdividing triangles as described in Holzer et al. (See notes below)                                                                                          |
-| twin          | Graphs consisting of two identical sub-graphs connected by a small separator as described in Holzer et al.                                                                         |
-| vlsi          | VLSI derived grid graphs taken from the Steinlib-library [Koch et al. 2000]                                                                                                        |
-
+|:--------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| europe         | Road networks of selected european cities. Sourced from [openstreetmap].                                                                                                           |
+| delaunay       | Delaunay-triangulations of point clouds on the unit sphere.                                                                                                                        | 
+| diameter       | Diameter graphs as described by Holzer et al.  (Graphs with large diameter but small separator)                                                                                    |
+| globe          | Globe graphs as described by Holzer et al.  (Nodes on a network of meridians and latitudes, with north- and southpole)                                                             |
+| grid           | Grid graphs as described by Holzer et al.                                                                                                                                          |
+| ogdf           | Random graphs to replace Holzer's LEDA-graphs.  (Random maximal planar graph and random graph with less than maximum number of edges)                                              |
+| rect           | Rectangular graphs as described by Holzer et al.                                                                                                                                   |
+| sixgrid        | Honeycomb graphs as described by Holzer et al.                                                                                                                                     |
+| sphere         | Sphere approximation graphs generated from splitting an icosaeder as described in Holzer et al.                                                                                    |
+| triangular     | Graphs derived from subdividing triangles as described in Holzer et al. (See notes below)                                                                                          |
+| twin           | Graphs consisting of two identical sub-graphs connected by a small separator as described in Holzer et al.                                                                         |
+| vlsi           | VLSI derived grid graphs taken from the Steinlib-library [Koch et al. 2000]                                                                                                        |
+| random         | Random graphs ranging in size from 5k to 30k nodes.                                                                                                                                |
+| delaunay_small | Delaunay-instances used for runtime analysis.                                                                                                                                      |
+| delaunay_large | Delaunay-instances used for runtime analysis.                                                                                                                                      |
+| random_large   | Random instances used for runtime analysis.                                                                                                                                        |
 
 # Notes
 
