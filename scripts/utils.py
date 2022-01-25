@@ -10,6 +10,11 @@ from matplotlib.colors import rgb_to_hsv, hsv_to_rgb, to_hex, to_rgb
 import os
 from zlib import crc32
 
+# setting font properties
+font = {'size': 12}
+
+plt.rc('font', **font)
+
 # mapping core algorithm name to color
 cmap = {"LT": "#092cbe",
         "LTFC": "#be0986",
@@ -232,15 +237,15 @@ def analyze_separator_speed(df, name, algorithms, instances, target):
     algo_results = analysis_per_node(df, algorithms, instances, 'time')
 
     create_violin_plot(algo_results, algorithms, name, "Average separator speed per node", "algorithm",
-                       "average speed in microseconds per node", True, target)
+                       u"average speed in \u03bcs per node", True, target)
 
     create_boxplot(algo_results, algorithms, name, "Average separator speed per node", "algorithm",
-                   "average speed in microseconds per node", True, target)
+                   u"average speed in \u03bcs per node", True, target)
 
     for algo in algo_results:
         algo_results[algo] = np.mean(algo_results[algo])
     create_algo_plot(algo_results, name, "Average separator speed per node",
-                     "algorithm", "average speed in us per node", True, target)
+                     "algorithm", u"average speed in \u03bcs per node", True, target)
 
 
 def analyze_separator_size(df, name, algorithms, instances, target):
@@ -255,7 +260,7 @@ def analyze_separator_size(df, name, algorithms, instances, target):
     """
 
     algo_results = analysis_core(df, algorithms, instances, 'sep_size')
-    create_algo_plot(algo_results, name, "Average separator size relative to smallest known separator",
+    create_algo_plot(algo_results, name, "Relative average separator size",
                      "algorithm", "relative average separator size", True, target)
 
 
@@ -349,12 +354,11 @@ def analyze_runtime_development(df, name, algorithms, instances, size_limit, mea
     plt.ticklabel_format(axis='x', style='sci', scilimits=(3, 3))
     plt.legend()
     plt.tight_layout()
-    plt.savefig(os.path.join(target, name+"_"+measure+".png"))
     if show:
         plt.show()
 
 
-def analyze_instance_performance(df, name, instances, algorithms, target):
+def analyze_instance_performance(df, name, instances, algorithms, target, use_pp=False):
     """
     Creates a scatter-plot to visualize relative algorithm performance for each instance.
 
@@ -363,8 +367,10 @@ def analyze_instance_performance(df, name, instances, algorithms, target):
     :param instances: list of strings, instance identifiers
     :param algorithms: list of strings, algorithm identifiers
     :param target: path to target directory that contains plots
+    :param use_pp: whether to look at results after postprocessing
     """
-    algorithms = [algo + "_NE_DMD" for algo in algorithms] # analyse after postprocessing
+    if use_pp:
+        algorithms = [algo + "_NE_DMD" for algo in algorithms] # analyse after postprocessing
 
     clean_instances = []  # instances without those that have 0-separators
 
@@ -392,7 +398,7 @@ def analyze_instance_performance(df, name, instances, algorithms, target):
             print(f"WARNING: Dropping instance {instance} because it had an empty separator")
 
     create_scatter_plot(clean_instances, [extract_pure_algo_name(algo) for algo in algorithms], algo_results, name,
-                        "Average separator size relative to smallest known separator",
+                        "Relative average separator size",
                         "instance", "relative average separator size", target)
 
 
@@ -421,7 +427,11 @@ def create_algo_plot(results, name, title, xlabel, ylabel, show, target):
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
     plt.bar(xs, data, tick_label=list(results), width=0.6, color=colors)
-    plt.xticks(rotation=45, ha='right')
+
+    if len(results) > 12:
+        plt.xticks(rotation=45, ha='right', fontsize=9)
+    else:
+        plt.xticks(rotation=45, ha='right')
     plt.tight_layout()
     plt.savefig(os.path.join(target, name+".png"))
     if show:
@@ -516,8 +526,10 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
     plt.title(title)
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
+    print(results)
 
     everything = [results[algo][inst] for algo in algorithms for inst in instances]
+    print(everything)
     mean = np.median(everything)
     std = np.std(everything)
     ub = mean + 1 * std
@@ -527,13 +539,22 @@ def create_scatter_plot(instances, algorithms, results, name, title, xlabel, yla
     n = len(algorithms)
     delta = 0.9 / n
 
-    for i, algo in enumerate(algorithms):
-        ys = [results[algo][inst] if results[algo][inst] < ub else ub for inst in instances]
-        plt.scatter([x-0.5 + delta*i for x in xs], ys, c=get_color(algo), marker=get_marker(algo), label=algo)
+    if len(instances) > 12:
+        for i, algo in enumerate(algorithms):
+            ys = [results[algo][inst] if results[algo][inst] < ub else ub for inst in instances]
+            plt.scatter(xs, ys, c=get_color(algo), marker=get_marker(algo), label=algo)
+    else:
+        plt.bar(xs, ub, width=1.3, color='#e9e9f2', zorder=0)
+        for i, algo in enumerate(algorithms):
+            ys = [results[algo][inst] if results[algo][inst] < ub else ub for inst in instances]
+            plt.scatter([x-0.5 + delta*i for x in xs], ys, c=get_color(algo), marker=get_marker(algo), label=algo, zorder=10)
 
     plt.ylim(1, ub)
-    plt.xticks(xs, [extract_short_instance_name(inst) for inst in instances], rotation=45, ha='right')
-    plt.legend()
+    if len(instances) > 12:
+        plt.xticks(xs, [extract_short_instance_name(inst) for inst in instances], rotation=45, ha='right', fontsize=9)
+    else:
+        plt.xticks(xs, [extract_short_instance_name(inst) for inst in instances], rotation=45, ha='right')
+    plt.legend().set_zorder(20)
     plt.tight_layout()
     plt.savefig(os.path.join(target, name + ".png"))
     plt.show()
