@@ -14,5 +14,3 @@ contained in the latest release, so the core of this repo only works with the in
 1. OGDF: download and install as described on <a href="https://ogdf.uos.de">ogdf.uos.de</a> (see disclaimer above)
 2. tinyxml: is contained in this repository, no need to install anything
 3. CGAL: for parts of the instance generation, CGAL is needed - download from <a href="https://www.cgal.org">cgal.org</a> (or via homebrew)
-
-todo: create python environment (matplotlib, pandas, etc.)
